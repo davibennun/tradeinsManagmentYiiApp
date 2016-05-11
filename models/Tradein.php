@@ -15,7 +15,7 @@ use Yii;
  * @property string $brand
  * @property string $value
  */
-class Tradeins extends \yii\db\ActiveRecord
+class Tradein extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
