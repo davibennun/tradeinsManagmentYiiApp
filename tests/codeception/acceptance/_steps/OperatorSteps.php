@@ -34,9 +34,9 @@ class OperatorSteps extends \AcceptanceTester
         return $fm->create(Tradein::class, $attr);
     }
 
-    public function clickOnNextPage()
+    public function seeNextPageButton()
     {
-        $this->click('li.next');
+        $this->seeElement('li.next');
     }
 
     public function seeTradeins($tradeins)
@@ -51,10 +51,10 @@ class OperatorSteps extends \AcceptanceTester
 
     public function seeTradein($tradein)
     {
-        $this->see($tradein->watch, 'td');
-        $this->see($tradein->model, 'td');
-        $this->see($tradein->brand, 'td');
-        $this->see($tradein->value, 'td');
+        $this->seeTradeinAttr($tradein->watch, 'td');
+        $this->seeTradeinAttr($tradein->model, 'td');
+        $this->seeTradeinAttr($tradein->brand, 'td');
+        $this->seeTradeinAttr($tradein->value, 'td');
     }
 
     public function dontSeeTradein($tradein)
@@ -65,19 +65,27 @@ class OperatorSteps extends \AcceptanceTester
         $this->dontSee($tradein->value, 'td');
     }
 
+    public function seeTradeinAttr($value, $el=null)
+    {
+        $this->see($value, $el);
+    }
+
     public function searchTradeinsBy($field, $value)
     {
-        $this->fillField('search-field-'.$field, $value);
+        $this->seeElement('input',['name'=>'TradeinSearch['.$field.']']);
+        $this->amOnPage('tradein&TradeinSearch['.$field.']='.$value);
     }
 
     public function onlySeeTradeinsWith($field, $value, $tradeins)
     {
         //Get tradeins which does not contains the value we want to see
-        $tradeinsNotSupposedToSee = array_map(function($tradein) use ($value){
-            return $tradein->$field != $value;
-        }, $tradeins);
+        //Ie. remove tradeins that has $field=>$value
+        $tradeinsNotSupposedToSee = array_filter(array_map(function($tradein) use ($field, $value){
+            return $tradein->$field != $value ? $tradein : false;
+        }, $tradeins));
 
-        $this->seeTradein($value) && $this->dontSeeTradeins($tradeinsNotSupposedToSee);
+        $this->seeTradeinAttr($value, 'td');
+        $this->dontSeeTradeins($tradeinsNotSupposedToSee);
     }
 
     public function amInTradeinsDetailsPage($id)
