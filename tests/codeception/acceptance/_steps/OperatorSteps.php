@@ -1,6 +1,11 @@
 <?php
 namespace AcceptanceTester;
 
+
+
+use app\models\Tradein;
+use saada\FactoryMuffin\FactoryMuffin;
+
 class OperatorSteps extends \AcceptanceTester
 {
 
@@ -10,9 +15,22 @@ class OperatorSteps extends \AcceptanceTester
     }
 
 
-    public function haveAListOfTradeins($int)
+    public function haveAListOfTradeins($qty)
     {
-        return [];
+        $tradeins = [];
+        foreach(range(1, $qty) as $i){
+            $tradeins[] = $this->haveATradein();
+        }
+        return $tradeins;
+
+//        return array_map([$this, 'haveATradein'], range(1, $qty));
+    }
+
+    public function haveATradein($attr=[])
+    {
+        $fm = new FactoryMuffin([Tradein::class]);
+        return $fm->create(Tradein::class, $attr);
+
     }
 
     public function clickOnNextPage()
@@ -44,10 +62,6 @@ class OperatorSteps extends \AcceptanceTester
         $this->dontSee($tradein->model, 'td');
         $this->dontSee($tradein->brand, 'td');
         $this->dontSee($tradein->value, 'td');
-    }
-
-    public function haveATradein()
-    {
     }
 
     public function searchTradeinsBy($field, $value)

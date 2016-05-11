@@ -28,8 +28,6 @@ class FixtureHelper extends Module
     public function _beforeSuite($settings = [])
     {
         $this->loadFixtures();
-        $test = new Tradein;
-        codecept_debug($test);
     }
 
     /**

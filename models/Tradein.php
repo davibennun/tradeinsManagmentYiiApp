@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use saada\FactoryMuffin\FactoryInterface;
+use League\FactoryMuffin\Faker\Facade as Faker;
 use Yii;
 
 /**
@@ -15,7 +17,7 @@ use Yii;
  * @property string $brand
  * @property string $value
  */
-class Tradein extends \yii\db\ActiveRecord
+class Tradein extends \yii\db\ActiveRecord implements FactoryInterface
 {
     /**
      * @inheritdoc
@@ -51,4 +53,18 @@ class Tradein extends \yii\db\ActiveRecord
             'value' => 'Value',
         ];
     }
+
+    public static function definitions() {
+        return [
+             [
+                'first_name'=> Faker::firstName(),
+                'last_name'=> Faker::lastName(),
+                'watch' => Faker::word(),
+                'model' => Faker::word(),
+                'brand' => Faker::company(),
+                'value' => Faker::numerify('###')
+            ]
+        ];
+    }
+
 }
