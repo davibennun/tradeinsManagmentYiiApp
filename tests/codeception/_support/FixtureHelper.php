@@ -63,4 +63,5 @@ class FixtureHelper extends Module
             InitDbFixture::className(),
         ];
     }
+
 }

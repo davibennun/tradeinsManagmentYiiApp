@@ -5,9 +5,12 @@ namespace AcceptanceTester;
 
 use app\models\Tradein;
 use saada\FactoryMuffin\FactoryMuffin;
+use tests\codeception\_support\FactoryMuffinTrait;
 
 class OperatorSteps extends \AcceptanceTester
 {
+
+    use FactoryMuffinTrait;
 
     public $baseURL = 'index-test.php?r=';
 
@@ -30,8 +33,7 @@ class OperatorSteps extends \AcceptanceTester
 
     public function haveATradein($attr=[])
     {
-        $fm = new FactoryMuffin([Tradein::class]);
-        return $fm->create(Tradein::class, $attr);
+        return $this->fm()->create(Tradein::class, $attr);
     }
 
     public function seeNextPageButton()
@@ -132,5 +134,14 @@ class OperatorSteps extends \AcceptanceTester
         return parent::amOnPage($this->baseURL.$url);
     }
 
+    public function getModelDefinitions()
+    {
+        return [Tradein::class];
+    }
+
+    public function _after(\Codeception\TestCase $test){
+        codecept_debug('----$$$$$$------');
+        $this->fm()->deleteSaved();
+    }
 
 }
