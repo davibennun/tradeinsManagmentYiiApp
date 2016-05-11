@@ -82,7 +82,7 @@ class OperatorSteps extends \AcceptanceTester
 
     public function amInTradeinsDetailsPage($id)
     {
-        $this->amOnPage('tradein/'.$id);
+        $this->amOnPage('tradein/view&id='.$id);
     }
 
     public function seeAllInfoAboutTheTradein($tradein)
@@ -101,22 +101,22 @@ class OperatorSteps extends \AcceptanceTester
 
     public function amOnTradeinEditPage($tradeinId)
     {
-        $this->amOnPage('tradein/update/', $tradeinId);
+        $this->amOnPage('tradein/update&id='.$tradeinId);
     }
 
     public function fillTradeinForm($newTradein)
     {
-        $this->fillField('first_name', $newTradein->first_name);
-        $this->fillField('last_name', $newTradein->last_name);
-        $this->fillField('watch', $newTradein->watch);
-        $this->fillField('model', $newTradein->model);
-        $this->fillField('brand', $newTradein->brand);
-        $this->fillField('value', $newTradein->value);
+        $this->fillField('Tradein[first_name]', $newTradein->first_name);
+        $this->fillField('Tradein[last_name]', $newTradein->last_name);
+        $this->fillField('Tradein[watch]', $newTradein->watch);
+        $this->fillField('Tradein[model]', $newTradein->model);
+        $this->fillField('Tradein[brand]', $newTradein->brand);
+        $this->fillField('Tradein[value]', $newTradein->value);
     }
 
     public function submitTradeinForm()
     {
-        $this->click('Submit');
+        $this->click('Update');
     }
 
     public function amOnPage($url)
