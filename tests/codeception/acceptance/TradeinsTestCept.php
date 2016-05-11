@@ -1,6 +1,10 @@
 <?php
+
 $I = new \AcceptanceTester\OperatorSteps($scenario);
 
+codecept_debug($I->loadFixtures());
+
+/**
 $I->wantTo('list tradeins');
     $tradeins = $I->haveAListOfTradeins(5);
     $I->amInTradeinsListPage();
@@ -42,3 +46,4 @@ $I->wantTo('edit a tradein');
     $I->fillTradeinForm($newTradein);
     $I->submitTradeinForm();
     $I->seeAllInfoAboutTheTradein($tradein);
+ **/

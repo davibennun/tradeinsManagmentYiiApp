@@ -4,11 +4,6 @@ namespace AcceptanceTester;
 class OperatorSteps extends \AcceptanceTester
 {
 
-    function __construct()
-    {
-
-    }
-
     public function amInTradeinsListPage()
     {
         $this->amOnPage('tradeins');
@@ -17,6 +12,7 @@ class OperatorSteps extends \AcceptanceTester
 
     public function haveAListOfTradeins($int)
     {
+        return [];
     }
 
     public function clickOnNextPage()
