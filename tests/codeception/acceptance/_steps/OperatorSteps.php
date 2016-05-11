@@ -9,9 +9,11 @@ use saada\FactoryMuffin\FactoryMuffin;
 class OperatorSteps extends \AcceptanceTester
 {
 
+    public $baseURL = 'index-test.php?r=';
+
     public function amInTradeinsListPage()
     {
-        $this->amOnPage('tradeins');
+        $this->amOnPage('tradein');
     }
 
 
@@ -30,12 +32,11 @@ class OperatorSteps extends \AcceptanceTester
     {
         $fm = new FactoryMuffin([Tradein::class]);
         return $fm->create(Tradein::class, $attr);
-
     }
 
     public function clickOnNextPage()
     {
-        $this->click('.next-page');
+        $this->click('li.next');
     }
 
     public function seeTradeins($tradeins)
@@ -81,7 +82,7 @@ class OperatorSteps extends \AcceptanceTester
 
     public function amInTradeinsDetailsPage($id)
     {
-        $this->amOnPage('tradeins/'.$id);
+        $this->amOnPage('tradein/'.$id);
     }
 
     public function seeAllInfoAboutTheTradein($tradein)
@@ -100,7 +101,7 @@ class OperatorSteps extends \AcceptanceTester
 
     public function amOnTradeinEditPage($tradeinId)
     {
-        $this->am('tradein/update/', $tradeinId);
+        $this->amOnPage('tradein/update/', $tradeinId);
     }
 
     public function fillTradeinForm($newTradein)
@@ -116,6 +117,11 @@ class OperatorSteps extends \AcceptanceTester
     public function submitTradeinForm()
     {
         $this->click('Submit');
+    }
+
+    public function amOnPage($url)
+    {
+        return parent::amOnPage($this->baseURL.$url);
     }
 
 
