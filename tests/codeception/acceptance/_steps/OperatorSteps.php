@@ -139,6 +139,21 @@ class OperatorSteps extends \AcceptanceTester
         return [Tradein::class];
     }
 
+    public function clickInEditableButton($fieldName, $order=0, $id=null)
+    {
+        $this->click('#tradein-'.$order.'-'.$fieldName.'-targ');
+    }
+
+    public function fillEditableField($value, $fieldName, $order=0, $id=null)
+    {
+        $this->fillField('#tradein-'.$order.'-'.$fieldName, $value);
+    }
+
+    public function clickEditableSubmit()
+    {
+        $this->click(".kv-editable-submit");
+    }
+
     public function _after(\Codeception\TestCase $test){
         codecept_debug('----$$$$$$------');
         $this->fm()->deleteSaved();
