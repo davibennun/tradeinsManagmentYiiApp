@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Tradein;
 use app\models\TradeinSearch;
+use app\controllers\behaviours\EditableBehaviour;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -26,6 +27,10 @@ class TradeinController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'editable' => [
+                'class' => EditableBehaviour::class,
+                'modelName' => Tradein::class
+            ]
         ];
     }
 
