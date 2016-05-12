@@ -49,7 +49,6 @@ function genColumn($attr, $opt=[])
                 genColumn('model'),
                 genColumn('brand'),
                 genColumn('value'),
-                ['class' => 'yii\grid\ActionColumn'],
             ],
             'responsive'=>true,
             'hover'=>true,
