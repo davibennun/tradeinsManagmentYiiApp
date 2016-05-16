@@ -53,18 +53,14 @@ class OperatorSteps extends \AcceptanceTester
 
     public function seeTradein($tradein)
     {
-        $this->seeTradeinAttr($tradein->watch, 'td');
         $this->seeTradeinAttr($tradein->model, 'td');
         $this->seeTradeinAttr($tradein->brand, 'td');
-        $this->seeTradeinAttr($tradein->value, 'td');
     }
 
     public function dontSeeTradein($tradein)
     {
-        $this->dontSee($tradein->watch, 'td');
         $this->dontSee($tradein->model, 'td');
         $this->dontSee($tradein->brand, 'td');
-        $this->dontSee($tradein->value, 'td');
     }
 
     public function seeTradeinAttr($value, $el=null)
@@ -99,10 +95,8 @@ class OperatorSteps extends \AcceptanceTester
     {
         $this->see($tradein->first_name);
         $this->see($tradein->last_name);
-        $this->see($tradein->watch);
         $this->see($tradein->model);
         $this->see($tradein->brand);
-        $this->see($tradein->value);
     }
 
     public function imagineATradein()
@@ -118,10 +112,8 @@ class OperatorSteps extends \AcceptanceTester
     {
         $this->fillField('Tradein[first_name]', $newTradein->first_name);
         $this->fillField('Tradein[last_name]', $newTradein->last_name);
-        $this->fillField('Tradein[watch]', $newTradein->watch);
         $this->fillField('Tradein[model]', $newTradein->model);
         $this->fillField('Tradein[brand]', $newTradein->brand);
-        $this->fillField('Tradein[value]', $newTradein->value);
     }
 
     public function submitTradeinForm()

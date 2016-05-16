@@ -32,10 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'first_name',
             'last_name',
-            'watch',
             'model',
             'brand',
-            'value',
         ],
     ]) ?>
 

@@ -21,13 +21,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'last_name') ?>
 
-    <?= $form->field($model, 'watch') ?>
-
     <?= $form->field($model, 'model') ?>
 
-    <?php // echo $form->field($model, 'brand') ?>
-
-    <?php // echo $form->field($model, 'value') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

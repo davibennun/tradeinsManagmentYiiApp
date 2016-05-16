@@ -45,10 +45,8 @@ function genColumn($attr, $opt=[])
             'columns' => [
                 genColumn('first_name'),
                 genColumn('last_name'),
-                genColumn('watch'),
                 genColumn('model'),
                 genColumn('brand'),
-                genColumn('value'),
             ],
             'responsive'=>true,
             'hover'=>true,

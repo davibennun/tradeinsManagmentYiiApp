@@ -34,8 +34,8 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
     public function rules()
     {
         return [
-            [['first_name', 'watch', 'value'], 'required'],
-            [['first_name', 'last_name', 'watch', 'model', 'brand', 'value'], 'string', 'max' => 255],
+            [['first_name'], 'required'],
+            [['first_name', 'last_name', 'model', 'brand'], 'string', 'max' => 255],
         ];
     }
 
@@ -48,10 +48,8 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
             'id' => 'ID',
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
-            'watch' => 'Watch',
             'model' => 'Model',
             'brand' => 'Brand',
-            'value' => 'Value',
         ];
     }
 
@@ -60,10 +58,8 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
              [
                 'first_name'=> Faker::firstName(),
                 'last_name'=> Faker::lastName(),
-                'watch' => Faker::word(),
                 'model' => Faker::word(),
-                'brand' => Faker::company(),
-                'value' => Faker::numerify('###')
+                'brand' => Faker::company()
             ]
         ];
     }

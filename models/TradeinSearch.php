@@ -20,7 +20,7 @@ class TradeinSearch extends Tradein
     {
         return [
             [['id'], 'integer'],
-            [['first_name', 'last_name', 'watch', 'model', 'brand', 'value'], 'safe'],
+            [['first_name', 'last_name', 'model', 'brand'], 'safe'],
         ];
     }
 
@@ -46,18 +46,8 @@ class TradeinSearch extends Tradein
 
         // add conditions that should always apply here
 
-//        $dataProvider = new ActiveDataProvider([
-//            'query' => $query,
-//        ]);
-
-        $dataProvider = new ArrayDataProvider([
-            'allModels' => $query->all(),
-            'sort' => [
-                'attributes' => ['first_name', 'last_name', 'watch', 'model', 'brand', 'value'],
-            ],
-            'pagination' => [
-                'pageSize' => 20,
-            ],
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
         ]);
 
         $this->load($params);
@@ -75,10 +65,8 @@ class TradeinSearch extends Tradein
 
         $query->andFilterWhere(['like', 'first_name', $this->first_name])
             ->andFilterWhere(['like', 'last_name', $this->last_name])
-            ->andFilterWhere(['like', 'watch', $this->watch])
             ->andFilterWhere(['like', 'model', $this->model])
-            ->andFilterWhere(['like', 'brand', $this->brand])
-            ->andFilterWhere(['like', 'value', $this->value]);
+            ->andFilterWhere(['like', 'brand', $this->brand]);
 
         return $dataProvider;
     }
