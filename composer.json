@@ -21,7 +21,8 @@
         "saada/yii2-factory-muffin": "@dev",
         "league/factory-muffin-faker": "^1.0",
         "kartik-v/yii2-editable": "~1.7",
-        "kartik-v/yii2-grid": "~3.1"
+        "kartik-v/yii2-grid": "~3.1",
+        "phpro/soap-client":"dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
@@ -39,6 +40,12 @@
             "yii\\composer\\Installer::postCreateProject"
         ]
     },
+    "repositories": [
+        {
+            "type":"vcs",
+            "url":"/Users/davibennun/Projects/yii/soap-client"
+        }
+    ],
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
             "setPermission": [

@@ -4,6 +4,7 @@ namespace app\models;
 
 use saada\FactoryMuffin\FactoryInterface;
 use League\FactoryMuffin\Faker\Facade as Faker;
+use Phpro\SoapClient\Type\ResultInterface;
 use Yii;
 
 /**
@@ -17,7 +18,7 @@ use Yii;
  * @property string $brand
  * @property string $value
  */
-class Tradein extends \yii\db\ActiveRecord implements FactoryInterface
+class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultInterface
 {
     /**
      * @inheritdoc
