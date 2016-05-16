@@ -20,7 +20,9 @@ class TradeinSearch extends Tradein
     {
         return [
             [['id'], 'integer'],
-            [['first_name', 'last_name', 'model', 'brand'], 'safe'],
+            [['first_contact', 'last_contact'], 'default', 'value' => null],
+            [['first_contact', 'last_contact'], 'date'],
+            [['first_name', 'last_name', 'first_contact', 'last_contact', 'model_number'], 'safe'],
         ];
     }
 
@@ -65,8 +67,9 @@ class TradeinSearch extends Tradein
 
         $query->andFilterWhere(['like', 'first_name', $this->first_name])
             ->andFilterWhere(['like', 'last_name', $this->last_name])
-            ->andFilterWhere(['like', 'model', $this->model])
-            ->andFilterWhere(['like', 'brand', $this->brand]);
+            ->andFilterWhere(['like', 'first_contact', $this->first_contact])
+            ->andFilterWhere(['like', 'last_contact', $this->last_contact])
+            ->andFilterWhere(['like', 'model_number', $this->model_number]);
 
         return $dataProvider;
     }

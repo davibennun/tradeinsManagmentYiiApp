@@ -33,6 +33,7 @@ class OperatorSteps extends \AcceptanceTester
 
     public function haveATradein($attr=[])
     {
+        codecept_debug($this->fm()->instance(Tradein::class)->getAttributes());
         return $this->fm()->create(Tradein::class, $attr);
     }
 

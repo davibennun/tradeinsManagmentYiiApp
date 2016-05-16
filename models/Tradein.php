@@ -34,8 +34,9 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
     public function rules()
     {
         return [
-            [['first_name'], 'required'],
             [['first_name', 'last_name', 'model', 'brand'], 'string', 'max' => 255],
+            [['internal_notes'], 'string','max'=>65535],
+            [['first_contact','last_contact'], 'default', 'value' => null],
         ];
     }
 
@@ -48,8 +49,17 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
             'id' => 'ID',
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
+            'internal_notes' => 'Internal notes',
+            'first_contact' => 'First contact',
+            'last_contact' => 'Last contact',
+            'contact_notes'=> 'Contact notes',
+            'shipping_label'=> 'Shipping label',
+            'email'=>'Email',
+            'phone'=>'Phone',
+            'brand'=>'Brand',
+            'other_brand'=>'Other brand',
             'model' => 'Model',
-            'brand' => 'Brand',
+            'model_number' => 'Model number'
         ];
     }
 
@@ -59,7 +69,16 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
                 'first_name'=> Faker::firstName(),
                 'last_name'=> Faker::lastName(),
                 'model' => Faker::word(),
-                'brand' => Faker::company()
+                'brand' => Faker::company(),
+                'internal_notes' => Faker::paragraph(),
+//                'first_contact' => Faker::date(),
+//                'last_contact' => Faker::date(),
+                'contact_notes'=> Faker::paragraph(),
+                'shipping_label'=> Faker::uuid(),
+                'email' => Faker::email(),
+                'phone'=>Faker::phoneNumber(),
+                'other_brand'=> Faker::company(),
+                'model_number' => Faker::numerify('######')
             ]
         ];
     }

@@ -11,15 +11,15 @@ use kartik\grid\GridView as KartikGridView;
 $this->title = 'Tradeins';
 $this->params['breadcrumbs'][] = $this->title;
 
-function genColumn($attr, $opt=[])
+function genColumn($attr, $opt=[], $inputType=\kartik\editable\Editable::INPUT_TEXT, $inputTypeOptions=[])
 {
     return array_merge([
         'class' => 'kartik\grid\EditableColumn',
         'attribute'=>$attr,
-        'editableOptions'=>function($model, $key, $index){
+        'editableOptions'=>function($model, $key, $index) use ($inputType, $inputTypeOptions){
             return [
-                'inputType'=>\kartik\editable\Editable::INPUT_TEXT,
-                'options'=>[]
+                'inputType'=>$inputType,
+                'options'=>$inputTypeOptions
             ];
         },
         'vAlign'=>'middle',
@@ -34,10 +34,6 @@ function genColumn($attr, $opt=[])
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Tradein', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?php
         echo KartikGridView::widget([
             'dataProvider'=> $dataProvider,
@@ -45,8 +41,9 @@ function genColumn($attr, $opt=[])
             'columns' => [
                 genColumn('first_name'),
                 genColumn('last_name'),
-                genColumn('model'),
-                genColumn('brand'),
+                genColumn('first_contact',['format'=>'date'], \kartik\editable\Editable::INPUT_DATE),
+                genColumn('last_contact',['format'=>'date'], \kartik\editable\Editable::INPUT_DATE),
+                genColumn('model_number'),
             ],
             'responsive'=>true,
             'hover'=>true,
