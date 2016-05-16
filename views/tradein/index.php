@@ -41,8 +41,58 @@ function genColumn($attr, $opt=[], $inputType=\kartik\editable\Editable::INPUT_T
             'columns' => [
                 genColumn('first_name'),
                 genColumn('last_name'),
-                genColumn('first_contact',['format'=>'date'], \kartik\editable\Editable::INPUT_DATE),
-                genColumn('last_contact',['format'=>'date'], \kartik\editable\Editable::INPUT_DATE),
+                [
+                    'class'=>'kartik\grid\EditableColumn',
+                    'attribute'=>'first_contact',
+                    'hAlign'=>'center',
+                    'vAlign'=>'middle',
+                    'format'=>['date','php:m-d-Y'],
+                    'xlFormat'=>"mmm\\-dd\\, \\-yyyy",
+                    'headerOptions'=>['class'=>'kv-sticky-column'],
+                    'contentOptions'=>['class'=>'kv-sticky-column'],
+                    'editableOptions'=>[
+                        'header'=>'Publish Date',
+                        'size'=>'md',
+                        'inputType'=>\kartik\editable\Editable::INPUT_WIDGET,
+                        'widgetClass'=> 'kartik\datecontrol\DateControl',
+                        'options'=>[
+                            'type'=>\kartik\datecontrol\DateControl::FORMAT_DATE,
+                            'displayFormat'=>'php:m-d-Y',
+                            'saveFormat'=>'php:Y-m-d',
+                            'options'=>[
+                                'pluginOptions'=>[
+                                    'autoclose'=>true
+                                ]
+                            ]
+                        ]
+                    ],
+                ],
+                [
+                    'class'=>'kartik\grid\EditableColumn',
+                    'attribute'=>'last_contact',
+                    'hAlign'=>'center',
+                    'vAlign'=>'middle',
+                    'format'=>['date','php:m-d-Y'],
+                    'xlFormat'=>"mmm\\-dd\\, \\-yyyy",
+                    'headerOptions'=>['class'=>'kv-sticky-column'],
+                    'contentOptions'=>['class'=>'kv-sticky-column'],
+                    'editableOptions'=>[
+                        'header'=>'Publish Date',
+                        'size'=>'md',
+                        'inputType'=>\kartik\editable\Editable::INPUT_WIDGET,
+                        'widgetClass'=> 'kartik\datecontrol\DateControl',
+                        'options'=>[
+                            'type'=>\kartik\datecontrol\DateControl::FORMAT_DATE,
+                            'displayFormat'=>'php:m-d-Y',
+                            'saveFormat'=>'php:Y-m-d',
+                            'options'=>[
+                                'pluginOptions'=>[
+                                    'autoclose'=>true
+                                ]
+                            ]
+                        ]
+                    ],
+                ],
                 genColumn('model_number'),
             ],
             'responsive'=>true,
