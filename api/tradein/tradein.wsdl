@@ -10,8 +10,6 @@
    <xsd:element name="id" type="xsd:integer"/>
    <xsd:element name="first_name" type="xsd:string"/>
    <xsd:element name="model" type="xsd:string"/>
-   <xsd:element name="watch" type="xsd:string"/>
-   <xsd:element name="value" type="xsd:string"/>
   </xsd:sequence>
  </xsd:complexType>
  <xsd:complexType name="TradeinCollection">
@@ -29,7 +27,7 @@
   <part name="return" type="tns:TradeinCollection" /></message>
 <portType name="tradeinServicePortType">
   <operation name="tradein.getTradeinCollection">
-    <documentation>get Tradein Collection starting from an Id</documentation>
+    <documentation>get Tradein Collectoin from 'from' to 'to'</documentation>
     <input message="tns:tradein.getTradeinCollectionRequest"/>
     <output message="tns:tradein.getTradeinCollectionResponse"/>
   </operation>

@@ -63,10 +63,11 @@ $gen = function($attr, $opt=[]) use ($model){
                     'inputType' => Editable::INPUT_TEXTAREA,
                     'header' => 'Internal notes',
                     'submitOnEnter' => false,
+                    'editableValueOptions'=>['style'=>'text-align:left'],
                     'options' => [
                         'class' => 'form-control',
                         'rows' => 5,
-                        'style' => 'width:500px',
+                        'style' => 'width:500px;text-align:left',
                         'placeholder' => 'Enter notes...'
                     ]
                 ])); ?>
@@ -137,6 +138,7 @@ $gen = function($attr, $opt=[]) use ($model){
                     'displayValue' => $model->contact_notes,
                     'inputType' => Editable::INPUT_TEXTAREA,
                     'header' => 'Contact notes',
+                    'editableValueOptions' => ['style' => 'text-align:left'],
                     'submitOnEnter' => false,
                     'options' => [
                         'class' => 'form-control',

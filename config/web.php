@@ -1,5 +1,8 @@
 <?php
 
+use app\api\tradein\TradeinClient;
+use app\components\SoapComponent;
+use app\models\Tradein;
 use kartik\datecontrol\Module;
 
 $params = require(__DIR__ . '/params.php');
@@ -9,6 +12,17 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+        'soap' => [
+          'class' => SoapComponent::class,
+          'clients' => [
+              [
+                  'clientName' => TradeinClient::class,
+                  'wsdl' => dirname(__DIR__).'/api/tradein/tradein.wsdl',
+                  'options' => ['cache_wsdl' => WSDL_CACHE_NONE],
+                  'classMaps' => [['Tradein',Tradein::class]]
+              ]
+          ]
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'MLhpvJ8BkGjA8Kc-9JjSubyny3f_P9Y-',
