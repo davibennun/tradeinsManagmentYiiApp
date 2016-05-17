@@ -94,11 +94,18 @@ function genColumn($attr, $opt=[], $inputType=\kartik\editable\Editable::INPUT_T
                     ],
                 ],
                 genColumn('model_number'),
+                [
+                    'class'=>'yii\grid\ActionColumn',
+                    'visibleButtons'=>[
+                        'update' => function(){return false;}
+                    ]
+                ]
             ],
             'responsive'=>true,
             'hover'=>true,
             'export' => false
-        ]);
+        ]
+            );
     ?>
 
 </div>

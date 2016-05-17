@@ -54,14 +54,14 @@ class OperatorSteps extends \AcceptanceTester
 
     public function seeTradein($tradein)
     {
-        $this->seeTradeinAttr($tradein->model, 'td');
-        $this->seeTradeinAttr($tradein->brand, 'td');
+        $this->seeTradeinAttr($tradein->first_name, 'td');
+        $this->seeTradeinAttr($tradein->last_name, 'td');
     }
 
     public function dontSeeTradein($tradein)
     {
-        $this->dontSee($tradein->model, 'td');
-        $this->dontSee($tradein->brand, 'td');
+        $this->dontSee($tradein->first_name, 'td');
+        $this->dontSee($tradein->last_name, 'td');
     }
 
     public function seeTradeinAttr($value, $el=null)

@@ -19,7 +19,7 @@ class EditableBehaviour extends ActionFilter{
     {
         $request= Yii::$app->request;
         if ($request->post('hasEditable')) {
-            $this->model = (new $this->modelName)->findOne($request->post('editableKey'));
+            $this->model = (new $this->modelName)->findOne($request->post('editableKey') ? $request->post('editableKey') : $request->get('id'));
             $singleModelName = (new \ReflectionClass($this->modelName))->getShortName();
             $posted = current($request->post($singleModelName));
             $post = [$singleModelName => $posted];

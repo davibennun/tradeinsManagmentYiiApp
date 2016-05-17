@@ -1,6 +1,6 @@
 <?php
 
-namespace api\tradein;
+namespace app\api\tradein;
 
 use Phpro\SoapClient\Type\ResultInterface;
 
@@ -25,5 +25,13 @@ class Tradein implements ResultInterface
     public function getFullName()
     {
         return $this->first_name.' '.$this->model;
+    }
+
+    public function __get($var){
+        return uniqid();
+    }
+
+    public function getErrors(){
+        return [];
     }
 }
