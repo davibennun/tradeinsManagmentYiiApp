@@ -3,25 +3,23 @@
 $I = new \AcceptanceTester\OperatorSteps($scenario);
 
 
-$I->wantTo('search tradeins by watch, model, brand and value');
+$I->wantTo('search tradeins by first and last name, contact dates and model number');
 $tradeins = $I->haveAListOfTradeins(3);
 $tradein = $tradeins[0];
 $I->amInTradeinsListPage();
 
 $I->searchTradeinsBy('first_name', $tradein->first_name);
 $I->onlySeeTradeinsWith('first_name', $tradein->first_name, $tradeins);
-//
-//$I->searchTradeinsBy('second_name', $tradein->second_name);
-//$I->onlySeeTradeinsWith('second_name', $tradein->second_name, $tradeins);
-//
-//$I->searchTradeinsBy('watch', $tradein->watch);
-//$I->onlySeeTradeinsWith('watch', $tradein->watch, $tradeins);
-//
-//$I->searchTradeinsBy('model', $tradein->model);
-//$I->onlySeeTradeinsWith('model', $tradein->model, $tradeins);
-//
-//$I->searchTradeinsBy('brand', $tradein->brand);
-//$I->onlySeeTradeinsWith('brand', $tradein->brand, $tradeins);
-//
-//$I->searchTradeinsBy('value', $tradein->value);
-//$I->onlySeeTradeinsWith('value', $tradein->value, $tradeins);
+
+$I->amInTradeinsListPage();
+$I->searchTradeinsBy('last_name', $tradein->last_name);
+$I->onlySeeTradeinsWith('last_name', $tradein->last_name, $tradeins);
+
+//$I->searchTradeinsBy('first_contact', $tradein->first_contact);
+//$I->onlySeeTradeinsWith('first_contact', $tradein->first_contact, $tradeins);
+
+//$I->searchTradeinsBy('last_contact', $tradein->last_contact);
+//$I->onlySeeTradeinsWith('last_contact', $tradein->last_contact, $tradeins);
+
+$I->searchTradeinsBy('model_number', $tradein->model_number);
+$I->onlySeeTradeinsWith('model_number', $tradein->model_number, $tradeins);

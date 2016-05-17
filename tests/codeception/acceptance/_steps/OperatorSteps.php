@@ -10,7 +10,7 @@ use tests\codeception\_support\FactoryMuffinTrait;
 class OperatorSteps extends \AcceptanceTester
 {
 
-    use FactoryMuffinTrait;
+    use EditableStepsTrait, FactoryMuffinTrait;
 
     public $baseURL = 'index-test.php?r=';
 
@@ -132,20 +132,6 @@ class OperatorSteps extends \AcceptanceTester
         return [Tradein::class];
     }
 
-    public function clickInEditableButton($fieldName, $order=0, $id=null)
-    {
-        $this->click('#tradein-'.$order.'-'.$fieldName.'-targ');
-    }
-
-    public function fillEditableField($value, $fieldName, $order=0, $id=null)
-    {
-        $this->fillField('#tradein-'.$order.'-'.$fieldName, $value);
-    }
-
-    public function clickEditableSubmit()
-    {
-        $this->click(".kv-editable-submit");
-    }
 
     public function _after(\Codeception\TestCase $test){
         codecept_debug('----$$$$$$------');
