@@ -39,6 +39,12 @@ abstract class SoapClientFacade {
         return self::instance();
     }
 
+    /**
+     * Return the client name for Soap Component.
+     * Should be implemented by child class.
+     *
+     * @return string $clientName Client Name for SOAP Component
+     */
     abstract public function getClientName();
 
     /**

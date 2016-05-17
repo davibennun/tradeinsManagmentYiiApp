@@ -21,6 +21,6 @@ return [
         ],
         'urlManager' => [
             'showScriptName' => true,
-        ],
+        ]
     ],
 ];

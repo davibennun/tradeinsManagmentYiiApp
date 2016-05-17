@@ -12,7 +12,14 @@ class SoapComponent {
 
     public $clients = [];
 
-    public function register($clientName, $fullWsdlPath, $classMaps=[],$options)
+    /**
+     * @param string $clientName
+     * @param string $fullWsdlPath
+     * @param array $classMaps
+     * @param array $options
+     * @return $this
+     */
+    public function register($clientName, $fullWsdlPath, $classMaps=[], $options=[])
     {
         $clientInfo = [
             'clientName'=> $clientName,
@@ -25,21 +32,35 @@ class SoapComponent {
         return $this;
     }
 
+    /**
+     * Adds a class map to a client
+     *
+     * @param string $clientName Client name
+     * @param string $type SOAP Type to be mapped to class
+     * @param string $class Class to bo mapped to type
+     * @return $this
+     */
     public function addClassMap($clientName, $type, $class)
     {
-        $this->clients[$clientName]['classMaps'][] = [$type, $class];
-
+        $info = $this->get($clientName);
+        $info['classMaps'][] = [$type, $class];
+        $this->set($info);
         return $this;
     }
 
+    /**
+     * @param $clientName
+     * @param bool $rebuild
+     * @return \Phpro\SoapClient\ClientInterface
+     */
     public function build($clientName, $rebuild=false)
     {
         //check if client was already built
-        if(isset($this->info($clientName)['theClient']) && !$rebuild){
-            return $this->info($clientName)['theClient'];
+        if(isset($this->get($clientName)['theClient']) && !$rebuild){
+            return $this->get($clientName)['theClient'];
         }
 
-        $clientInfo = $this->info($clientName);
+        $clientInfo = $this->get($clientName);
         $clientFactory = new ClientFactory($clientInfo['clientName']);
         $clientBuilder = new ClientBuilder($clientFactory, $clientInfo['wsdl'], $clientInfo['options']);
         foreach($clientInfo['classMaps'] as $classMap)
@@ -51,18 +72,18 @@ class SoapComponent {
         $clientInfo['builder'] = $clientBuilder;
         $clientInfo['theClient'] = $clientBuilder->build();
 
-        $this->addInfo($clientInfo);
+        $this->set($clientInfo);
 
         return $clientInfo['theClient'];
     }
 
-    public function info($clientName){
+    public function get($clientName){
         return current(array_filter($this->clients, function($clientInfo) use ($clientName){
             return $clientInfo['clientName'] == $clientName;
         }));
     }
 
-    public function addInfo($clientInfo)
+    public function set($clientInfo)
     {
         //Remove $cilentInfo from $this->clients (in case it exsits)
         $clientsClean = array_filter($this->clients, function ($client) use ($clientInfo) {
