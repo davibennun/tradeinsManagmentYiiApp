@@ -51,7 +51,7 @@ function genColumn($attr, $opt=[], $inputType=\kartik\editable\Editable::INPUT_T
                     'headerOptions'=>['class'=>'kv-sticky-column'],
                     'contentOptions'=>['class'=>'kv-sticky-column'],
                     'editableOptions'=>[
-                        'header'=>'Publish Date',
+                        'header'=>'First contact',
                         'size'=>'md',
                         'inputType'=>\kartik\editable\Editable::INPUT_WIDGET,
                         'widgetClass'=> 'kartik\datecontrol\DateControl',
@@ -77,7 +77,7 @@ function genColumn($attr, $opt=[], $inputType=\kartik\editable\Editable::INPUT_T
                     'headerOptions'=>['class'=>'kv-sticky-column'],
                     'contentOptions'=>['class'=>'kv-sticky-column'],
                     'editableOptions'=>[
-                        'header'=>'Publish Date',
+                        'header'=>'Last contact',
                         'size'=>'md',
                         'inputType'=>\kartik\editable\Editable::INPUT_WIDGET,
                         'widgetClass'=> 'kartik\datecontrol\DateControl',

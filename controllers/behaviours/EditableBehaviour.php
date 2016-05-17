@@ -22,7 +22,7 @@ class EditableBehaviour extends ActionFilter{
             $this->model = (new $this->modelName)->findOne($request->post('editableKey') ? $request->post('editableKey') : $request->get('id'));
             $singleModelName = (new \ReflectionClass($this->modelName))->getShortName();
             $posted = current($request->post($singleModelName));
-            $post = [$singleModelName => $posted];
+            $post= is_array($posted) ? [$singleModelName => $posted] : [ $singleModelName => $request->post($singleModelName) ];
 
             if ($this->model->load($post)) {
                 $this->model->save();

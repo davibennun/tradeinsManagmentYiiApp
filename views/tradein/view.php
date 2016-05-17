@@ -80,15 +80,53 @@ $gen = function($attr, $opt=[]) use ($model){
                         'model'=>$model,
                         'attribute' => 'first_contact',
                         'header' => 'First contact',
-                        'asPopover' => true,
+                        'asPopover' => false,
+                        'format' => 'php:m-d-Y',
                         'size' => 'md',
                         'inputType' => Editable::INPUT_DATE,
-                    ]
+                        'header' => 'First contact',
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_WIDGET,
+                        'widgetClass' => 'kartik\datecontrol\DateControl',
+                        'options' => [
+                            'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
+                            'displayFormat' => 'php:m-d-Y',
+                            'saveFormat' => 'php:Y-m-d',
+                            'options' => [
+                                'pluginOptions' => [
+                                    'autoclose' => true
+                                ]
+                            ]
+                        ]
+                        ]
                     ); ?></td>
         </tr>
         <tr>
             <th>Last contact</th>
-            <td><?= Editable::widget($gen('last_contact'),['inputType'=> Editable::INPUT_DATE]); ?></td>
+            <td><?= Editable::widget(
+                    [
+                        'model' => $model,
+                        'attribute' => 'last_contact',
+                        'header' => 'Last contact',
+                        'asPopover' => false,
+                        'size' => 'md',
+                        'inputType' => Editable::INPUT_DATE,
+                        'header' => 'Last contact',
+                        'size' => 'md',
+                        'inputType' => \kartik\editable\Editable::INPUT_WIDGET,
+                        'widgetClass' => 'kartik\datecontrol\DateControl',
+                        'options' => [
+                            'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
+                            'displayFormat' => 'php:m-d-Y',
+                            'saveFormat' => 'php:Y-m-d',
+                            'options' => [
+                                'pluginOptions' => [
+                                    'autoclose' => true
+                                ]
+                            ]
+                        ]
+                    ]
+                )?></td>
         </tr>
         <tr>
             <th>Contact notes</th>
