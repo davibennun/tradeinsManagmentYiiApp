@@ -22,7 +22,7 @@ install:
   - travis_retry composer install --dev --prefer-dist --no-interaction
 # setup application:
 script:
-  - phantomjs --webdriver=4444
+  - phantomjs --webdriver=4444 &
   - |
     cd tests
     ../vendor/bin/codecept build
