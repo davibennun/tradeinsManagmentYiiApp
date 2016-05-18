@@ -21,7 +21,7 @@ install:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - travis_retry composer install --dev --prefer-dist --no-interaction
 # codeception
-  - travis_retry composer global require "codeception/codeception=2.1.*" "codeception/specify=*" "codeception/verify=*"
+  - travis_retry composer global require "codeception/codeception=^2.2" "codeception/specify=^0.4.3" "codeception/verify=*"
 # setup application:
 script:
   - |
@@ -30,5 +30,4 @@ script:
     cd ../web
     php -S localhost:8080 > /dev/null 2>&1 &
     cd ../tests
-
     codecept run
