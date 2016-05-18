@@ -44,12 +44,6 @@
             "yii\\composer\\Installer::postCreateProject"
         ]
     },
-    "repositories": [
-        {
-            "type":"vcs",
-            "url":"/Users/davibennun/Projects/yii/soap-client"
-        }
-    ],
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
             "setPermission": [
