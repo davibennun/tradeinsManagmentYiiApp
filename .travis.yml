@@ -28,4 +28,4 @@ script:
     php -S localhost:8080 > /dev/null 2>&1 &
     cd ../tests
     ../vendor/bin/codecept run unit
-    ../vendor/bin/codecept run acceptance
+    ../vendor/bin/codecept run functional
