@@ -20,14 +20,12 @@ install:
   - travis_retry composer global require "fxp/composer-asset-plugin:~1.1.1"
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - travis_retry composer install --dev --prefer-dist --no-interaction
-# codeception
-  - travis_retry composer global require "codeception/codeception=^2.2" "codeception/specify=^0.4.3" "codeception/verify=*"
 # setup application:
 script:
   - |
     cd tests
-    codecept build
+    ../vendor/bin/codecept build
     cd ../web
     php -S localhost:8080 > /dev/null 2>&1 &
     cd ../tests
-    codecept run
+    ../vendor/bin/codecept run
