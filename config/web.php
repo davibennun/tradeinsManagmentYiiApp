@@ -11,6 +11,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute'=>'tradein',
     'components' => [
         'soap' => [
           'class' => SoapComponent::class,
