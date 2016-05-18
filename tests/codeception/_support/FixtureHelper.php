@@ -45,7 +45,7 @@ class FixtureHelper extends Module
     {
         return [
             'tradein' => [
-                'class' => TradeinFixture::className(),
+                'class' => TradeinFixture::class,
                 'templateFile' => '@tests/codeception/templates/tradein.php'
             ]
             // Add your fixtures here
