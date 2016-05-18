@@ -25,7 +25,6 @@ script:
   - phantomjs --webdriver=4444 > /dev/null 2>&1 &
   - |
     cd tests
-    ../vendor/bin/codecept build
     cd ../web
     php -S localhost:8080 > /dev/null 2>&1 &
     cd ../tests
