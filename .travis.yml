@@ -33,3 +33,4 @@ script:
     cd ../tests
     ../vendor/bin/codecept run unit
     ../vendor/bin/codecept run functional
+    ../vendor/bin/codecept run acceptance
