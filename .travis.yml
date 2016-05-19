@@ -14,6 +14,11 @@ cache:
   directories:
     - $HOME/.composer/cache
 
+branches:
+  only:
+    - master
+    - optimizing-codecption
+
 install:
   - travis_retry composer self-update && composer --version
   - travis_retry composer global require "fxp/composer-asset-plugin:~1.1.1"
@@ -21,7 +26,6 @@ install:
   - travis_retry composer install --dev --prefer-dist --no-interaction
 # setup application:
 script:
-  - phantomjs --webdriver=4444 > /dev/null 2>&1 &
   - |
     cd tests
     cd ../web
