@@ -19,12 +19,18 @@ branches:
     - master
     - optimizing-codecption
 
+services:
+  - mysql
+
 install:
   - travis_retry composer self-update && composer --version
   - travis_retry composer global require "fxp/composer-asset-plugin:~1.1.1"
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - travis_retry composer install --dev --prefer-dist --no-interaction
 # setup application:
+before_script:
+  - mysql -r 'create database yii2basic_tests;'
+  - codeception/bin/yii migrate
 script:
   - |
     cd tests
