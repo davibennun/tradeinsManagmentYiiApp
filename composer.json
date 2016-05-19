@@ -34,10 +34,12 @@
         "yiisoft/yii2-faker": "*",
         "codeception/codeception": "^2.2",
         "codeception/specify": "^0.4.3",
-        "codeception/verify": "*"
+        "codeception/verify": "*",
+        "jakoch/phantomjs-installer": "2.1.1"
     },
     "config": {
-        "process-timeout": 1800
+        "process-timeout": 1800,
+        "bin-dir": "bin"
     },
     "scripts": {
         "post-create-project-cmd": [
@@ -61,5 +63,13 @@
             "npm-asset-library": "vendor/npm",
             "bower-asset-library": "vendor/bower"
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS"
+        ],
+        "post-update-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS"
+        ]
     }
 }
