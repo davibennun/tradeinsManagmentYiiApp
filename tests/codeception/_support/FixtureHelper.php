@@ -44,10 +44,6 @@ class FixtureHelper extends Module
     public function fixtures()
     {
         return [
-            'tradein' => [
-                'class' => TradeinFixture::class,
-                'templateFile' => '@tests/codeception/templates/tradein.php'
-            ]
             // Add your fixtures here
 //            'objs '=> ['class'=>TradeinFixture::className()],  // access via key name
 //            ['class'=>TradeinFixture::className()],     // no access via key name
