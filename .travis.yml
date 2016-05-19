@@ -29,7 +29,7 @@ install:
   - travis_retry composer install --dev --prefer-dist --no-interaction
 # setup application:
 before_script:
-  - mysql -r 'create database yii2basic_tests;'
+  - mysql -e 'create database yii2basic_tests;'
   - codeception/bin/yii migrate
 script:
   - |
