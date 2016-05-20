@@ -36,11 +36,18 @@
         "codeception/specify": "^0.4.3",
         "codeception/verify": "*",
         "jakoch/phantomjs-installer": "2.1.1",
-        "site5/phantoman": "^1.1"
+        "site5/phantoman": "^1.1",
+        "oprudkyi/codeception-events-scripting":"dev-master"
     },
     "config": {
         "process-timeout": 1800
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "/Users/davibennun/Projects/yii/codeception-events-scripting"
+        }
+    ],
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
             "setPermission": [

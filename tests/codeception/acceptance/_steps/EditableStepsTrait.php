@@ -9,6 +9,7 @@ trait EditableStepsTrait {
     protected $optConfig = [
         'modelName'=>'',
         'order'=>null,
+        'fieldSuffix'=>null
     ];
 
     public function submitEditableDateField($field, $value, $opt = [])
@@ -35,9 +36,15 @@ trait EditableStepsTrait {
     }
 
 
-    public function seeEditableFieldUpdatedTheUi($value)
+    public function seeEditableFieldUpdatedTheUi($value, $fieldName=null,$opt=[])
     {
-        $this->see($value, 'button');
+        if($fieldName){
+            extract(array_merge($this->optConfig, $opt));
+            $sel = '#' . $modelName . '-' . ($this->_chk($order) ? $order . '-' : '') . $fieldName . '-targ';
+        }else{
+            $sel = 'button';
+        }
+        $this->see($value, $sel);
     }
 
     public function seeEditableFieldUpdatedTheDatabase($model, $attr, $value)

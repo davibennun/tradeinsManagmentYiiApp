@@ -37,7 +37,12 @@ config:
 extensions:
     enabled:
         - Codeception\Extension\Phantoman
+        - Codeception\Extension\EventsScripting
     config:
         Codeception\Extension\Phantoman:
             path: '/usr/local/bin/phantomjs'
             suites: ['acceptance']
+        Codeception\Extension\EventsScripting:
+            BeforeAll:
+                - command: ./codeception/bin/yii migrate/down 999999 --interactive=0 >/dev/null && ./codeception/bin/yii migrate/up --interactive=0 > /dev/null
+            suites: 'acceptance'

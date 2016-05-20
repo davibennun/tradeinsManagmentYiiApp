@@ -36,7 +36,6 @@ class m160516_150054_update_tradein_table extends Migration
 
         $this->addColumn('tradeins', 'watch', $this->string());
         $this->addColumn('tradeins', 'value', $this->string());
-        return false;
     }
 
     /*
