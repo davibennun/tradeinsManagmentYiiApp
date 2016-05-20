@@ -41,11 +41,6 @@
     "config": {
         "process-timeout": 1800
     },
-    "scripts": {
-        "post-create-project-cmd": [
-            "yii\\composer\\Installer::postCreateProject"
-        ]
-    },
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
             "setPermission": [
@@ -70,6 +65,9 @@
         ],
         "post-update-cmd": [
             "PhantomInstaller\\Installer::installPhantomJS"
+        ],
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject"
         ]
     }
 }
