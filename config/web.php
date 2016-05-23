@@ -24,6 +24,9 @@ $config = [
               ]
           ]
         ],
+        'formatter' => [
+            'dateFormat' => 'php:m-d-Y',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'MLhpvJ8BkGjA8Kc-9JjSubyny3f_P9Y-',
