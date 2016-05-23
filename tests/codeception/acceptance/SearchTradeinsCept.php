@@ -15,11 +15,11 @@ $I->amInTradeinsListPage();
 $I->searchTradeinsBy('last_name', $tradein->last_name);
 $I->onlySeeTradeinsWith('last_name', $tradein->last_name, $tradeins);
 
-//$I->searchTradeinsBy('first_contact', $tradein->first_contact);
-//$I->onlySeeTradeinsWith('first_contact', $tradein->first_contact, $tradeins);
+$I->searchTradeinsBy('first_contact', $tradein->first_contact);
+$I->onlySeeTradeinsWith('first_contact', $tradein->first_contact, $tradeins);
 
-//$I->searchTradeinsBy('last_contact', $tradein->last_contact);
-//$I->onlySeeTradeinsWith('last_contact', $tradein->last_contact, $tradeins);
+$I->searchTradeinsBy('last_contact', $tradein->last_contact);
+$I->onlySeeTradeinsWith('last_contact', $tradein->last_contact, $tradeins);
 
 $I->searchTradeinsBy('model_number', $tradein->model_number);
 $I->onlySeeTradeinsWith('model_number', $tradein->model_number, $tradeins);
