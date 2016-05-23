@@ -81,8 +81,16 @@ function genColumn($attr, $opt=[], $inputType=\kartik\editable\Editable::INPUT_T
                     'hAlign'=>'center',
                     'vAlign'=>'middle',
                     'format'=>['date','php:m-d-Y'],
+                    'width' => '20%',
                     'xlFormat'=>"mmm\\-dd\\, \\-yyyy",
                     'headerOptions'=>['class'=>'kv-sticky-column'],
+                    'filterType' => \kartik\datecontrol\DateControl::class,
+                    'filterWidgetOptions' => [
+                        'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
+                        'autoWidget' => 'true',
+                        'displayFormat' => 'php:m-d-Y',
+                        'saveFormat' => 'php:Y-m-d',
+                    ],
                     'contentOptions'=>['class'=>'kv-sticky-column'],
                     'editableOptions'=>[
                         'header'=>'Last contact',

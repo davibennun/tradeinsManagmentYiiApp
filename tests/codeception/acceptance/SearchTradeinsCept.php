@@ -15,9 +15,11 @@ $I->amInTradeinsListPage();
 $I->searchTradeinsBy('last_name', $tradein->last_name);
 $I->onlySeeTradeinsWith('last_name', $tradein->last_name, $tradeins);
 
-$I->searchTradeinsBy('first_contact', $tradein->first_contact);
-$I->onlySeeTradeinsWith('first_contact', $tradein->first_contact, $tradeins);
+$humanDate = \DateTime::createFromFormat('Y-m-d',$tradein->first_contact)->format('d-m-Y');
+$I->searchTradeinsBy('first_contact', $humanDate);
+$I->onlySeeTradeinsWith('first_contact', $humanDate, $tradeins);
 
+$humanDate = \DateTime::createFromFormat('Y-m-d', $tradein->last_contact)->format('d-m-Y');
 $I->searchTradeinsBy('last_contact', $tradein->last_contact);
 $I->onlySeeTradeinsWith('last_contact', $tradein->last_contact, $tradeins);
 
