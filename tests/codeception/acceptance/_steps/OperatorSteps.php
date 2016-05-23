@@ -68,12 +68,20 @@ class OperatorSteps extends \AcceptanceTester
         $this->see($value, $el);
     }
 
-    public function searchTradeinsBy($field, $value, $model)
+    public function searchTradeinsByDate($field, $value)
     {
-        $id = sprintf('#%ssearch-%s-disp', $model, $field);
+        $id = sprintf('#%ssearch-%s-disp', 'tradein', $field);
         $this->click($id);
         $this->fillField($id, $value);
-        $this->pressKey($id, \WebDriverKeys::ENTER);
+        $this->click('body');
+        $this->wait(5);
+    }
+
+    public function searchTradeinsBy($field, $value)
+    {
+        $this->fillField(['name' => 'TradeinSearch[' . $field . ']'], $value);
+        $this->click('body');
+        $this->wait(5);
     }
 
     public function onlySeeTradeinsWith($field, $value, $tradeins)
