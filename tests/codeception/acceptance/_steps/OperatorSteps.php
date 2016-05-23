@@ -68,10 +68,12 @@ class OperatorSteps extends \AcceptanceTester
         $this->see($value, $el);
     }
 
-    public function searchTradeinsBy($field, $value)
+    public function searchTradeinsBy($field, $value, $model)
     {
-        $this->seeElement('input',['name'=>'TradeinSearch['.$field.']']);
-        $this->amOnPage('tradein&TradeinSearch['.$field.']='.$value);
+        $id = sprintf('#%ssearch-%s-disp', $model, $field);
+        $this->click($id);
+        $this->fillField($id, $value);
+        $this->pressKey($id, \WebDriverKeys::ENTER);
     }
 
     public function onlySeeTradeinsWith($field, $value, $tradeins)
