@@ -21,7 +21,7 @@ class TradeinSearch extends Tradein
         return [
             [['id'], 'integer'],
             [['first_contact', 'last_contact'], 'default', 'value' => null],
-            [['first_contact', 'last_contact'], 'date'],
+            [['first_contact', 'last_contact'], 'date', 'format' => 'php:Y-m-d'],
             [['first_name', 'last_name', 'first_contact', 'last_contact', 'model_number'], 'safe'],
         ];
     }

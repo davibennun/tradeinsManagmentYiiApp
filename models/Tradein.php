@@ -20,6 +20,9 @@ use Yii;
  */
 class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultInterface
 {
+
+    public $dateFormatter = ['display'=>'m-d-Y','save'=>'Y-m-d'];
+
     /**
      * @inheritdoc
      */
@@ -37,8 +40,34 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
             [['first_name', 'last_name', 'model', 'brand'], 'string', 'max' => 255],
             [['internal_notes'], 'string','max'=>65535],
             [['first_contact','last_contact'], 'default', 'value' => null],
+            [['first_contact','last_contact'], 'date', 'format'=>'php:Y-m-d'],
         ];
     }
+
+    /**
+     * Mainly to format dates
+     */
+    public function beforeValidate()
+    {
+        parent::beforeValidate();
+        // Get model date values based on rules
+        foreach($this->rules() as $rule){
+            $fields = $rule[0];
+            $type = $rule[1];
+            if($type == 'date'){
+                foreach($fields as $field){
+                    if(empty($field)) continue;
+                    $theDate = \DateTime::createFromFormat($this->dateFormatter['display'], $this->$field);
+                    // Formats date only if its valid
+                    if (\DateTime::getLastErrors()['error_count'] == 0) {
+                        $this->$field = $theDate->format($this->dateFormatter['save']);
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
 
     /**
      * @inheritdoc
