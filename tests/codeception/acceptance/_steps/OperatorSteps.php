@@ -70,17 +70,21 @@ class OperatorSteps extends \AcceptanceTester
 
     public function searchTradeinsByDate($field, $value)
     {
-        $id = sprintf('#%ssearch-%s-disp', 'tradein', $field);
-        $this->click($id);
-        $this->fillField($id, $value);
-        $this->click('body');
+        $idInputHidden = sprintf('#%ssearch-%s', 'tradein', $field);
+        $idInputText = $idInputHidden.'-disp';
+        $this->fillField($idInputText, $value);
+        $this->executeJs(sprintf('$("%s").val("%s");',$idInputHidden, $value));
+        $this->executeJS(sprintf('$("%s").change();',$idInputText));
         $this->wait(5);
+
     }
 
     public function searchTradeinsBy($field, $value)
     {
-        $this->fillField(['name' => 'TradeinSearch[' . $field . ']'], $value);
-        $this->click('body');
+        $inputName = sprintf('TradeinSearch[%s]', $field);
+        $this->fillField(['name'=>$inputName], $value);
+        $this->executeJs(sprintf('$("%s").val("%s");', $inputName, $value));
+        $this->executeJS(sprintf('$("%s").change();', $inputName));
         $this->wait(5);
     }
 
@@ -95,6 +99,17 @@ class OperatorSteps extends \AcceptanceTester
         $this->seeTradeinAttr($value, 'td');
         $this->dontSeeTradeins($tradeinsNotSupposedToSee);
     }
+
+    public function onlySeeTradeinInGrid($tradein)
+    {
+        $this->see($tradein->first_name, "#tradein-0-first_name-targ");
+        $this->see($tradein->last_name, "#tradein-0-last_name-targ");
+        $this->see(\DateTime::createFromFormat('Y-m-d',$tradein->first_contact)->format('m-d-Y'), "#tradein-0-first_contact-targ");
+        $this->see(\DateTime::createFromFormat('Y-m-d',$tradein->last_contact)->format('m-d-Y'), "#tradein-0-last_contact-targ");
+        $this->see($tradein->model_number, "#tradein-0-model_number-targ");
+        $this->dontSee("#tradein-1-first_name-targ");
+    }
+
 
     public function amInTradeinsDetailsPage($id)
     {
