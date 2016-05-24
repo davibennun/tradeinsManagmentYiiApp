@@ -60,6 +60,9 @@ class TradeinSearch extends Tradein
             return $dataProvider;
         }
 
+        // Order, recent first
+        $query->orderBy('id DESC');
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
