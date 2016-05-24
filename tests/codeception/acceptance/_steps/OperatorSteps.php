@@ -82,9 +82,11 @@ class OperatorSteps extends \AcceptanceTester
     public function searchTradeinsBy($field, $value)
     {
         $inputName = sprintf('TradeinSearch[%s]', $field);
-        $this->fillField(['name'=>$inputName], $value);
-        $this->executeJs(sprintf('$("%s").val("%s");', $inputName, $value));
-        $this->executeJS(sprintf('$("%s").change();', $inputName));
+        $input = sprintf('input[name="%s"]',$inputName);
+        $this->fillField($input, $value);
+        $this->executeJs(sprintf('$(\'%s\').val("%s");', $input, $value));
+        $this->executeJS(sprintf('$(\'%s\').change();', $input));
+        $this->pressKey($input, \WebDriverKeys::ENTER);
         $this->wait(5);
     }
 

@@ -29,13 +29,13 @@ $I->amInTradeinsListPage();
 $I->submitEditableField('first_contact', $newFirstContactDate, ['fieldSuffix'=>'disp']);
 $I->wait(2);
 $I->seeEditableFieldUpdatedTheUi($newFirstContactDate, 'first_contact');
-$I->seeEditableFieldUpdatedTheDatabase($tradein, 'first_contact', $newFirstContactDate);
+$I->seeEditableFieldUpdatedTheDatabase($tradein, 'first_contact', \DateTime::createFromFormat('m-d-Y',$newFirstContactDate)->format('Y-m-d'));
 
 $I->amInTradeinsListPage();
 $I->submitEditableField('last_contact', $newLastContactDate, ['fieldSuffix'=>'disp']);
 $I->wait(2);
 $I->seeEditableFieldUpdatedTheUi($newLastContactDate);
-$I->seeEditableFieldUpdatedTheDatabase($tradein, 'last_contact', $newLastContactDate);
+$I->seeEditableFieldUpdatedTheDatabase($tradein, 'last_contact', \DateTime::createFromFormat('m-d-Y',$newLastContactDate)->format('Y-m-d'));
 
 $I->amInTradeinsListPage();
 $I->submitEditableField('model_number', $newModelNumber);

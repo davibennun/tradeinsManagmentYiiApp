@@ -64,6 +64,8 @@ trait EditableStepsTrait {
         extract(array_merge($this->optConfig, $opt));
         $fieldId = '#'.$modelName.'-'. ( $this->_chk($order) ? $order.'-' : '') . $fieldName . ($fieldSuffix ? '-'.$fieldSuffix : '');
         $this->fillField($fieldId, $value);
+        if($fieldSuffix == 'disp') $fieldId = substr($fieldId, 0, -5);
+        $this->executeJs(sprintf('$("%s").val("%s");', $fieldId, $value));
     }
 
     public function clickEditableSubmit($fieldName, $opt=[])
