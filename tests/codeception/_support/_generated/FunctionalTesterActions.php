@@ -570,6 +570,19 @@ trait FunctionalTesterActions
     /**
      * [!] Method is generated. Documentation taken from corresponding module.
      *
+     * Returns a list of regex patterns for recognized domain names
+     *
+     * @return array
+     * @see \Codeception\Module\Yii2::getInternalDomains()
+     */
+    public function getInternalDomains() {
+        return $this->getScenario()->runStep(new \Codeception\Step\Action('getInternalDomains', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
      * Authenticates user for HTTP_AUTH
      *
      * @param $username
@@ -578,6 +591,55 @@ trait FunctionalTesterActions
      */
     public function amHttpAuthenticated($username, $password) {
         return $this->getScenario()->runStep(new \Codeception\Step\Condition('amHttpAuthenticated', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Sets the HTTP header to the passed value - which is used on
+     * subsequent HTTP requests through PhpBrowser.
+     *
+     * Example:
+     * ```php
+     * <?php
+     * $I->setHeader('X-Requested-With', 'Codeception');
+     * $I->amOnPage('test-headers.php');
+     * ?>
+     * ```
+     *
+     * @param string $name the name of the request header
+     * @param string $value the value to set it to for subsequent
+     *        requests
+     * @see \Codeception\Lib\InnerBrowser::haveHttpHeader()
+     */
+    public function haveHttpHeader($name, $value) {
+        return $this->getScenario()->runStep(new \Codeception\Step\Action('haveHttpHeader', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Deletes the header with the passed name.  Subsequent requests
+     * will not have the deleted header in its request.
+     *
+     * Example:
+     * ```php
+     * <?php
+     * $I->haveHttpHeader('X-Requested-With', 'Codeception');
+     * $I->amOnPage('test-headers.php');
+     * // ...
+     * $I->deleteHeader('X-Requested-With');
+     * $I->amOnPage('some-other-page.php');
+     * ?>
+     * ```
+     *
+     * @param string $name the name of the header to delete.
+     * @see \Codeception\Lib\InnerBrowser::deleteHeader()
+     */
+    public function deleteHeader($name) {
+        return $this->getScenario()->runStep(new \Codeception\Step\Action('deleteHeader', func_get_args()));
     }
 
  
@@ -812,6 +874,80 @@ trait FunctionalTesterActions
      */
     public function dontSee($text, $selector = null) {
         return $this->getScenario()->runStep(new \Codeception\Step\Assertion('dontSee', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Checks that the current page contains the given string in its
+     * raw source code.
+     *
+     * ``` php
+     * <?php
+     * $I->seeInSource('<h1>Green eggs &amp; ham</h1>');
+     * ```
+     *
+     * @param      $raw
+     * Conditional Assertion: Test won't be stopped on fail
+     * @see \Codeception\Lib\InnerBrowser::seeInSource()
+     */
+    public function canSeeInSource($raw) {
+        return $this->getScenario()->runStep(new \Codeception\Step\ConditionalAssertion('seeInSource', func_get_args()));
+    }
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Checks that the current page contains the given string in its
+     * raw source code.
+     *
+     * ``` php
+     * <?php
+     * $I->seeInSource('<h1>Green eggs &amp; ham</h1>');
+     * ```
+     *
+     * @param      $raw
+     * @see \Codeception\Lib\InnerBrowser::seeInSource()
+     */
+    public function seeInSource($raw) {
+        return $this->getScenario()->runStep(new \Codeception\Step\Assertion('seeInSource', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Checks that the current page contains the given string in its
+     * raw source code.
+     *
+     * ```php
+     * <?php
+     * $I->dontSeeInSource('<h1>Green eggs &amp; ham</h1>');
+     * ```
+     *
+     * @param      $raw
+     * Conditional Assertion: Test won't be stopped on fail
+     * @see \Codeception\Lib\InnerBrowser::dontSeeInSource()
+     */
+    public function cantSeeInSource($raw) {
+        return $this->getScenario()->runStep(new \Codeception\Step\ConditionalAssertion('dontSeeInSource', func_get_args()));
+    }
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Checks that the current page contains the given string in its
+     * raw source code.
+     *
+     * ```php
+     * <?php
+     * $I->dontSeeInSource('<h1>Green eggs &amp; ham</h1>');
+     * ```
+     *
+     * @param      $raw
+     * @see \Codeception\Lib\InnerBrowser::dontSeeInSource()
+     */
+    public function dontSeeInSource($raw) {
+        return $this->getScenario()->runStep(new \Codeception\Step\Assertion('dontSeeInSource', func_get_args()));
     }
 
  
@@ -1542,7 +1678,7 @@ trait FunctionalTesterActions
      *      'checkbox1' => true,
      *      // ...
      * ];
-     * $I->submitForm('//form[@id=my-form]', $form, 'submitButton');
+     * $I->submitForm('#my-form', $form, 'submitButton');
      * // $I->amOnPage('/path/to/form-page') may be needed
      * $I->seeInFormFields('//form[@id=my-form]', $form);
      * ?>
@@ -2076,6 +2212,26 @@ trait FunctionalTesterActions
      *
      * Grabs either the text content, or attribute values, of nodes
      * matched by $cssOrXpath and returns them as an array.
+     * 
+     * ```html
+     * <a href="#first">First</a>
+     * <a href="#second">Second</a>
+     * <a href="#third">Third</a>
+     * ```
+     * 
+     * ```php
+     * <?php
+     * // would return ['First', 'Second', 'Third']
+     * $aLinkText = $I->grabMultiple('a');
+     * 
+     * // would return ['#first', '#second', '#third']
+     * $aLinks = $I->grabMultiple('a', 'href');
+     * ?>
+     * ```
+     * 
+     * @param $cssOrXpath
+     * @param $attribute
+     * @return string[]
      * 
      * ```html
      * <a href="#first">First</a>

@@ -19,7 +19,7 @@ modules:
 # it is useful if you want to login in your app in each test.
         - WebDriver:
             url: http://localhost:8080
-            browser: phantom
+            browser: firefox
         - Asserts
     config:
         PhpBrowser:

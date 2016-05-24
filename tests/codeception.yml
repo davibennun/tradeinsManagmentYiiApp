@@ -36,7 +36,7 @@ config:
     test_entry_url: http://localhost:8080/index-test.php
 extensions:
     enabled:
-        - Codeception\Extension\Phantoman
+        #- Codeception\Extension\Phantoman
         - Codeception\Extension\EventsScripting
     config:
         Codeception\Extension\Phantoman:
