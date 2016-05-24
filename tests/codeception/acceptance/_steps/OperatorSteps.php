@@ -122,7 +122,7 @@ class OperatorSteps extends \AcceptanceTester
     {
         $this->see($tradein->first_name);
         $this->see($tradein->last_name);
-        $this->see($tradein->model);
+        $this->see($tradein->model_number);
         $this->see($tradein->brand);
     }
 
