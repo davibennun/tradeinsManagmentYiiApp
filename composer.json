@@ -32,22 +32,16 @@
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*",
         "yiisoft/yii2-faker": "*",
-        "codeception/codeception": "^2.2",
+        "codeception/codeception": "2.1.8",
         "codeception/specify": "^0.4.3",
         "codeception/verify": "*",
         "jakoch/phantomjs-installer": "2.1.1",
         "site5/phantoman": "^1.1",
-        "oprudkyi/codeception-events-scripting":"dev-master"
+        "oprudkyi/codeception-events-scripting":"*"
     },
     "config": {
         "process-timeout": 1800
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "/Users/davibennun/Projects/yii/codeception-events-scripting"
-        }
-    ],
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
             "setPermission": [
