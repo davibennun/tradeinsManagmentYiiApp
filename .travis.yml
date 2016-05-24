@@ -22,6 +22,9 @@ branches:
 services:
   - mysql
 
+addons:
+  firefox: latest
+
 sudo: true
 
 install:
