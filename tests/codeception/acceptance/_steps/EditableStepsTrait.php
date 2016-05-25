@@ -12,6 +12,21 @@ trait EditableStepsTrait {
         'fieldSuffix'=>null
     ];
 
+    public function amDealingWithModel($model)
+    {
+        $this->optConfig['modelName'] = $model;
+    }
+
+    public function amDealingWithAGrid()
+    {
+        $this->optConfig['order'] = 0;
+    }
+
+    public function amNotDealingWithAGrid()
+    {
+        $this->optConfig['order'] = null;
+    }
+
     public function submitEditableDateField($field, $value, $opt = [])
     {
         $this->editEditableField($field, $value, array_merge(['fieldSuffix' => 'disp'], $opt));
@@ -44,7 +59,7 @@ trait EditableStepsTrait {
         }else{
             $sel = 'button';
         }
-        $this->see($value, $sel);
+        $this->waitForText($value, 5, $sel);
     }
 
     public function seeEditableFieldUpdatedTheDatabase($model, $attr, $value)

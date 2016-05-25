@@ -10,7 +10,6 @@ $newFirstContactDate = '10-10-2017';
 $newLastContactDate = '10-10-2017';
 $newModelNumber = '11111111';
 
-$I->_configEditable(['modelName' => 'tradein', 'order'=>0]);
 
 
 $I->amInTradeinsListPage();

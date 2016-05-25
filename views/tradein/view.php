@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $gen = function($attr, $opt=[]) use ($model){
     return array_merge([
+        'id'=> 'tradein-'.$attr,
         'model' => $model,
         'name' => 'Tradein[0]['.$attr.']',
         'value' => $model->$attr,

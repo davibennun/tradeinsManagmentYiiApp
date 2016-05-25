@@ -17,6 +17,8 @@ class OperatorSteps extends \AcceptanceTester
     public function amInTradeinsListPage()
     {
         $this->amOnPage('tradein');
+        $this->amDealingWithAGrid();
+        $this->amDealingWithModel('tradein');
     }
 
 
@@ -116,6 +118,8 @@ class OperatorSteps extends \AcceptanceTester
     public function amInTradeinsDetailsPage($id)
     {
         $this->amOnPage('tradein/view&id='.$id);
+        $this->amNotDealingWithAGrid();
+        $this->amDealingWithModel('tradein');
     }
 
     public function seeAllInfoAboutTheTradein($tradein)
