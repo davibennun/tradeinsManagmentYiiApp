@@ -49,6 +49,12 @@ $I->wait(3);
 $I->seeEditableFieldUpdatedTheUi('email@email.com', 'email');
 $I->seeEditableFieldUpdatedTheDatabase($tradein, 'email', 'email@email.com');
 
+// Check for validation errors
+$I->submitEditableField('email', 'someinvalidemail-gmail.com');
+$I->seeValidationError('email');
+$I->wait(3);
+$I->seeEditableFieldUpdatedTheDatabase($tradein, 'email', $tradein->email);
+
 $I->submitEditableField('phone', 'PHONE');
 $I->wait(3);
 $I->seeEditableFieldUpdatedTheUi('PHONE', 'phone');

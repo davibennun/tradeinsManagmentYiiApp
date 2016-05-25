@@ -89,6 +89,12 @@ trait EditableStepsTrait {
         $this->click('#'.$modelName.'-'. ($this->_chk($order) ? $order . '-' : '').$fieldName.'-cont .kv-editable-submit');
     }
 
+    public function seeValidationError($fieldName, $opt=[])
+    {
+        extract(array_merge($this->optConfig, $opt));
+        $this->waitForElement('#' . $modelName . '-' . ($this->_chk($order) ? $order . '-' : '') . $fieldName . '-cont .has-error', 5);
+    }
+
     public function makeIdSelector($modelName=nul, $order=null)
     {
         $id = '#'.$modelName ? $modelName : $this->optConfigConfig['modelName'];
