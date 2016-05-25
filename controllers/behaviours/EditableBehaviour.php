@@ -25,13 +25,15 @@ class EditableBehaviour extends ActionFilter{
             $post= is_array($posted) ? [$singleModelName => $posted] : [ $singleModelName => $request->post($singleModelName) ];
 
             if ($this->model->load($post)) {
-                $this->model->save();
+                $out = '';
 
-                $output = is_callable($this->validation) ?
-                    $output = call_user_func_array($this->validation, [$this->model, $post])
-                    : '';
+                if (!$this->model->validate()) {
+                    $message = array_values($this->model->errors)[0][0];
+                    $out = json_encode(['output' => '', 'message' => $message]);
+                }else{
+                    $this->model->save();
+                }
 
-                $out = json_encode(['output'=>$output, 'message'=>'']);
                 Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
                 Yii::$app->response->content = $out;
             }
