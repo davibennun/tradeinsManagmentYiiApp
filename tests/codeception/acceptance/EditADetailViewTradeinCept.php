@@ -44,10 +44,10 @@ $I->wait(3);
 $I->seeEditableFieldUpdatedTheUi('SHIPPING_LABEL', 'shipping_label');
 $I->seeEditableFieldUpdatedTheDatabase($tradein, 'shipping_label', 'SHIPPING_LABEL');
 
-$I->submitEditableField('email', 'EMAIL');
+$I->submitEditableField('email', 'email@email.com');
 $I->wait(3);
-$I->seeEditableFieldUpdatedTheUi('EMAIL', 'email');
-$I->seeEditableFieldUpdatedTheDatabase($tradein, 'email', 'EMAIL');
+$I->seeEditableFieldUpdatedTheUi('email@email.com', 'email');
+$I->seeEditableFieldUpdatedTheDatabase($tradein, 'email', 'email@email.com');
 
 $I->submitEditableField('phone', 'PHONE');
 $I->wait(3);
