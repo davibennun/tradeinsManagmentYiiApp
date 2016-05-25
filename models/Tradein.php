@@ -37,8 +37,8 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
     public function rules()
     {
         return [
-            [['first_name', 'last_name', 'model_number', 'brand'], 'string', 'max' => 255],
-            [['internal_notes'], 'string','max'=>65535],
+            [['first_name', 'last_name', 'model_number', 'brand', 'email','shipping_label','phone','brand','other_brand','model','model_number'], 'string', 'max' => 255],
+            [['internal_notes', 'contact_notes'], 'string','max'=>65535],
             [['first_contact','last_contact'], 'default', 'value' => null],
             [['first_contact','last_contact'], 'date', 'format'=>'php:Y-m-d'],
         ];
