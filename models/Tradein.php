@@ -127,7 +127,24 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
                 'email' => Faker::email(),
                 'phone'=>Faker::phoneNumber(),
                 'other_brand'=> Faker::company(),
-                'model_number' => Faker::numerify('######')
+                'model_number' => Faker::numerify('######'),
+                'customeritem_if_new' => Faker::boolean(),
+                'customeritem_retail_value' => Faker::numerify('###'),
+                'customeritem_vendor_offer' => Faker::numerify('###'),
+                'customeritem_jomashop_offer' => Faker::numerify('###'),
+                'purchase_date' => Faker::date(),
+                'purchased_from' => Faker::date(),
+                'box_papers' => Faker::bolean(),
+                'condition' => Faker::randomElements(['new','used','refurbished']),
+                'image1' => 'http://placehold.it/140x100?text=not+set',
+                'image2' => 'http://placehold.it/140x100?text=not+set',
+                'image3' => 'http://placehold.it/140x100?text=not+set',
+                'image4' => 'http://placehold.it/140x100?text=not+set',
+                'image5' => 'http://placehold.it/140x100?text=not+set',
+                'info_newitem_customer_wants' => Faker::word(),
+                'newitem_cost' => Faker::numerify('###'),
+                'newitem_jomashop_currentprice' => Faker::numerify('###'),
+                'outofpocket_price' => Faker::numerify('###')
             ]
         ];
     }

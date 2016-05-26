@@ -58,3 +58,20 @@ $I->submitEditableField('model_number', $newModelNumber);
 $I->wait(3);
 $I->seeEditableFieldUpdatedTheUi($newModelNumber, 'model_number');
 $I->seeEditableFieldUpdatedTheDatabase($tradein, 'model_number', $newModelNumber);
+
+$I->amInTradeinsListPage();
+$I->clickOnExpandableTradein($tradein);
+$I->submitEditableField('model_number', $newModelNumber);
+$I->wait(3);
+$I->seeEditableFieldUpdatedTheUi($newModelNumber, 'model_number');
+$I->seeEditableFieldUpdatedTheDatabase($tradein, 'model_number', $newModelNumber);
+
+
+$fields = ['customeritem_if_new','customeritem_retail_value','customeritem_vendor_offer','customeritem_jomashop_offer','purchase_date','purchased_from','box_papers','condition','image1','image2','image3','image4','image5','info_newitem_customer_wants','newitem_cost','newitem_jomashop_currentprice','outofpocket_price','creation_time'];
+foreach($fields as $field) {
+    $newFieldValue = \app\models\Tradein::definitions()[0][$field];
+    $I->submitEditableField($field, $newFieldValue);
+    $I->wait(3);
+    $I->seeEditableFieldUpdatedTheUi($newFieldValue, $field);
+    $I->seeEditableFieldUpdatedTheDatabase($tradein, $field, $newFieldValue);
+}
