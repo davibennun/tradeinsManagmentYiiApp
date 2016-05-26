@@ -37,9 +37,10 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
     public function rules()
     {
         return [
+            [['customeritem_if_new', 'customeritem_retail_value', 'customeritem_vendor_offer', 'customeritem_jomashop_offer', 'purchase_date', 'purchased_from', 'box_papers', 'condition', 'image1', 'image2', 'image3', 'image4', 'image5', 'info_newitem_customer_wants', 'newitem_cost', 'newitem_jomashop_currentprice', 'outofpocket_price'], 'safe'],
             [['first_name', 'last_name', 'model_number', 'brand', 'email','shipping_label','phone','brand','other_brand','model','model_number'], 'string', 'max' => 255],
             [['internal_notes', 'contact_notes'], 'string','max'=>65535],
-            [['first_contact','last_contact','email'], 'default', 'value' => null],
+            [['first_contact', 'last_contact', 'email', 'customeritem_if_new', 'customeritem_retail_value', 'customeritem_vendor_offer', 'customeritem_jomashop_offer', 'purchase_date', 'purchased_from', 'box_papers', 'condition', 'image1', 'image2', 'image3', 'image4', 'image5', 'info_newitem_customer_wants', 'newitem_cost', 'newitem_jomashop_currentprice', 'outofpocket_price'], 'default', 'value' => null],
             [['email'], 'email', 'skipOnEmpty'=>true],
             [['first_contact','last_contact'], 'date', 'format'=>'php:Y-m-d'],
         ];
@@ -89,7 +90,25 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
             'brand'=>'Brand',
             'other_brand'=>'Other brand',
             'model' => 'Model',
-            'model_number' => 'Model number'
+            'model_number' => 'Model number',
+            'customeritem_if_new' => 'Customer item is new',
+            'customeritem_retail_value' => 'Customer item retail value',
+            'customeritem_vendor_offer' => 'Customer vendor offer',
+            'customeritem_jomashop_offer' => 'Customer item jomashop offer',
+            'purchase_date' => 'Purchase date',
+            'purchased_from' => 'Purchased from',
+            'box_papers' => 'Box papers',
+            'condition' => 'Condition',
+            'image1' => 'Image #1',
+            'image2' => 'Image #2',
+            'image3' => 'Image #3',
+            'image4' => 'Image #4',
+            'image5' => 'Image #5',
+            'info_newitem_customer_wants' => 'New item customer wants',
+            'newitem_cost' => 'New item cost',
+            'newitem_jomashop_currentprice' => 'New item jomashop current price',
+            'outofpocket_price' => 'Out of pocket price',
+            'creation_time' => 'Creation time',
         ];
     }
 

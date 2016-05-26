@@ -1,3 +1,19 @@
+<?php
+use kartik\editable\Editable;
+
+$gen = function ($attr, $opt = []) use ($model, $index) {
+    return array_merge([
+        'id' => 'tradein-' . $index . '-' . $attr,
+        'model' => $model,
+        'name' => 'Tradein[' . $index . '][' . $attr . ']',
+        'value' => $model->$attr,
+        'asPopover' => false,
+        'header' => 'Name',
+        'size' => 'md',
+        'options' => ['class' => 'form-control']
+    ], $opt);
+};
+?>
 <h3>
     Tradein # <?= $model->id ?>
     <small><?= $model->creation_time; ?></small>
@@ -14,11 +30,11 @@
                 <tr>
                     <th style="width: 20%; text-align: right; vertical-align: middle;">First Name</th>
                     <td style="width:30%">
-                        <div class="kv-attribute"><?= $model->first_name ?></div>
+                        <div class="kv-attribute"><?= Editable::widget($gen('first_name')); ?></div>
                     </td>
                     <th style="width: 20%; text-align: right; vertical-align: middle;">Last Name</th>
                     <td style="width:30%">
-                        <div class="kv-attribute"><?= $model->last_name ?></div>
+                        <div class="kv-attribute"><?= Editable::widget($gen('last_name')); ?></div>
                     </td>
                 </tr>
                 </tbody>
@@ -32,11 +48,11 @@
                 <tr>
                     <th style="width: 20%; text-align: right; vertical-align: middle;">Email</th>
                     <td style="width:30%">
-                        <div class="kv-attribute"><?= $model->email ?></div>
+                        <div class="kv-attribute"><?= Editable::widget($gen('email')); ?></div>
                     </td>
                     <th style="width: 20%; text-align: right; vertical-align: middle;">Phone</th>
                     <td style="width:30%">
-                        <div class="kv-attribute"><?= $model->phone ?></div>
+                        <div class="kv-attribute"><?= Editable::widget($gen('phone')); ?></div>
                     </td>
                 </tr>
                 </tbody>
@@ -50,11 +66,11 @@
                 <tr>
                     <th style="width: 20%; text-align: right; vertical-align: middle;">First Contact</th>
                     <td style="width:30%">
-                        <div class="kv-attribute"><?= $model->first_contact ?></div>
+                        <div class="kv-attribute"><?= Editable::widget($gen('first_contact')); ?></div>
                     </td>
                     <th style="width: 20%; text-align: right; vertical-align: middle;">Last Contact</th>
                     <td style="width:30%">
-                        <div class="kv-attribute"><?= $model->last_contact ?></div>
+                        <div class="kv-attribute"><?= Editable::widget($gen('last_contact')); ?></div>
                     </td>
                 </tr>
                 </tbody>
@@ -139,7 +155,7 @@
                     <th style="width: 20%; text-align: right; vertical-align: middle;">Condition</th>
                     <td>
                         <div class="kv-attribute">
-                           <?= $model->condition?>
+                            <?= $model->condition ?>
                         </div>
                     </td>
                 </tr>
@@ -253,7 +269,8 @@
             <table class="kv-child-table">
                 <tbody>
                 <tr>
-                    <th style="width: 20%; text-align: right; vertical-align: middle;">New item jomashop current price</th>
+                    <th style="width: 20%; text-align: right; vertical-align: middle;">New item jomashop current price
+                    </th>
                     <td style="width:30%">
                         <div class="kv-attribute">
                             <span class="label label-danger"><?= $model->newitem_jomashop_currentprice ?></span>
@@ -262,24 +279,6 @@
                     <th style="width: 20%; text-align: right; vertical-align: middle;">Out of pocket price</th>
                     <td style="width:30%">
                         <div class="kv-attribute"><?= $model->outofpocket_price ?></div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-    <tr class="kv-child-table-row">
-        <td class="kv-child-table-cell" colspan="2">
-            <table class="kv-child-table">
-                <tbody>
-                <tr>
-                    <th style="width: 20%; text-align: right; vertical-align: middle;">Author</th>
-                    <td style="width:30%">
-                        <div class="kv-attribute"><a class="kv-author-link" href="#">John Steinbeck</a></div>
-                    </td>
-                    <th style="width: 20%; text-align: right; vertical-align: middle;">Remember?</th>
-                    <td style="width:30%">
-                        <div class="kv-attribute"><span class="label label-danger">No</span></div>
                     </td>
                 </tr>
                 </tbody>

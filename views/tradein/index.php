@@ -48,95 +48,36 @@ function genColumn($attr, $opt=[], $inputType=\kartik\editable\Editable::INPUT_T
                         return \kartik\grid\GridView::ROW_COLLAPSED;
                     },
                     'detail' => function ($model, $key, $index, $column) {
-                        return Yii::$app->controller->renderPartial('_expand-row-details', ['model' => $model]);
+                        return Yii::$app->controller->renderPartial('_expand-row-details', ['model' => $model,'key'=>$key,'index'=>$index]);
                     },
-                    'headerOptions' => ['class' => 'kartik-sheet-style'] ,
-                    'expandOneOnly'=>true,
-                    'enableRowClick'=>true
+                    'headerOptions' => ['class' => 'kartik-sheet-style'],
+                    'expandOneOnly' => true,
+                    'enableRowClick' => true
                 ],
-                genColumn('first_name'),
-                genColumn('last_name'),
+                'first_name',
+                'last_name',
                 [
-                    'class'=>'kartik\grid\EditableColumn',
                     'attribute'=>'first_contact',
-                    'hAlign'=>'center',
-                    'vAlign'=>'middle',
-                    'format'=>['date','php:m-d-Y'],
-                    'width' => '20%',
-                    'xlFormat'=>"mmm\\-dd\\, \\-yyyy",
-                    'headerOptions'=>['class'=>'kv-sticky-column'],
-                    'filterType'=> \kartik\datecontrol\DateControl::class,
-                    'filterWidgetOptions' => [
-                        'type'=> \kartik\datecontrol\DateControl::FORMAT_DATE,
-                        'autoWidget'=>'true',
-                        'displayFormat' => 'php:m-d-Y',
-                        'saveFormat' => 'php:Y-m-d',
-                    ],
-                    'contentOptions'=>['class'=>'kv-sticky-column'],
-                    'editableOptions'=>[
-                        'header'=>'First contact',
-                        'size'=>'md',
-                        'inputType'=>\kartik\editable\Editable::INPUT_WIDGET,
-                        'widgetClass'=> 'kartik\datecontrol\DateControl',
-                        'options'=>[
-                            'type'=>\kartik\datecontrol\DateControl::FORMAT_DATE,
-                            'displayFormat'=>'php:m-d-Y',
-                            'saveFormat'=>'php:Y-m-d',
-                            'options'=>[
-                                'pluginOptions'=>[
-                                    'autoclose'=>true
-                                ]
-                            ]
-                        ]
-                    ],
+                    'format'=> ['date', 'php:m-d-Y']
                 ],
                 [
-                    'class'=>'kartik\grid\EditableColumn',
                     'attribute'=>'last_contact',
-                    'hAlign'=>'center',
-                    'vAlign'=>'middle',
-                    'format'=>['date','php:m-d-Y'],
-                    'width' => '20%',
-                    'xlFormat'=>"mmm\\-dd\\, \\-yyyy",
-                    'headerOptions'=>['class'=>'kv-sticky-column'],
-                    'filterType' => \kartik\datecontrol\DateControl::class,
-                    'filterWidgetOptions' => [
-                        'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
-                        'autoWidget' => 'true',
-                        'displayFormat' => 'php:m-d-Y',
-                        'saveFormat' => 'php:Y-m-d',
-                    ],
-                    'contentOptions'=>['class'=>'kv-sticky-column'],
-                    'editableOptions'=>[
-                        'header'=>'Last contact',
-                        'size'=>'md',
-                        'inputType'=>\kartik\editable\Editable::INPUT_WIDGET,
-                        'widgetClass'=> 'kartik\datecontrol\DateControl',
-                        'options'=>[
-                            'type'=>\kartik\datecontrol\DateControl::FORMAT_DATE,
-                            'displayFormat'=>'php:m-d-Y',
-                            'saveFormat'=>'php:Y-m-d',
-                            'options'=>[
-                                'pluginOptions'=>[
-                                    'autoclose'=>true
-                                ]
-                            ]
-                        ]
-                    ],
+                    'format'=> ['date', 'php:m-d-Y']
                 ],
-                genColumn('model_number'),
+                'model_number',
                 [
-                    'class'=>'yii\grid\ActionColumn',
-                    'visibleButtons'=>[
-                        'update' => function(){return false;}
+                    'class' => 'yii\grid\ActionColumn',
+                    'visibleButtons' => [
+                        'update' => function () {
+                            return false;
+                        }
                     ]
-                ]
+                ],
             ],
             'responsive'=>true,
             'hover'=>true,
-            'export' => false
-        ]
-            );
+            'export' => false,
+        ]);
     ?>
 
 </div>
