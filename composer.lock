@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "db4eba7ab370dfa0a4911eb81baeacbe",
-    "content-hash": "08b3e46e36e5874da537b425eac6eb4f",
+    "hash": "687c38e76b18c8d8d0ca100c032cf14d",
+    "content-hash": "f2f7127190f62a1210ebf9e464358948",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -45,6 +45,56 @@
                 "MIT"
             ],
             "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+            "keywords": [
+                "css",
+                "framework",
+                "front-end",
+                "js",
+                "less",
+                "mobile-first",
+                "responsive",
+                "web"
+            ]
+        },
+        {
+            "name": "bower-asset/bootstrap3-dialog",
+            "version": "v1.35.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nakupanda/bootstrap3-dialog.git",
+                "reference": "d2a240e776951bcf61ecebc0c358a7db801ca931"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nakupanda/bootstrap3-dialog/zipball/d2a240e776951bcf61ecebc0c358a7db801ca931",
+                "reference": "d2a240e776951bcf61ecebc0c358a7db801ca931",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap": ">=3.1.0",
+                "bower-asset/jquery": ">=1.9.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/less/bootstrap-dialog.less",
+                    "dist/css/bootstrap-dialog.min.css",
+                    "dist/js/bootstrap-dialog.min.js"
+                ],
+                "bower-asset-ignore": [
+                    "source",
+                    "spec",
+                    ".bowerrc",
+                    ".gitignore",
+                    ".jshintignore",
+                    ".jshintrc",
+                    "bower.json",
+                    "gruntfile.js",
+                    "package.json",
+                    "README.md"
+                ]
+            },
+            "description": "Make use of Bootstrap Modal more monkey-friendly. http://nakupanda.github.io/bootstrap3-dialog/",
             "keywords": [
                 "css",
                 "framework",
@@ -698,23 +748,29 @@
         },
         {
             "name": "kartik-v/yii2-detail-view",
-            "version": "v1.7.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-detail-view.git",
-                "reference": "9368466d74434c0135b8bc42544efc511fcc09ad"
+                "reference": "31b57671ca4072ddad72ac80775abba4cb9b0ddf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/9368466d74434c0135b8bc42544efc511fcc09ad",
-                "reference": "9368466d74434c0135b8bc42544efc511fcc09ad",
+                "url": "https://api.github.com/repos/kartik-v/yii2-detail-view/zipball/31b57671ca4072ddad72ac80775abba4cb9b0ddf",
+                "reference": "31b57671ca4072ddad72ac80775abba4cb9b0ddf",
                 "shasum": ""
             },
             "require": {
-                "kartik-v/yii2-helpers": "*",
-                "kartik-v/yii2-krajee-base": "*"
+                "kartik-v/yii2-dialog": "~1.0",
+                "kartik-v/yii2-helpers": "~1.3.5",
+                "kartik-v/yii2-krajee-base": "~1.7"
             },
             "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.7.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "kartik\\detail\\": ""
@@ -722,7 +778,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD 3-Clause"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -731,7 +787,7 @@
                     "homepage": "http://www.krajee.com/"
                 }
             ],
-            "description": "Various enhancements to the Yii 2 Detail View with ability to edit data and manage Bootstrap 3 styles.",
+            "description": "Various enhancements to the Yii 2 Detail View with multi models, ability to edit data, manage Bootstrap 3 styles and more.",
             "homepage": "https://github.com/kartik-v/yii2-detail-view",
             "keywords": [
                 "detail",
@@ -742,7 +798,59 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-03-02 13:30:23"
+            "time": "2016-05-15 19:15:04"
+        },
+        {
+            "name": "kartik-v/yii2-dialog",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-dialog.git",
+                "reference": "270b96ee983b9ec2264ca66c0d9de2354fb10892"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-dialog/zipball/270b96ee983b9ec2264ca66c0d9de2354fb10892",
+                "reference": "270b96ee983b9ec2264ca66c0d9de2354fb10892",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap3-dialog": "~1.34",
+                "kartik-v/yii2-krajee-base": "~1.7"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\dialog\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An asset bundle for bootstrap3-dialog for Yii 2.0 framework.",
+            "homepage": "https://github.com/kartik-v/yii2-dialog",
+            "keywords": [
+                "alert",
+                "bootstrap",
+                "dialog",
+                "extension",
+                "modal",
+                "yii2"
+            ],
+            "time": "2016-04-27 19:12:29"
         },
         {
             "name": "kartik-v/yii2-editable",
@@ -843,16 +951,16 @@
         },
         {
             "name": "kartik-v/yii2-helpers",
-            "version": "dev-master",
+            "version": "v1.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-helpers.git",
-                "reference": "082a199f4e95e5f32975005ff46ff3880ced8406"
+                "reference": "f16003c8c9cfdaa50b4c9574cae9f0310946696c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-helpers/zipball/082a199f4e95e5f32975005ff46ff3880ced8406",
-                "reference": "082a199f4e95e5f32975005ff46ff3880ced8406",
+                "url": "https://api.github.com/repos/kartik-v/yii2-helpers/zipball/f16003c8c9cfdaa50b4c9574cae9f0310946696c",
+                "reference": "f16003c8c9cfdaa50b4c9574cae9f0310946696c",
                 "shasum": ""
             },
             "require": {
@@ -885,7 +993,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2016-04-27 13:50:39"
+            "time": "2015-12-12 18:47:11"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -2284,12 +2392,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "4b2f55e83f95f52eb17a0f0accd9bfac8ade6080"
+                "reference": "9fe4ae74a68e086459de46313c237f202718d0c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/4b2f55e83f95f52eb17a0f0accd9bfac8ade6080",
-                "reference": "4b2f55e83f95f52eb17a0f0accd9bfac8ade6080",
+                "url": "https://api.github.com/repos/symfony/console/zipball/9fe4ae74a68e086459de46313c237f202718d0c1",
+                "reference": "9fe4ae74a68e086459de46313c237f202718d0c1",
                 "shasum": ""
             },
             "require": {
@@ -2336,7 +2444,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-05-13 17:56:25"
+            "time": "2016-05-26 08:21:20"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -2453,12 +2561,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "dff51f72b0706335131b00a7f49606168c582594"
+                "reference": "67f0d2b927796648c5c38cedb7a2c8f1cf14e7dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/dff51f72b0706335131b00a7f49606168c582594",
-                "reference": "dff51f72b0706335131b00a7f49606168c582594",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/67f0d2b927796648c5c38cedb7a2c8f1cf14e7dc",
+                "reference": "67f0d2b927796648c5c38cedb7a2c8f1cf14e7dc",
                 "shasum": ""
             },
             "require": {
@@ -2504,7 +2612,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-05-18 14:26:46"
+            "time": "2016-05-26 01:13:28"
         },
         {
             "name": "symfony/process",
@@ -2561,12 +2669,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "b37b14b8112cc981dd17adda555dca63b70154a9"
+                "reference": "15e065ade7120d50988fcd0d2d6689855673febd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/b37b14b8112cc981dd17adda555dca63b70154a9",
-                "reference": "b37b14b8112cc981dd17adda555dca63b70154a9",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/15e065ade7120d50988fcd0d2d6689855673febd",
+                "reference": "15e065ade7120d50988fcd0d2d6689855673febd",
                 "shasum": ""
             },
             "require": {
@@ -2647,7 +2755,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2016-05-22 10:13:24"
+            "time": "2016-05-26 12:09:59"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -3329,16 +3437,16 @@
         },
         {
             "name": "oprudkyi/codeception-events-scripting",
-            "version": "dev-master",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oprudkyi/codeception-events-scripting.git",
-                "reference": "0f099b0025b0827b5b7d4dac0551a6525f591d70"
+                "reference": "6c603e2d4729fbd9f64d809e6804d1eb5a87638e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oprudkyi/codeception-events-scripting/zipball/0f099b0025b0827b5b7d4dac0551a6525f591d70",
-                "reference": "0f099b0025b0827b5b7d4dac0551a6525f591d70",
+                "url": "https://api.github.com/repos/oprudkyi/codeception-events-scripting/zipball/6c603e2d4729fbd9f64d809e6804d1eb5a87638e",
+                "reference": "6c603e2d4729fbd9f64d809e6804d1eb5a87638e",
                 "shasum": ""
             },
             "require": {
@@ -3367,7 +3475,7 @@
                 "extension",
                 "shell"
             ],
-            "time": "2016-04-26 23:06:01"
+            "time": "2016-04-26 00:09:17"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -3524,12 +3632,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "679ebb73b5dcf7d7533ed5ad303edd07e85d18f0"
+                "reference": "68c55c2af835530b5ee3d270d255749a43e8b2fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/679ebb73b5dcf7d7533ed5ad303edd07e85d18f0",
-                "reference": "679ebb73b5dcf7d7533ed5ad303edd07e85d18f0",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/68c55c2af835530b5ee3d270d255749a43e8b2fa",
+                "reference": "68c55c2af835530b5ee3d270d255749a43e8b2fa",
                 "shasum": ""
             },
             "require": {
@@ -3579,7 +3687,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-05-10 18:28:32"
+            "time": "2016-05-25 06:49:04"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3843,19 +3951,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "5d8c2a839d2c77757b7499eb135f34f9f5f07e6f"
+                "reference": "5bf0ba29dd683ec4f2e5d4fb212ad31827501012"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5d8c2a839d2c77757b7499eb135f34f9f5f07e6f",
-                "reference": "5d8c2a839d2c77757b7499eb135f34f9f5f07e6f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5bf0ba29dd683ec4f2e5d4fb212ad31827501012",
+                "reference": "5bf0ba29dd683ec4f2e5d4fb212ad31827501012",
                 "shasum": ""
             },
             "require": {
                 "doctrine/instantiator": "^1.0.2",
-                "php": ">=5.6",
-                "phpunit/php-text-template": "~1.2",
-                "sebastian/exporter": "~1.2"
+                "php": "^5.6 || ^7.0",
+                "phpunit/php-text-template": "^1.2",
+                "sebastian/exporter": "^1.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "^5.4"
@@ -3891,7 +3999,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2016-04-20 14:39:30"
+            "time": "2016-05-26 06:15:46"
         },
         {
             "name": "psr/http-message",
@@ -4457,16 +4565,16 @@
         },
         {
             "name": "site5/phantoman",
-            "version": "v1.1.2",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/site5/phantoman.git",
-                "reference": "31fba1d0978ac9505355644433e1f361d26f1b48"
+                "reference": "ff0323394e25308a87b82e3a51e20b53ea5823f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/site5/phantoman/zipball/31fba1d0978ac9505355644433e1f361d26f1b48",
-                "reference": "31fba1d0978ac9505355644433e1f361d26f1b48",
+                "url": "https://api.github.com/repos/site5/phantoman/zipball/ff0323394e25308a87b82e3a51e20b53ea5823f9",
+                "reference": "ff0323394e25308a87b82e3a51e20b53ea5823f9",
                 "shasum": ""
             },
             "require": {
@@ -4500,7 +4608,7 @@
                 "headless",
                 "phantomjs"
             ],
-            "time": "2016-05-23 18:25:11"
+            "time": "2016-05-25 14:29:33"
         },
         {
             "name": "symfony/browser-kit",
