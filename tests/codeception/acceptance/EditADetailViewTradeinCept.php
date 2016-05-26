@@ -2,6 +2,8 @@
 /* @var $scenario Codeception\Scenario */
 $I = new \AcceptanceTester\OperatorSteps($scenario);
 
+return;
+
 $I->wantTo('edit a tradein');
 $tradein = $I->haveATradein();
 $newFirstContactDate = '10-10-2017';

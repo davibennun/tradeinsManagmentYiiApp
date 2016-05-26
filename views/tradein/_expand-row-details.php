@@ -86,7 +86,6 @@ $gen = function ($attr, $opt = []) use ($model, $index, $key, $beforeInput) {
                                     'attribute' => 'first_contact',
                                     'header' => 'First contact',
                                     'asPopover' => true,
-                                    'format' => 'php:m-d-Y',
                                     'size' => 'md',
                                     'inputType' => \kartik\editable\Editable::INPUT_WIDGET,
                                     'widgetClass' => 'kartik\datecontrol\DateControl',
@@ -99,6 +98,8 @@ $gen = function ($attr, $opt = []) use ($model, $index, $key, $beforeInput) {
                                         'options' => [
                                             'pluginOptions' => [
                                                 'autoclose' => true,
+                                                'value' => 'test',
+                                                'format'=>'php:m-d-Y'
                                             ],
                                         ]
                                     ]

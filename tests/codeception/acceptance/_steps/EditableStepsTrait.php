@@ -99,12 +99,24 @@ trait EditableStepsTrait {
     {
         $id = '#'.$modelName ? $modelName : $this->optConfigConfig['modelName'];
         $id = $id.'-';
+    }
 
+    public function clickOnExpandableTradein($tradein)
+    {
+        $tr = 'tr[data-key="' . $tradein->id . '"]';
+        $this->click($tr);
+        $this->wait(1);
+        $this->optConfig['order'] = $this->grabAttributeFrom('.kv-expand-detail-row','data-index');
     }
 
     public function _configEditable($opt)
     {
         $this->optConfig = array_merge($this->optConfig, $opt);
+    }
+
+    public function getConfig($key=null)
+    {
+        return $key ? $this->optConfig[$key] : $this->optConfig;
     }
 
     public function _chk($val)
