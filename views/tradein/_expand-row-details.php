@@ -97,6 +97,7 @@ $gen = function ($attr, $opt = []) use ($model, $index, $key, $beforeInput) {
                                         'saveFormat' => 'php:Y-m-d',
                                         'options' => [
                                             'pluginOptions' => [
+                                                'beforeInput' => $beforeInput('first_contact'),
                                                 'autoclose' => true,
                                                 'value' => 'test',
                                                 'format'=>'php:m-d-Y'

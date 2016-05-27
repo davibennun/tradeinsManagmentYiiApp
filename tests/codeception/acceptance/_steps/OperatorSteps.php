@@ -130,8 +130,9 @@ class OperatorSteps extends \AcceptanceTester
         $this->see($tradein->brand);
     }
 
-    public function imagineATradein()
+    public function imagineATradein($attr=[])
     {
+        return $this->fm()->instance(Tradein::class, $attr);
     }
 
     public function amOnTradeinEditPage($tradeinId)

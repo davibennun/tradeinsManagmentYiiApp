@@ -42,7 +42,7 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
             [['internal_notes', 'contact_notes'], 'string','max'=>65535],
             [['first_contact', 'last_contact', 'email', 'customeritem_if_new', 'customeritem_retail_value', 'customeritem_vendor_offer', 'customeritem_jomashop_offer', 'purchase_date', 'purchased_from', 'box_papers', 'condition', 'image1', 'image2', 'image3', 'image4', 'image5', 'info_newitem_customer_wants', 'newitem_cost', 'newitem_jomashop_currentprice', 'outofpocket_price'], 'default', 'value' => null],
             [['email'], 'email', 'skipOnEmpty'=>true],
-            [['first_contact','last_contact'], 'date', 'format'=>'php:Y-m-d'],
+            [['first_contact','last_contact', 'purchase_date'], 'date', 'format'=>'php:Y-m-d'],
         ];
     }
 
@@ -132,10 +132,10 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
                 'customeritem_retail_value' => Faker::numerify('###'),
                 'customeritem_vendor_offer' => Faker::numerify('###'),
                 'customeritem_jomashop_offer' => Faker::numerify('###'),
-                'purchase_date' => Faker::date(),
-                'purchased_from' => Faker::date(),
-                'box_papers' => Faker::bolean(),
-                'condition' => Faker::randomElements(['new','used','refurbished']),
+//                'purchase_date' => Faker::date(),
+//                'purchased_from' => Faker::date(),
+                'box_papers' => Faker::randomElement(['yes','no']),
+                'condition' => Faker::randomElement(['new','used','refurbished']),
                 'image1' => 'http://placehold.it/140x100?text=not+set',
                 'image2' => 'http://placehold.it/140x100?text=not+set',
                 'image3' => 'http://placehold.it/140x100?text=not+set',
