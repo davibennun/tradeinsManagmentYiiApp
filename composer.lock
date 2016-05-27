@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "687c38e76b18c8d8d0ca100c032cf14d",
-    "content-hash": "f2f7127190f62a1210ebf9e464358948",
+    "hash": "4a53f3ef0052492f9fb673abdd9e33d1",
+    "content-hash": "a8e79194854e4489a11ff178307f76a8",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "4a9f909f73a2f70be8cd8cdd5b72ce376f21db26"
+                "reference": "46a476a6ac1f614442c7e4b1a6dca44f0b34f892"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/4a9f909f73a2f70be8cd8cdd5b72ce376f21db26",
-                "reference": "4a9f909f73a2f70be8cd8cdd5b72ce376f21db26",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/46a476a6ac1f614442c7e4b1a6dca44f0b34f892",
+                "reference": "46a476a6ac1f614442c7e4b1a6dca44f0b34f892",
                 "shasum": ""
             },
             "require": {
@@ -369,7 +369,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2016-04-28 05:33:48"
+            "time": "2016-05-27 12:51:06"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -701,16 +701,16 @@
         },
         {
             "name": "kartik-v/yii2-datecontrol",
-            "version": "v1.9.4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-datecontrol.git",
-                "reference": "4e858b5cd38130c37739b2f582b66a044f77c95c"
+                "reference": "c849e530e6b6826cd1919bf3d6ba7bd4fb757cc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-datecontrol/zipball/4e858b5cd38130c37739b2f582b66a044f77c95c",
-                "reference": "4e858b5cd38130c37739b2f582b66a044f77c95c",
+                "url": "https://api.github.com/repos/kartik-v/yii2-datecontrol/zipball/c849e530e6b6826cd1919bf3d6ba7bd4fb757cc2",
+                "reference": "c849e530e6b6826cd1919bf3d6ba7bd4fb757cc2",
                 "shasum": ""
             },
             "require": {
@@ -744,7 +744,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2015-07-30 18:30:18"
+            "time": "2016-04-27 18:50:09"
         },
         {
             "name": "kartik-v/yii2-detail-view",
@@ -854,16 +854,16 @@
         },
         {
             "name": "kartik-v/yii2-editable",
-            "version": "v1.7.4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-editable.git",
-                "reference": "7c25b5bb6b21027eaf11b6ee4bba5c9f00cf04cd"
+                "reference": "cafe84da9080825e2aa89bc2bba38c6922f0816a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-editable/zipball/7c25b5bb6b21027eaf11b6ee4bba5c9f00cf04cd",
-                "reference": "7c25b5bb6b21027eaf11b6ee4bba5c9f00cf04cd",
+                "url": "https://api.github.com/repos/kartik-v/yii2-editable/zipball/cafe84da9080825e2aa89bc2bba38c6922f0816a",
+                "reference": "cafe84da9080825e2aa89bc2bba38c6922f0816a",
                 "shasum": ""
             },
             "require": {
@@ -898,7 +898,7 @@
                 "popover-x",
                 "widget"
             ],
-            "time": "2015-12-27 16:31:06"
+            "time": "2016-05-07 19:40:29"
         },
         {
             "name": "kartik-v/yii2-grid",
@@ -2669,12 +2669,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "15e065ade7120d50988fcd0d2d6689855673febd"
+                "reference": "e9cc989c9c3de3326892f9205bfc17e61347fcdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/15e065ade7120d50988fcd0d2d6689855673febd",
-                "reference": "15e065ade7120d50988fcd0d2d6689855673febd",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e9cc989c9c3de3326892f9205bfc17e61347fcdc",
+                "reference": "e9cc989c9c3de3326892f9205bfc17e61347fcdc",
                 "shasum": ""
             },
             "require": {
@@ -2755,7 +2755,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2016-05-26 12:09:59"
+            "time": "2016-05-26 21:41:47"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -3570,12 +3570,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "7ca4182b3acbd19ebbf3ced4dfee12487d9c05aa"
+                "reference": "f9a8140d6cf86514a64fb3b637e716008e1885d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/7ca4182b3acbd19ebbf3ced4dfee12487d9c05aa",
-                "reference": "7ca4182b3acbd19ebbf3ced4dfee12487d9c05aa",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/f9a8140d6cf86514a64fb3b637e716008e1885d0",
+                "reference": "f9a8140d6cf86514a64fb3b637e716008e1885d0",
                 "shasum": ""
             },
             "require": {
@@ -3624,7 +3624,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2016-05-09 09:25:40"
+            "time": "2016-05-27 08:33:35"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -3632,12 +3632,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "68c55c2af835530b5ee3d270d255749a43e8b2fa"
+                "reference": "844ec6eabee15768f1e34a8871f6fddfc3d5f602"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/68c55c2af835530b5ee3d270d255749a43e8b2fa",
-                "reference": "68c55c2af835530b5ee3d270d255749a43e8b2fa",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/844ec6eabee15768f1e34a8871f6fddfc3d5f602",
+                "reference": "844ec6eabee15768f1e34a8871f6fddfc3d5f602",
                 "shasum": ""
             },
             "require": {
@@ -3687,7 +3687,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-05-25 06:49:04"
+            "time": "2016-05-27 16:21:40"
         },
         {
             "name": "phpunit/php-file-iterator",

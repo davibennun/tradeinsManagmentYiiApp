@@ -35,6 +35,18 @@ trait EditableStepsTrait {
         $this->clickEditableSubmit($field);
     }
 
+    public function submitEditableDropDownField($field, $value, $opt=[])
+    {
+        $this->clickInEditableButton($field, $opt);
+        $this->wait(2);
+
+        extract(array_merge($this->optConfig, $opt));
+        $sel = '#' . $modelName . '-' . ($this->_chk($order) ? $order . '-' : '') . $field;
+        $this->selectOption($sel, $value);
+
+        $this->clickEditableSubmit($field);
+    }
+
     public function submitEditableField($field, $value, $opt=[])
     {
         $this->editEditableField($field, $value, $opt);
@@ -71,7 +83,10 @@ trait EditableStepsTrait {
     public function clickInEditableButton($fieldName,$opt=[])
     {
         extract(array_merge($this->optConfig, $opt));
-        $this->click('#' . $modelName . '-' . ($this->_chk($order) ? $order . '-' : '') . $fieldName . '-targ');
+        $id = '#' . $modelName . '-' . ($this->_chk($order) ? $order . '-' : '') . $fieldName;
+        $this->scrollTo(['css' => $id . '-targ'], null, -200);
+        $this->wait(1);
+        $this->click($id . '-targ');
     }
 
     public function fillEditableField($fieldName, $value, $opt=[])
@@ -86,7 +101,10 @@ trait EditableStepsTrait {
     public function clickEditableSubmit($fieldName, $opt=[])
     {
         extract(array_merge($this->optConfig, $opt));
-        $this->click('#'.$modelName.'-'. ($this->_chk($order) ? $order . '-' : '').$fieldName.'-cont .kv-editable-submit');
+        $id = '#' . $modelName . '-' . ($this->_chk($order) ? $order . '-' : '') . $fieldName;
+        $this->scrollTo(['css' => $id . '-cont'], null, -200);
+        $this->wait(1);
+        $this->click($id.'-cont .kv-editable-submit');
     }
 
     public function seeValidationError($fieldName, $opt=[])
@@ -104,6 +122,8 @@ trait EditableStepsTrait {
     public function clickOnExpandableTradein($tradein)
     {
         $tr = 'tr[data-key="' . $tradein->id . '"]';
+        $this->scrollTo(['css' => $tr]);
+        $this->wait(1);
         $this->click($tr);
         $this->wait(1);
         $this->optConfig['order'] = $this->grabAttributeFrom('.kv-expand-detail-row','data-index');

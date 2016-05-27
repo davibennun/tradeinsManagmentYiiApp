@@ -18,12 +18,49 @@ $gen = function ($attr, $opt = []) use ($model, $index, $key, $beforeInput) {
         'name' => 'Tradein[' . $index . '][' . $attr . ']',
         'value' => $model->$attr,
         'asPopover' => false,
-        'header' => 'Name',
+        'header' => $model->getAttributeLabel($attr),
         'size' => 'md',
         'options' => ['class' => 'form-control'],
         'beforeInput'=> $beforeInput($attr),
     ], $opt);
 };
+
+// Create a dummy grid
+$grid = Yii::createObject(['class' => 'kartik\grid\GridView', 'export' => false, 'dataProvider' => Yii::createObject('yii\data\ArrayDataProvider')]);
+
+$genDate = function($attr, $opt=[]) use ($grid, $model, $index, $key, $beforeInput) {
+    return Yii::createObject(array_merge([
+        'grid' => $grid,
+        'class' => 'kartik\grid\EditableColumn',
+        'attribute' => $attr,
+        'hAlign' => 'center',
+        'vAlign' => 'middle',
+        'format' => ['date', 'php:m-d-Y'],
+        'width' => '20%',
+        'xlFormat' => "mmm\\-dd\\, \\-yyyy",
+        'headerOptions' => ['class' => 'kv-sticky-column'],
+        'contentOptions' => ['class' => 'kv-sticky-column'],
+        'editableOptions' => [
+            'header' => $model->getAttributeLabel($attr),
+            'size' => 'md',
+            'inputType' => \kartik\editable\Editable::INPUT_WIDGET,
+            'widgetClass' => 'kartik\datecontrol\DateControl',
+            'options' => [
+                'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
+                'displayFormat' => 'php:m-d-Y',
+                'saveFormat' => 'php:Y-m-d',
+                'options' => [
+                    'name' => 'Tradein[' . $index . ']['.$attr.']',
+                    'pluginOptions' => [
+                        'autoclose' => true
+                    ]
+                ]
+            ]
+        ],
+    ],$opt))->renderDataCellContent($model, $key, $index);
+}
+
+
 
 ?>
 <h3>
@@ -79,63 +116,13 @@ $gen = function ($attr, $opt = []) use ($model, $index, $key, $beforeInput) {
                     <th style="width: 20%; text-align: right; vertical-align: middle;">First Contact</th>
                     <td style="width:30%">
                         <div class="kv-attribute">
-                            <?= Editable::widget(
-                                [
-                                    'beforeInput' => $beforeInput('first_contact'),
-                                    'model' => $model,
-                                    'attribute' => 'first_contact',
-                                    'header' => 'First contact',
-                                    'asPopover' => true,
-                                    'size' => 'md',
-                                    'inputType' => \kartik\editable\Editable::INPUT_WIDGET,
-                                    'widgetClass' => 'kartik\datecontrol\DateControl',
-                                    'options' => [
-                                        'id' => 'tradein-' . $index . '-first_contact',
-                                        'name' => 'Tradein[' . $index . '][first_contact]',
-                                        'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
-                                        'displayFormat' => 'php:m-d-Y',
-                                        'saveFormat' => 'php:Y-m-d',
-                                        'options' => [
-                                            'pluginOptions' => [
-                                                'beforeInput' => $beforeInput('first_contact'),
-                                                'autoclose' => true,
-                                                'value' => 'test',
-                                                'format'=>'php:m-d-Y'
-                                            ],
-                                        ]
-                                    ]
-                                ]
-                            ); ?>
+                            <?= $genDate('first_contact'); ?>
                         </div>
                     </td>
                     <th style="width: 20%; text-align: right; vertical-align: middle;">Last Contact</th>
                     <td style="width:30%">
                         <div class="kv-attribute">
-                            <?= Editable::widget(
-                                [
-                                    'beforeInput' => $beforeInput('last_contact'),
-                                    'model' => $model,
-                                    'attribute' => 'last_contact',
-                                    'header' => 'Last contact',
-                                    'asPopover' => true,
-                                    'format' => 'php:m-d-Y',
-                                    'size' => 'md',
-                                    'inputType' => \kartik\editable\Editable::INPUT_WIDGET,
-                                    'widgetClass' => 'kartik\datecontrol\DateControl',
-                                    'options' => [
-                                        'id' => 'tradein-' . $index . '-last_contact',
-                                        'name' => 'Tradein[' . $index . '][last_contact]',
-                                        'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
-                                        'displayFormat' => 'php:m-d-Y',
-                                        'saveFormat' => 'php:Y-m-d',
-                                        'options' => [
-                                            'pluginOptions' => [
-                                                'autoclose' => true,
-                                            ],
-                                        ]
-                                    ]
-                                ]
-                            ); ?>
+                            <?= $genDate('last_contact'); ?>
                         </div>
                     </td>
                 </tr>
@@ -234,8 +221,18 @@ $gen = function ($attr, $opt = []) use ($model, $index, $key, $beforeInput) {
                     <th style="width: 20%; text-align: right; vertical-align: middle;">Item is new</th>
                     <td style="width:30%">
                         <div class="kv-attribute">
-                            <span class="label <?= $model->customeritem_if_new ? 'sucess' : 'danger' ?>
-                             label-danger"><?= $model->customeritem_if_new ? 'YES' : 'NO' ?></span>
+
+                             <?=
+                             Editable::widget($gen('customeritem_if_new',[
+                                 'inputType' => Editable::INPUT_DROPDOWN_LIST,
+                                 'data' => [0 => 'NO', 1 => 'YES'],
+                                 'options' => ['class' => 'form-control', 'prompt' => 'Select status...'],
+                                 'displayValueConfig' => [
+                                     '0' => '<span class="label label-danger">NO</span>',
+                                     '1' => '<span class="label label-success">YES</span>',
+                                 ]
+                             ]));
+                             ?>
                         </div>
                     </td>
                     <th style="width: 20%; text-align: right; vertical-align: middle;">Item retail value</th>
@@ -275,61 +272,13 @@ $gen = function ($attr, $opt = []) use ($model, $index, $key, $beforeInput) {
                     <th style="width: 20%; text-align: right; vertical-align: middle;">Purchase date</th>
                     <td style="width:30%">
                         <div class="kv-attribute">
-                            <?= Editable::widget(
-                                [
-                                    'beforeInput' => $beforeInput('purchase_date'),
-                                    'model' => $model,
-                                    'attribute' => 'purchase_date',
-                                    'header' => 'Purchase Date',
-                                    'asPopover' => true,
-                                    'format' => 'php:m-d-Y',
-                                    'size' => 'md',
-                                    'inputType' => \kartik\editable\Editable::INPUT_WIDGET,
-                                    'widgetClass' => 'kartik\datecontrol\DateControl',
-                                    'options' => [
-                                        'id' => 'tradein-' . $index . '-purchase_date',
-                                        'name' => 'Tradein[' . $index . '][purchase_date]',
-                                        'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
-                                        'displayFormat' => 'php:m-d-Y',
-                                        'saveFormat' => 'php:Y-m-d',
-                                        'options' => [
-                                            'pluginOptions' => [
-                                                'autoclose' => true,
-                                            ],
-                                        ]
-                                    ]
-                                ]
-                            ); ?>
+                            <?= $genDate('purchase_date'); ?>
                         </div>
                     </td>
                     <th style="width: 20%; text-align: right; vertical-align: middle;">Purchased from</th>
                     <td style="width:30%">
                         <div class="kv-attribute">
-                            <?= Editable::widget(
-                                [
-                                    'beforeInput' => $beforeInput('purchased_from'),
-                                    'model' => $model,
-                                    'attribute' => 'purchased_from',
-                                    'header' => 'Purchased from',
-                                    'asPopover' => true,
-                                    'format' => 'php:m-d-Y',
-                                    'size' => 'md',
-                                    'inputType' => \kartik\editable\Editable::INPUT_WIDGET,
-                                    'widgetClass' => 'kartik\datecontrol\DateControl',
-                                    'options' => [
-                                        'id' => 'tradein-' . $index . '-purchased_from',
-                                        'name' => 'Tradein[' . $index . '][purchased_from]',
-                                        'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
-                                        'displayFormat' => 'php:m-d-Y',
-                                        'saveFormat' => 'php:Y-m-d',
-                                        'options' => [
-                                            'pluginOptions' => [
-                                                'autoclose' => true,
-                                            ],
-                                        ]
-                                    ]
-                                ]
-                            ); ?>
+                            <?= Editable::widget($gen('purchased_from')); ?>
                         </div>
                     </td>
                 </tr>

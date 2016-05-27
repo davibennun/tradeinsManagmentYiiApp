@@ -28,7 +28,6 @@ class EditableBehaviour extends ActionFilter{
                 $out = ['output' => '', 'message' => ''];
 
                 if (!$this->model->validate()) {
-//                    var_dump($this->model->errors);
                     $message = array_values($this->model->errors)[0][0];
                     $out['message'] = $message;
                 }else{
