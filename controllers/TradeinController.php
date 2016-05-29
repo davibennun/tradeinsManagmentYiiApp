@@ -6,6 +6,7 @@ use Yii;
 use app\models\Tradein;
 use app\models\TradeinSearch;
 use app\controllers\behaviours\EditableBehaviour;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -109,6 +110,25 @@ class TradeinController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionDeleteImage($id)
+    {
+        if (Yii::$app->request->isPost) {
+            if(! ($imageField = Yii::$app->request->post('key'))){
+                throw new BadRequestHttpException('Your requeset should contain a "key" attribute, ie. the image field you are trying to remove');
+            }
+
+            $model = $this->findModel($id);
+            $model->$imageField = null;
+
+            if($model->save()){
+                echo '{}';
+            }else{
+                echo json_encode(['error'=>$model->errors]);
+            }
+
+        }
     }
 
     /**

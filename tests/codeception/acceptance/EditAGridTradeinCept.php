@@ -7,12 +7,24 @@ $tradein = $I->haveATradein();
 $newFirstContactDate = '10-10-2017';
 $newLastContactDate = '10-10-2017';
 
+
+$I->amInTradeinsListPage();
+$I->amDealingWithModel('tradein');
+$I->clickOnExpandableTradein($tradein);
+$I->seeImages([$tradein->image1, $tradein->image2, $tradein->image3, $tradein->image4, $tradein->image5] );
+$I->deleteImage('image1');
+$I->wait(5);
+$I->dontSeeImages([$tradein->image1]);
+$I->seeEditableFieldUpdatedTheDatabase($tradein, 'image1', null);
+
+
+
 $I->amInTradeinsListPage();
 $I->amDealingWithModel('tradein');
 $I->clickOnExpandableTradein($tradein);
 $fields = ['first_contact', 'last_contact'];
 foreach ($fields as $field) {
-        $I->submitEditableDateField($field, $newFirstContactDate);
+        $I->submitEditableDateField($field, $newFirstContactDate);{}
         $I->seeEditableFieldUpdatedTheUi($newFirstContactDate, $field);
         $I->seeEditableFieldUpdatedTheDatabase($tradein, $field, \DateTime::createFromFormat('m-d-Y', $newFirstContactDate)->format('Y-m-d'));
 }

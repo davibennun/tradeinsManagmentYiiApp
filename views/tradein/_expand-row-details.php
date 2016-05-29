@@ -1,8 +1,10 @@
 <?php
 
 use kartik\editable\Editable;
+use kartik\widgets\FileInput;
 use yii\helpers\Html;
 use yii\helpers\Json;
+use yii\helpers\Url;
 
 $beforeInput = function($attr) use ($model, $index, $key){
     $strKey = !is_string($key) && !is_numeric($key) ? (is_array($key) ? Json::encode($key) : (string)$key) : $key;
@@ -153,11 +155,48 @@ $genDate = function($attr, $opt=[]) use ($grid, $model, $index, $key, $beforeInp
         <th style="width: 20%; text-align: right; vertical-align: middle;">Images</th>
         <td>
             <div class="kv-attribute">
-                <img style="border: 1px solid grey; padding 5px;" src="http://placehold.it/140x100?text=not+set" alt=""/>
-                <img style="border: 1px solid grey; padding 5px;" src="http://placehold.it/140x100?text=not+set" alt=""/>
-                <img style="border: 1px solid grey; padding 5px;" src="http://placehold.it/140x100?text=not+set" alt=""/>
-                <img style="border: 1px solid grey; padding 5px;" src="http://placehold.it/140x100?text=not+set" alt=""/>
-                <img style="border: 1px solid grey; padding 5px;" src="http://placehold.it/140x100?text=not+set" alt=""/>
+                <?= FileInput::widget([
+                    'name' => 'Tradein[' . $index . '][image]',
+                    'options' => [
+                        'multiple' => true,
+                        'fileActionSettings' => [
+                            'showUpload' => false
+                        ],
+                    ],
+                    'pluginOptions' => [
+                        'uploadUrl' => Url::to('?r=tradein/upload'),
+                        'url' => Url::to('?r=tradein/upload'),
+                        'fileActionSettings' => [
+                            'showDrag' => false
+                        ],
+                        'dropZoneEnabled' => false,
+                        'showCaption' => false,
+                        'showRemove' => false,
+                        'showUpload' => false,
+                        'layoutTemplates'=> [
+                            'btnBrowse' => '<div tabindex="500" class="{css}"{status} style="display:none">{label}</div>'
+                        ],
+                        'initialPreview' => [
+                            $model->image1,
+                            $model->image2,
+                            $model->image3,
+                            $model->image4,
+                            $model->image5,
+                        ],
+                        'initialPreviewAsData' => true,
+                        'initialPreviewConfig' => [
+                            ['key'=> 'image1', 'caption' => 'Image 1', 'url' => Url::to(['tradein/delete-image', 'id'=>$key])],
+                            ['key'=> 'image2', 'caption' => 'Image 2', 'url' => Url::to(['tradein/delete-image', 'id'=>$key])],
+                            ['key'=> 'image3', 'caption' => 'Image 3', 'url' => Url::to(['tradein/delete-image', 'id'=>$key])],
+                            ['key'=> 'image4', 'caption' => 'Image 4', 'url' => Url::to(['tradein/delete-image', 'id'=>$key])],
+                            ['key'=> 'image5', 'caption' => 'Image 5', 'url' => Url::to(['tradein/delete-image', 'id'=>$key])],
+                        ],
+                        'overwriteInitial' => false,
+                        'pluginEvents' => [
+                            'filepredelete' => "function(event, key) {return (!confirm('Are you sure you want to delete ?'));}",
+                        ]
+                    ]
+                ]);?>
             </div>
         </td>
     </tr>

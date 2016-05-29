@@ -163,5 +163,26 @@ class OperatorSteps extends \AcceptanceTester
         return [Tradein::class];
     }
 
+    public function seeImages($images)
+    {
+        foreach ($images as $image) {
+            $this->seeElement('//img[@src="' . $image . '"]');
+        }
+    }
+
+    public function dontSeeImages($images)
+    {
+        foreach ($images as $image) {
+            $this->dontSeeElement('img[src="' . $image . '"]');
+        }
+    }
+
+    public function deleteImage($image)
+    {
+        $sel = 'button[data-key="' . $image . '"]';
+        $this->scrollTo($sel, null, -200);
+        $this->click($sel);
+    }
+
 
 }
