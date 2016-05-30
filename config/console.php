@@ -1,5 +1,8 @@
 <?php
 
+use app\api\tradein\TradeinClient;
+use app\components\SoapComponent;
+
 Yii::setAlias('@tests', dirname(__DIR__) . '/tests/codeception');
 
 $params = require(__DIR__ . '/params.php');
@@ -11,6 +14,23 @@ $config = [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
     'components' => [
+        'soap' => [
+            'class' => SoapComponent::class,
+            'clients' => [
+                [
+                    'clientName' => TradeinClient::class,
+                    'wsdl' => null,
+                    'options' => [
+                        'cache_wsdl' => WSDL_CACHE_NONE,
+                        'trace' => 1,
+                        'stream_context' => stream_context_create(['ssl' => ['verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true]]),
+                        'location' => 'https://tatooine.jomashop.com/index.php/api/v2_soap',
+                        'uri' => 'urn:Mage_Api_Model_Server_V2_HandlerAction'
+                    ],
+                    'classMaps' => [['Tradein', Tradein::class]]
+                ]
+            ]
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

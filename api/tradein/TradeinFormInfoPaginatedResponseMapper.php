@@ -40,6 +40,9 @@ class TradeinFormInfoPaginatedResponseMapper implements MapperInterface{
             $model = new \app\models\Tradein();
             $model->load($tradeinArray,'');
 
+            // Sets id manually
+            $model->id = $tradeinArray['id'];
+
             $tradeins[] = $model;
 
         }
