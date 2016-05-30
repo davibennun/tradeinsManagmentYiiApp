@@ -1,7 +1,6 @@
 <?php
 
-
-namespace app\api\tradein;
+namespace app\api\responses;
 
 
 use Phpro\SoapClient\Type\ResultInterface;

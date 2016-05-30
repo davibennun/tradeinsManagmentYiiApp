@@ -1,10 +1,13 @@
 <?php
 
-namespace app\api\tradein;
+namespace app\api\clients;
 
-use app\api\BaseSoapClient;
-use Phpro\SoapClient\Client;
-use Phpro\SoapClient\Type\RequestInterface;
+
+use app\api\mappers\LoginMapper;
+use app\api\mappers\TradeinFormInfoPaginatedMapper;
+use app\api\requests\LoginRequest;
+use app\api\requests\LogoutRequest;
+use app\api\requests\TradeinFormInfoPaginatedRequest;
 
 class TradeinClient extends BaseSoapClient
 {
@@ -15,7 +18,7 @@ class TradeinClient extends BaseSoapClient
 
     public function tradeinFormInfoPaginated(TradeinFormInfoPaginatedRequest $request)
     {
-        return $this->call('tradeinFormInfoPaginated', $request, new TradeinFormInfoPaginatedResponseMapper);
+        return $this->call('tradeinFormInfoPaginated', $request, new TradeinFormInfoPaginatedMapper);
     }
 
     public function logout(LogoutRequest $request)

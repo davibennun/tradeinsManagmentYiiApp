@@ -1,7 +1,8 @@
 <?php
 
-use app\api\tradein\TradeinClient;
+use app\api\clients\TradeinClient;
 use app\components\SoapComponent;
+use app\models\Tradein;
 
 Yii::setAlias('@tests', dirname(__DIR__) . '/tests/codeception');
 

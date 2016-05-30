@@ -4,7 +4,7 @@
 namespace app\components;
 
 
-use app\api\tradein\TradeinClient;
+use app\api\clients\TradeinClient;
 
 class TradeinClientFacade extends SoapClientFacade{
 

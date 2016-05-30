@@ -1,17 +1,17 @@
 <?php
 
+namespace app\api\mappers;
 
-namespace app\api\tradein;
 
-
+use app\api\responses\TradeinFormInfoPaginatedResponse;
 use app\components\MapperInterface;
 
 /**
  * Maps soap raw response to active record models
- * Class TradeinFormInfoPaginatedResponseMapper
- * @package app\api\tradein
+ * Class TradeinFormInfoPaginatedMapper
+ * @package app\api\mappers
  */
-class TradeinFormInfoPaginatedResponseMapper implements MapperInterface{
+class TradeinFormInfoPaginatedMapper implements MapperInterface{
 
     public function map($result)
     {

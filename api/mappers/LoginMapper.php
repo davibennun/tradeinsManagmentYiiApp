@@ -1,9 +1,9 @@
 <?php
 
+namespace app\api\mappers;
 
-namespace app\api\tradein;
 
-
+use app\api\responses\LoginResponse;
 use app\components\MapperInterface;
 
 class LoginMapper implements MapperInterface{

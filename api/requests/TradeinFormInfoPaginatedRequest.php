@@ -1,7 +1,6 @@
 <?php
 
-
-namespace app\api\tradein;
+namespace app\api\requests;
 
 
 use Phpro\SoapClient\Type\RequestInterface;

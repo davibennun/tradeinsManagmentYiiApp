@@ -3,9 +3,9 @@
 
 namespace app\commands;
 
-use app\api\tradein\LoginRequest;
-use app\api\tradein\LogoutRequest;
-use app\api\tradein\TradeinFormInfoPaginatedRequest;
+use app\api\requests\LoginRequest;
+use app\api\requests\LogoutRequest;
+use app\api\requests\TradeinFormInfoPaginatedRequest;
 use Yii;
 use yii\console\Controller;
 use app\models\Tradein;

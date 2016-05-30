@@ -1,12 +1,11 @@
 <?php
 
+namespace app\api\requests;
 
-namespace app\api\tradein;
 
+use Phpro\SoapClient\Type\RequestInterface;
 
-use Phpro\SoapClient\Type\ResultInterface;
-
-class LoginResponse implements ResultInterface{
+class LogoutRequest implements RequestInterface{
 
     public $sessionId;
 

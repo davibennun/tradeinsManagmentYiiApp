@@ -1,18 +1,14 @@
 <?php
 
-namespace app\api;
+namespace app\api\clients;
 
 use app\components\MapperInterface;
 use Phpro\SoapClient\Client;
 use Phpro\SoapClient\Event;
 use Phpro\SoapClient\Events;
 use Phpro\SoapClient\Type\RequestInterface;
-use Phpro\SoapClient\Type\ResultInterface;
 use Phpro\SoapClient\Type\ResultProviderInterface;
-use SoapClient;
 use SoapFault;
-use SoapHeader;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class BaseSoapClient extends Client{
 
