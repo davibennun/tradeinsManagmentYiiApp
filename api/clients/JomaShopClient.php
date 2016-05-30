@@ -9,7 +9,7 @@ use app\api\requests\LoginRequest;
 use app\api\requests\LogoutRequest;
 use app\api\requests\TradeinFormInfoPaginatedRequest;
 
-class TradeinClient extends BaseSoapClient
+class JomaShopClient extends BaseSoapClient
 {
     public function login(LoginRequest $request)
     {

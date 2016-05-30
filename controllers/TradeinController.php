@@ -14,7 +14,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\api\tradein\LoginRequest;
 use app\api\tradein\TradeinFormInfoPaginatedRequest;
-use app\components\TradeinClientFacade as TradeinSoapClient;
+use app\components\JomaShopClientFacade as TradeinSoapClient;
 /**
  * TradeinController implements the CRUD actions for Tradein model.
  */

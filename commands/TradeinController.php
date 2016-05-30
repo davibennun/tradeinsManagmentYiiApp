@@ -9,7 +9,7 @@ use app\api\requests\TradeinFormInfoPaginatedRequest;
 use Yii;
 use yii\console\Controller;
 use app\models\Tradein;
-use app\components\TradeinClientFacade as TradeinSoapClient;
+use app\components\JomaShopClientFacade as JomaShopClient;
 
 class TradeinController extends Controller{
 
@@ -21,7 +21,7 @@ class TradeinController extends Controller{
         $lastInsertedId = $lastTradein ? $lastTradein->id : 0;
         $lastInsertedId++;
         // Logs in
-        $session_id = TradeinSoapClient::login(new LoginRequest('trade_in_test_1', '5s%3$_c>qWw7%.KQ'));
+        $session_id = JomaShopClient::login(new LoginRequest('trade_in_test_1', '5s%3$_c>qWw7%.KQ'));
 
 
         // Request just one tradein after the last inserted one
@@ -29,7 +29,7 @@ class TradeinController extends Controller{
 
         // Make the request, gets the tradein and saves it, sets the startingFromId to this just inserted tradein
         // and make the request again until it return an empty array, meaning that there's no more tradeins
-        while ($tradeins = TradeinSoapClient::tradeinFormInfoPaginated($request)->tradeins) {
+        while ($tradeins = JomaShopClient::tradeinFormInfoPaginated($request)->tradeins) {
             foreach ($tradeins as $tradein) {
                 if($tradein->save())
                     print_r($tradein->id);
@@ -38,7 +38,7 @@ class TradeinController extends Controller{
         }
 
         // Logs out
-        TradeinSoapClient::logout(new LogoutRequest($session_id));
+        JomaShopClient::logout(new LogoutRequest($session_id));
 
     }
     

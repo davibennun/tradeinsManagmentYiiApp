@@ -9,7 +9,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-use app\components\TradeinClientFacade as TradeinSoapClient;
+use app\components\JomaShopClientFacade as TradeinSoapClient;
 
 class SiteController extends Controller
 {

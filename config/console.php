@@ -1,5 +1,6 @@
 <?php
 
+use app\api\clients\JomaShopClient;
 use app\api\clients\TradeinClient;
 use app\components\SoapComponent;
 use app\models\Tradein;
@@ -19,7 +20,7 @@ $config = [
             'class' => SoapComponent::class,
             'clients' => [
                 [
-                    'clientName' => TradeinClient::class,
+                    'clientName' => JomaShopClient::class,
                     'wsdl' => null,
                     'options' => [
                         'cache_wsdl' => WSDL_CACHE_NONE,
