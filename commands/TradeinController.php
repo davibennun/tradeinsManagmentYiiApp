@@ -16,9 +16,10 @@ class TradeinController extends Controller{
 
     public function actionImport(){
 
-        // Get the last inserted tradein id, if there's no tradeins in table set it to 0
+        // Get the last incremented inserted tradein id, if there's no tradeins in table set it to 0
         $lastTradein = Tradein::find()->limit(1)->orderby('id DESC')->one();
-        $lastInsertedId = $lastTradein ? $lastTradein->id : 1;
+        $lastInsertedId = $lastTradein ? $lastTradein->id : 0;
+        $lastInsertedId++;
         // Logs in
         $session_id = TradeinSoapClient::login(new LoginRequest('trade_in_test_1', '5s%3$_c>qWw7%.KQ'));
 
@@ -30,7 +31,8 @@ class TradeinController extends Controller{
         // and make the request again until it return an empty array, meaning that there's no more tradeins
         while ($tradeins = TradeinSoapClient::tradeinFormInfoPaginated($request)->tradeins) {
             foreach ($tradeins as $tradein) {
-                $tradein->save();
+                if($tradein->save())
+                    print_r($tradein->id);
             }
             $request->setStartingTradeinFormId($tradein->id + 1);
         }
