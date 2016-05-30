@@ -7,14 +7,14 @@ namespace app\components;
 abstract class SoapClientFacade {
 
     /**
-     * The underlying faker instance.
+     * The underlying instance.
      *
      * @var \Phpro\SoapClient\Client
      */
     private static $instance;
 
     /**
-     * Get the underlying faker instance.
+     * Get the underlying instance.
      *
      * We'll always cache the instance and reuse it.
      *
@@ -29,7 +29,7 @@ abstract class SoapClientFacade {
     }
 
     /**
-     * Reset the underlying faker instance.
+     * Reset the underlying instance.
      *
      * @return \Phpro\SoapClient\Client
      */

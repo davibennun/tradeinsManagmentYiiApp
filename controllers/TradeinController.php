@@ -2,15 +2,19 @@
 
 namespace app\controllers;
 
+use app\api\tradein\LogoutRequest;
 use Yii;
 use app\models\Tradein;
 use app\models\TradeinSearch;
 use app\controllers\behaviours\EditableBehaviour;
+use yii\helpers\VarDumper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\api\tradein\LoginRequest;
+use app\api\tradein\TradeinFormInfoPaginatedRequest;
+use app\components\TradeinClientFacade as TradeinSoapClient;
 /**
  * TradeinController implements the CRUD actions for Tradein model.
  */

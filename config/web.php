@@ -18,8 +18,14 @@ $config = [
           'clients' => [
               [
                   'clientName' => TradeinClient::class,
-                  'wsdl' => dirname(__DIR__).'/api/tradein/tradein.wsdl',
-                  'options' => ['cache_wsdl' => WSDL_CACHE_NONE],
+                  'wsdl' => null,
+                  'options' => [
+                      'cache_wsdl' => WSDL_CACHE_NONE,
+                      'trace' => 1,
+                      'stream_context' => stream_context_create( [ 'ssl' => ['verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true] ] ),
+                      'location' => 'https://tatooine.jomashop.com/index.php/api/v2_soap',
+                      'uri' => 'urn:Mage_Api_Model_Server_V2_HandlerAction'
+                  ],
                   'classMaps' => [['Tradein',Tradein::class]]
               ]
           ]
