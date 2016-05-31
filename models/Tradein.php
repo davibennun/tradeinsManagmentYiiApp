@@ -43,6 +43,7 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
             [['first_contact', 'last_contact', 'email', 'customeritem_if_new', 'customeritem_retail_value', 'customeritem_vendor_offer', 'customeritem_jomashop_offer', 'purchase_date', 'purchased_from', 'box_papers', 'condition', 'image1', 'image2', 'image3', 'image4', 'image5', 'info_newitem_customer_wants', 'newitem_cost', 'newitem_jomashop_currentprice', 'outofpocket_price'], 'default', 'value' => null],
             [['email'], 'email', 'skipOnEmpty'=>true],
             [['first_contact','last_contact', 'purchase_date'], 'date', 'format'=>'php:Y-m-d'],
+            [['creation_time'], 'date', 'format'=>'php:Y-m-d H:i:s'],
         ];
     }
 

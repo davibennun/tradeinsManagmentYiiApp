@@ -67,7 +67,7 @@ $genDate = function($attr, $opt=[]) use ($grid, $model, $index, $key, $beforeInp
 ?>
 <h3>
     Tradein # <?= $model->id ?>
-    <small><?= $model->creation_time; ?></small>
+    <small><?= \Datetime::createFromFormat('Y-m-d H:i:s', $model->creation_time)->format('m-d-Y h:i A'); ?></small>
 </h3>
 <table id="w7" class="table table-hover table-bordered detail-view" data-krajee-kvdetailview="kvDetailView_6af70826">
     <tbody>

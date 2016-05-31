@@ -33,7 +33,7 @@ class TradeinController extends Controller{
         $lastInsertedId = $lastTradein ? $lastTradein->id : 0;
         $lastInsertedId++;
         // Logs in
-        $session_id = JomaShopClient::login(new LoginRequest('trade_in_test_1', '5s%3$_c>qWw7%.KQ'));
+        $session_id = JomaShopClient::login(new LoginRequest(Yii::$app->params['jomaShopSoapUsername'], Yii::$app->params['jomaShopSoapApiKey']));
 
 
         // Request just one tradein after the last inserted one

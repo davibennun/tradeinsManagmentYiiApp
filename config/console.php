@@ -1,7 +1,6 @@
 <?php
 
 use app\api\clients\JomaShopClient;
-use app\api\clients\TradeinClient;
 use app\components\SoapComponent;
 use app\models\Tradein;
 

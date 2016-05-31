@@ -32,6 +32,9 @@ class TradeinFormInfoPaginatedMapper implements MapperInterface{
             $tradeinArray['id'] = $tradeinArray['tradeins_id'];
             unset($tradeinArray['tradeins_id']);
 
+            $tradeinArray['creation_time'] = $tradeinArray['created_time'];
+            unset($tradeinArray['created_time']);
+
             $tradeinArray['purchase_date'] = \DateTime::createFromFormat('Y-m-d H:i:s', $tradeinArray['purchase_date'])->format('Y-m-d');
 
             //criar imported_at e colocar como default now() e deixar o creation_time como importado, e nao permitir editalo na ui
