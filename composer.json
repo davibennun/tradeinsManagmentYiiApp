@@ -37,7 +37,8 @@
         "codeception/verify": "*",
         "jakoch/phantomjs-installer": "2.1.1",
         "site5/phantoman": "^1.1",
-        "oprudkyi/codeception-events-scripting":"*"
+        "oprudkyi/codeception-events-scripting":"*",
+        "php-vcr/php-vcr": "^1.2"
     },
     "config": {
         "process-timeout": 1800

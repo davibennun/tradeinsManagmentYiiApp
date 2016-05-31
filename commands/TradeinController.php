@@ -13,11 +13,23 @@ use app\components\JomaShopClientFacade as JomaShopClient;
 
 class TradeinController extends Controller{
 
+    /**
+     * @var Tradein
+     */
+    public $tradein;
+
+
+    public function __construct($id, $module, $config = [], Tradein $tradein)
+    {
+        $this->tradein = $tradein;
+        parent::__construct($id, $module, $config);
+    }
+
 
     public function actionImport(){
 
         // Get the last incremented inserted tradein id, if there's no tradeins in table set it to 0
-        $lastTradein = Tradein::find()->limit(1)->orderby('id DESC')->one();
+        $lastTradein = $this->tradein->lastInserted();
         $lastInsertedId = $lastTradein ? $lastTradein->id : 0;
         $lastInsertedId++;
         // Logs in

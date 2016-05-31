@@ -71,6 +71,11 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
     }
 
 
+    public function lastInserted()
+    {
+        return $this->find()->limit(1)->orderby('id DESC')->one();
+    }
+
     /**
      * @inheritdoc
      */

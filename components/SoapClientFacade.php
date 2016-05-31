@@ -9,7 +9,7 @@ abstract class SoapClientFacade {
     /**
      * The underlying instance.
      *
-     * @var \Phpro\SoapClient\Client
+     * @var mixed
      */
     private static $instance;
 
@@ -18,7 +18,7 @@ abstract class SoapClientFacade {
      *
      * We'll always cache the instance and reuse it.
      *
-     * @return \Phpro\SoapClient\Client
+     * @return mixed
      */
     public static function instance()
     {
@@ -31,7 +31,7 @@ abstract class SoapClientFacade {
     /**
      * Reset the underlying instance.
      *
-     * @return \Phpro\SoapClient\Client
+     * @return mixed
      */
     public static function reset()
     {
