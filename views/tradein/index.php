@@ -13,22 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 \kartik\detail\DetailViewAsset::register(Yii::$app->getView());
 
-function genColumn($attr, $opt=[], $inputType=\kartik\editable\Editable::INPUT_TEXT, $inputTypeOptions=[])
-{
-    return array_merge([
-        'class' => 'kartik\grid\EditableColumn',
-        'attribute'=>$attr,
-        'editableOptions'=>function($model, $key, $index) use ($inputType, $inputTypeOptions){
-            return [
-                'inputType'=>$inputType,
-                'options'=>$inputTypeOptions
-            ];
-        },
-        'vAlign'=>'middle',
-        'pageSummary'=>true
-    ], $opt);
-}
-
 
 ?>
 <div class="tradein-index">
@@ -54,17 +38,38 @@ function genColumn($attr, $opt=[], $inputType=\kartik\editable\Editable::INPUT_T
                     'expandOneOnly' => true,
                     'enableRowClick' => true
                 ],
-                'first_name',
-                'last_name',
+                [
+                    'attribute'=> 'first_name',
+                    'contentOptions' => function ($model, $key, $index, $column){
+                        return ['id' => 'td-tradein-'.$index.'-'.$column->attribute];
+                    }
+                ],
+                [
+                    'attribute'=> 'last_name',
+                    'contentOptions' => function ($model, $key, $index, $column){
+                        return ['id' => 'td-tradein-'.$index.'-'.$column->attribute];
+                    }
+                ],
                 [
                     'attribute'=>'first_contact',
-                    'format'=> ['date', 'php:m-d-Y']
+                    'format'=> ['date', 'php:m-d-Y'],
+                    'contentOptions' => function ($model, $key, $index, $column) {
+                        return ['id' => 'td-tradein-' . $index . '-' . $column->attribute];
+                    }
                 ],
                 [
                     'attribute'=>'last_contact',
-                    'format'=> ['date', 'php:m-d-Y']
+                    'format'=> ['date', 'php:m-d-Y'],
+                    'contentOptions' => function ($model, $key, $index, $column) {
+                        return ['id' => 'td-tradein-' . $index . '-' . $column->attribute];
+                    }
                 ],
-                'model_number',
+                [
+                    'attribute'=>'model_number',
+                    'contentOptions' => function ($model, $key, $index, $column) {
+                        return ['id' => 'td-tradein-' . $index . '-' . $column->attribute];
+                    }
+                ],
             ],
             'responsive'=>true,
             'hover'=>true,

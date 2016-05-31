@@ -24,6 +24,12 @@ $gen = function ($attr, $opt = []) use ($model, $index, $key, $beforeInput) {
         'size' => 'md',
         'options' => ['class' => 'form-control'],
         'beforeInput'=> $beforeInput($attr),
+        'pluginEvents'=>[
+            'editableSubmit' => "function(event, val, form) {
+                var sel = '#td-'+$('input.kv-editable-input',form).attr('id');
+                $(sel).html(val);
+            }",
+        ]
     ], $opt);
 };
 
@@ -47,6 +53,13 @@ $genDate = function($attr, $opt=[]) use ($grid, $model, $index, $key, $beforeInp
             'size' => 'md',
             'inputType' => \kartik\editable\Editable::INPUT_WIDGET,
             'widgetClass' => 'kartik\datecontrol\DateControl',
+            'pluginEvents' => [
+                'editableSubmit' => "function(event, val, form) {
+                    var sel = '#td-'+$('input.kv-editable-input',form).attr('id').replace('-disp','');
+                    $(sel).html(val);
+                    console.log(sel, val);
+                }"
+            ],
             'options' => [
                 'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
                 'displayFormat' => 'php:m-d-Y',
@@ -134,17 +147,23 @@ $genDate = function($attr, $opt=[]) use ($grid, $model, $index, $key, $beforeInp
     </tr>
     <tr>
         <th style="width: 20%; text-align: right; vertical-align: middle;">Contact Notes</th>
-        <td>
+        <td style="width: 80%;">
             <div class="kv-attribute"><span class="text-justify"><em>
-                        <?= Editable::widget($gen('contact_notes')); ?>
+                        <?= Editable::widget($gen('contact_notes',[
+                                'inputType'=> Editable::INPUT_TEXTAREA,
+                                'options' => ['class' => 'form-control', 'rows' => 5, 'style' => 'width:400px', 'placeholder' => 'Enter notes...']
+                        ])); ?>
                     </em></span></div>
         </td>
     </tr>
     <tr>
         <th style="width: 20%; text-align: right; vertical-align: middle;">Internal Notes</th>
-        <td>
+        <td style="width: 80%;">
             <div class="kv-attribute"><span class="text-justify"><em>
-                        <?= Editable::widget($gen('internal_notes')); ?>
+                        <?= Editable::widget($gen('internal_notes', [
+                            'inputType' => Editable::INPUT_TEXTAREA,
+                            'options' => ['class' => 'form-control', 'rows' => 5, 'style' => 'width:400px', 'placeholder' => 'Enter notes...']
+                        ])); ?>
                     </em></span></div>
         </td>
     </tr>

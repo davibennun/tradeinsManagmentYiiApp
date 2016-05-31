@@ -27,6 +27,7 @@ foreach ($fields as $field) {
         $I->submitEditableDateField($field, $newFirstContactDate);{}
         $I->seeEditableFieldUpdatedTheUi($newFirstContactDate, $field);
         $I->seeEditableFieldUpdatedTheDatabase($tradein, $field, \DateTime::createFromFormat('m-d-Y', $newFirstContactDate)->format('Y-m-d'));
+        $I->seeRowIsUpdated($field, $newFirstContactDate);
 }
 
 
@@ -41,8 +42,8 @@ $I->amInTradeinsListPage();
 $I->amDealingWithModel('tradein');
 $I->clickOnExpandableTradein($tradein);
 $fields = ['first_name','last_name','model','model_number','customeritem_retail_value','customeritem_vendor_offer','customeritem_jomashop_offer','box_papers', 'purchased_from' , 'condition','info_newitem_customer_wants','newitem_cost','newitem_jomashop_currentprice','outofpocket_price'];
+$newTradein = $I->imagineATradein();
 foreach($fields as $field) {
-    $newTradein = $I->imagineATradein();
     $newFieldValue = $newTradein->$field;
     try {
         $I->submitEditableField($field, $newFieldValue);
@@ -54,3 +55,6 @@ foreach($fields as $field) {
     $I->seeEditableFieldUpdatedTheUi($newFieldValue, $field);
     $I->seeEditableFieldUpdatedTheDatabase($tradein, $field, $newFieldValue);
 }
+$I->seeRowIsUpdated('first_name', $tradein->first_name);
+$I->seeRowIsUpdated('last_name', $tradein->last_name);
+$I->seeRowIsUpdated('model_number', $tradein->model_number);

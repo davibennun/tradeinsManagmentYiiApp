@@ -129,6 +129,13 @@ trait EditableStepsTrait {
         $this->optConfig['order'] = $this->grabAttributeFrom('.kv-expand-detail-row','data-index');
     }
 
+    public function seeRowIsUpdated($field, $value, $opt=[])
+    {
+        extract(array_merge($this->optConfig, $opt));
+        $this->see($value, '#td-' . $modelName . '-' . ($this->_chk($order) ? $order . '-' : '') . $field . '');
+    }
+
+
     public function _configEditable($opt)
     {
         $this->optConfig = array_merge($this->optConfig, $opt);

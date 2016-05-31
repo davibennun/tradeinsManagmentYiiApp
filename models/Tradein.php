@@ -60,6 +60,8 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
             if($type == 'date'){
                 foreach($fields as $field){
                     if(empty($field)) continue;
+                    if($this->$field instanceOf \DateTime)
+                        $this->$field = $this->$field->format(str_replace('php:', '', $rule['format']));
                     $theDate = \DateTime::createFromFormat($this->dateFormatter['display'], $this->$field);
                     // Formats date only if its valid
                     if (\DateTime::getLastErrors()['error_count'] == 0) {
@@ -115,6 +117,7 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
             'newitem_jomashop_currentprice' => 'New item jomashop current price',
             'outofpocket_price' => 'Out of pocket price',
             'creation_time' => 'Creation time',
+            'importion_time' => 'Importion time',
         ];
     }
 
@@ -150,7 +153,8 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
                 'info_newitem_customer_wants' => Faker::word(),
                 'newitem_cost' => Faker::numerify('###'),
                 'newitem_jomashop_currentprice' => Faker::numerify('###'),
-                'outofpocket_price' => Faker::numerify('###')
+                'outofpocket_price' => Faker::numerify('###'),
+                'creation_time' => Faker::dateTime()
             ]
         ];
     }
