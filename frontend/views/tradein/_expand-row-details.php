@@ -151,6 +151,7 @@ $genDate = function($attr, $opt=[]) use ($grid, $model, $index, $key, $beforeInp
             <div class="kv-attribute"><span class="text-justify"><em>
                         <?= Editable::widget($gen('contact_notes',[
                                 'inputType'=> Editable::INPUT_TEXTAREA,
+                                'submitOnEnter' => false,
                                 'options' => ['class' => 'form-control', 'rows' => 5, 'style' => 'width:400px', 'placeholder' => 'Enter notes...']
                         ])); ?>
                     </em></span></div>
@@ -162,6 +163,7 @@ $genDate = function($attr, $opt=[]) use ($grid, $model, $index, $key, $beforeInp
             <div class="kv-attribute"><span class="text-justify"><em>
                         <?= Editable::widget($gen('internal_notes', [
                             'inputType' => Editable::INPUT_TEXTAREA,
+                                'submitOnEnter' => false,
                             'options' => ['class' => 'form-control', 'rows' => 5, 'style' => 'width:400px', 'placeholder' => 'Enter notes...']
                         ])); ?>
                     </em></span></div>
