@@ -148,25 +148,25 @@ $genDate = function($attr, $opt=[]) use ($grid, $model, $index, $key, $beforeInp
     <tr>
         <th style="width: 20%; text-align: right; vertical-align: middle;">Contact Notes</th>
         <td style="width: 80%;">
-            <div class="kv-attribute"><span class="text-justify"><em>
-                        <?= Editable::widget($gen('contact_notes',[
-                                'inputType'=> Editable::INPUT_TEXTAREA,
-                                'submitOnEnter' => false,
-                                'options' => ['class' => 'form-control', 'rows' => 5, 'style' => 'width:400px', 'placeholder' => 'Enter notes...']
-                        ])); ?>
-                    </em></span></div>
+            <?= Editable::widget($gen('contact_notes',[
+                    'inputType'=> Editable::INPUT_TEXTAREA,
+                    'submitOnEnter' => false,
+                    'editableValueOptions' => ['style' => 'text-align:left'],
+                    'displayValue' => nl2br($model->contact_notes),
+                    'options' => ['class' => 'form-control', 'rows' => 5, 'style' => 'width:400px', 'placeholder' => 'Enter notes...']
+            ])); ?>
         </td>
     </tr>
     <tr>
         <th style="width: 20%; text-align: right; vertical-align: middle;">Internal Notes</th>
         <td style="width: 80%;">
-            <div class="kv-attribute"><span class="text-justify"><em>
-                        <?= Editable::widget($gen('internal_notes', [
-                            'inputType' => Editable::INPUT_TEXTAREA,
-                                'submitOnEnter' => false,
-                            'options' => ['class' => 'form-control', 'rows' => 5, 'style' => 'width:400px', 'placeholder' => 'Enter notes...']
-                        ])); ?>
-                    </em></span></div>
+            <?= Editable::widget($gen('internal_notes', [
+                'inputType' => Editable::INPUT_TEXTAREA,
+                'editableValueOptions'=> ['style'=>'text-align:left'],
+                'displayValue'=> nl2br($model->internal_notes),
+                'submitOnEnter' => false,
+                'options' => ['class' => 'form-control', 'rows' => 5, 'style' => 'width:400px;', 'placeholder' => 'Enter notes...']
+            ])); ?>
         </td>
     </tr>
     <tr class="info">
