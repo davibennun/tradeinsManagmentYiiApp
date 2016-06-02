@@ -6,6 +6,7 @@ use Yii;
 use common\models\Tradein;
 use common\models\TradeinSearch;
 use frontend\controllers\behaviours\EditableBehaviour;
+use yii\filters\AccessControl;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -21,6 +22,15 @@ class TradeinController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

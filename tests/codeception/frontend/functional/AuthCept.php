@@ -10,15 +10,15 @@ use tests\codeception\common\_pages\LoginPage;
 $I = new FunctionalTester($scenario);
 $I->wantTo('ensure auth works');
 
-$loginPage = LoginPage::openBy($I);
 
 $I->amGoingTo('access trade-ins page as a guest');
-$I->amOnPage('index.php?r=tradeins/index');
+$I->amOnPage('?r=tradein');
 $I->expectTo('be redirected to login page');
-$I->seeInCurrentUrl('index.php?r=site/index');
+$I->seeInCurrentUrl('?r=site%2Flogin');
 
 $I->amGoingTo('access trade-ins page as a registered user');
+$loginPage = LoginPage::openBy($I);
 $loginPage->login('erau', 'password_0');
 $I->expectTo('see tradeins index page');
-$I->seeInCurrentUrl('index.php?r=tradeins/index');
+$I->seeInCurrentUrl('?r=tradein');
 
