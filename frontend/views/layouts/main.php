@@ -37,9 +37,9 @@ AppAsset::register($this);
         ['label' => 'Trade-ins', 'url' => ['/tradein']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+        array_unshift($menuItems,['label' => 'Admin', 'url' => ['/user']]); // Prepend item into array
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
