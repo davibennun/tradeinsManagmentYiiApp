@@ -1,53 +1,160 @@
 <?php
 
-
 namespace frontend\controllers;
 
+use common\models\UserCreate;
+use common\models\UserPassword;
+use Yii;
 use common\models\User;
-use frontend\controllers\behaviours\EditableBehaviour;
-use yii\data\ActiveDataProvider;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
+use common\models\UserSearch;
+use yii\helpers\Url;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 
-class UserController extends Controller{
-
+/**
+ * UserController implements the CRUD actions for User model.
+ */
+class UserController extends Controller
+{
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
                 ],
             ],
-            'editable' => [
-                'class' => EditableBehaviour::class,
-                'modelName' => User::class
-            ]
         ];
     }
 
+    /**
+     * Lists all User models.
+     * @return mixed
+     */
     public function actionIndex()
     {
-        $query = User::find();
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
+        $searchModel = new UserSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => new User(),
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
+    /**
+     * Displays a single User model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Creates a new User model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+
+        $model = new UserCreate();
+
+        if(Yii::$app->request->isPost){
+            $model->load(Yii::$app->request->post());
+
+            //If validation success try to create model
+            if ($model->validate() && $model->create()) {
+                Yii::$app->getSession()->setFlash('success', 'User created successfully.');
+                return $this->redirect(Url::toRoute('/user'));
+            }
+
+            Yii::$app->getSession()->setFlash('error', $model->errors);
+
+        }
+
+        return $this->render('create', ['model' => $model]);
+
+
+//        $model = new UserCreate();
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        } else {
+//            return $this->render('create', [
+//                'model' => $model,
+//            ]);
+//        }
+    }
+
+    /**
+     * Updates an existing User model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpdate($id)
+    {
+        $model = UserPassword::findOne($id);
+
+        if (Yii::$app->request->isPost) {
+            $model->load(Yii::$app->request->post());
+
+            //If validation success try to create model
+            if ($model->validate() && $model->savePassword()) {
+                Yii::$app->getSession()->setFlash('success', 'User password updated successfully');
+                return $this->redirect(Url::toRoute('/user'));
+            }
+
+            Yii::$app->getSession()->setFlash('error', $model->errors);
+        }
+
+        return $this->render('update', ['model' => $model]);
+
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        } else {
+//            return $this->render('update', [
+//                'model' => $model,
+//            ]);
+//        }
+    }
+
+    /**
+     * Deletes an existing User model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Finds the User model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return User the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 }
