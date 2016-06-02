@@ -8,6 +8,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
+use common\models\User;
 
 AppAsset::register($this);
 ?>
@@ -39,7 +40,8 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
-        array_unshift($menuItems,['label' => 'Admin', 'url' => ['/user']]); // Prepend item into array
+        if(Yii::$app->user->identity->role == User::ROLE_ADMIN)
+            array_unshift($menuItems,['label' => 'Admin', 'url' => ['/user']]); // Prepend item into array
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
