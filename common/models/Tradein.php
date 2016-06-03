@@ -42,7 +42,7 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
     public function rules()
     {
         return [
-            [['customeritem_if_new', 'customeritem_retail_value', 'customeritem_vendor_offer', 'customeritem_jomashop_offer', 'purchase_date', 'purchased_from', 'box_papers', 'condition', 'image1', 'image2', 'image3', 'image4', 'image5', 'info_newitem_customer_wants', 'newitem_cost', 'newitem_jomashop_currentprice', 'outofpocket_price'], 'safe'],
+            [['status', 'customeritem_if_new', 'customeritem_retail_value', 'customeritem_vendor_offer', 'customeritem_jomashop_offer', 'purchase_date', 'purchased_from', 'box_papers', 'condition', 'image1', 'image2', 'image3', 'image4', 'image5', 'info_newitem_customer_wants', 'newitem_cost', 'newitem_jomashop_currentprice', 'outofpocket_price'], 'safe'],
             [['first_name', 'last_name', 'model_number', 'brand', 'email','shipping_label','phone','brand','other_brand','model','model_number'], 'string', 'max' => 255],
             [['internal_notes', 'contact_notes'], 'string','max'=>65535],
             [['first_contact', 'last_contact', 'email', 'customeritem_if_new', 'customeritem_retail_value', 'customeritem_vendor_offer', 'customeritem_jomashop_offer', 'purchase_date', 'purchased_from', 'box_papers', 'condition', 'image1', 'image2', 'image3', 'image4', 'image5', 'info_newitem_customer_wants', 'newitem_cost', 'newitem_jomashop_currentprice', 'outofpocket_price'], 'default', 'value' => null],
@@ -123,7 +123,24 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
             'outofpocket_price' => 'Out of pocket price',
             'creation_time' => 'Creation time',
             'importion_time' => 'Importion time',
+            'status' => 'Status'
         ];
+    }
+
+    public function getStatusText()
+    {
+        $text = 'Active';
+         switch($this->status){
+             case static::STATUS_ACTIVE: $text = 'Active';
+                 break;
+             case static::STATUS_INACTIVE: $text = 'Inactive';
+                 break;
+             case static::STATUS_CLOSED: $text = 'Closed';
+                 break;
+             case static::STATUS_SUCCESSFUL: $text = 'Successful';
+                 break;
+         }
+        return $text;
     }
 
     public static function definitions() {

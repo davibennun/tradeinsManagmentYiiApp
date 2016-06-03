@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Tradein;
 use kartik\editable\Editable;
 use kartik\widgets\FileInput;
 use yii\helpers\Html;
@@ -79,6 +80,20 @@ $genDate = function($attr, $opt=[]) use ($grid, $model, $index, $key, $beforeInp
 
 ?>
 <h3>
+    <?=
+    Editable::widget($gen('status', [
+        'inputType' => Editable::INPUT_DROPDOWN_LIST,
+        'asPopover' => true,
+        'data' => [Tradein::STATUS_ACTIVE => 'Active', 20 => 'Inactive', 30 => 'Closed', 40 => 'Sucessful'],
+        'options' => ['class' => 'form-control', 'prompt' => 'Select status...'],
+        'displayValueConfig' => [
+            '10' => '<span class="label label-primary">Active</span>',
+            '20' => '<span class="label label-default">Inactive</span>',
+            '30' => '<span class="label label-danger">Closed</span>',
+            '40' => '<span class="label label-success">Successful</span>',
+        ],
+    ]));
+    ?>
     Tradein # <?= $model->id ?>
     <small><?= \Datetime::createFromFormat('Y-m-d H:i:s', $model->creation_time)->format('m-d-Y h:i A'); ?></small>
 </h3>
