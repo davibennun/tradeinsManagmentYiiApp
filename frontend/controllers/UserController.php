@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\UserCreate;
 use common\models\UserPassword;
+use frontend\controllers\behaviours\EditableBehaviour;
 use Yii;
 use common\models\User;
 use common\models\UserSearch;
@@ -45,6 +46,10 @@ class UserController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'editable' => [
+                'class' => EditableBehaviour::class,
+                'modelName' => User::class
+            ]
         ];
     }
 
@@ -153,7 +158,9 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        //Don't allow delete of current logged user
+        if($id != Yii::$app->user->id)
+            $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }

@@ -3,7 +3,8 @@
 use common\widgets\Alert;
 use yii\grid\ActionColumn;
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView as KartikGridView;
+use kartik\grid\SerialColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\UserSearch */
@@ -23,12 +24,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= Alert::widget() ?>
 
-    <?= GridView::widget([
+    <?= KartikGridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            'username',
-            'email',
+            ['class' => SerialColumn::class],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'username',
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'email',
+            ],
             [
                 'class' => ActionColumn::class,
                 'buttons' => [
@@ -43,5 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style' => 'width:50px;']
             ],
         ],
+        'responsive' => true,
+        'hover' => true,
+        'export' => false,
     ]); ?>
 </div>

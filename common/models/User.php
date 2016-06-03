@@ -1,11 +1,13 @@
 <?php
 namespace common\models;
 
+use saada\FactoryMuffin\FactoryInterface;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use League\FactoryMuffin\Faker\Facade as Faker;
 
 /**
  * User model
@@ -22,7 +24,7 @@ use yii\web\IdentityInterface;
  * @property integer $updated_at
  * @property string $password write-only password
  */
-class User extends ActiveRecord implements IdentityInterface
+class User extends ActiveRecord implements  FactoryInterface, IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
@@ -191,4 +193,19 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+    public static function definitions()
+    {
+        return [
+            [
+                'username' => Faker::userName(),
+                'auth_key' => md5(time()),
+                'password_hash' => '$2y$13$VFPMNnz1bjt7AJbRat/OZOOufalMj6jBSaRT94kF937dTfBqZlIV.', //password: 123456
+                'email' => Faker::email(),
+                'status' => static::STATUS_ACTIVE,
+                'role' => static::ROLE_USER,
+            ]
+        ];
+    }
+
 }
