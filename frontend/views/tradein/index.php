@@ -39,6 +39,32 @@ $this->params['breadcrumbs'][] = $this->title;
                     'enableRowClick' => true
                 ],
                 [
+                    'attribute'=> 'status',
+                    'contentOptions' => function ($model, $key, $index, $column){
+                        return ['id' => 'td-tradein-'.$index.'-'.$column->attribute];
+                    },
+                    'format'=>'raw',
+                    'value' => function ($model, $key, $index, $widget){
+                        $labels = [
+                            '10' => '<span class="label label-primary">Active</span>',
+                            '20' => '<span class="label label-default">Inactive</span>',
+                            '30' => '<span class="label label-danger">Closed</span>',
+                            '40' => '<span class="label label-success">Successful</span>',
+                        ];
+                        return $labels[$model->status];
+                    },
+                    'filterType' => KartikGridView::FILTER_SELECT2,
+                    'filter' => ['10' => 'Active',
+                        '20' => 'Inactive',
+                        '30' => 'Closed',
+                        '40' => 'Successful',],
+                    'filterWidgetOptions' => [
+                        'hideSearch'=>true,
+                        'pluginOptions' => ['allowClear' => true],
+                    ],
+                    'filterInputOptions' => ['placeholder' => 'Select status'],
+                ],
+                [
                     'attribute'=> 'first_name',
                     'contentOptions' => function ($model, $key, $index, $column){
                         return ['id' => 'td-tradein-'.$index.'-'.$column->attribute];
