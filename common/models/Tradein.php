@@ -23,6 +23,11 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
 
     public $dateFormatter = ['display'=>'m-d-Y','save'=>'Y-m-d'];
 
+    const STATUS_ACTIVE = 10;
+    const STATUS_INACTIVE = 20;
+    const STATUS_CLOSED = 30;
+    const STATUS_SUCCESSFUL = 40;
+
     /**
      * @inheritdoc
      */
