@@ -44,12 +44,18 @@ class OperatorSteps extends \tests\codeception\frontend\FunctionalTester
     }
 
 
-
     public function fillLoginForm($user, $pass=null)
     {
         $this->fillField('#loginform-username', $user->username);
         $this->fillField('#loginform-password', $pass ? $pass : '123456');
         $this->click('login-button');
+    }
+
+    public function submitChangePasswordForm($newPass)
+    {
+        $this->fillField('input[name="UserPassword[password]"]', $newPass);
+        $this->fillField('input[name="UserPassword[password_repeat]"]', $newPass);
+        $this->click('Update');
     }
 
     public function visit($url)

@@ -194,6 +194,11 @@ class User extends ActiveRecord implements  FactoryInterface, IdentityInterface
         $this->password_reset_token = null;
     }
 
+    public function lastInserted()
+    {
+        return $this->find()->limit(1)->orderby('id DESC')->one();
+    }
+
     public static function definitions()
     {
         return [
