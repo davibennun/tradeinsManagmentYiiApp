@@ -21,5 +21,5 @@ extensions:
     config:
         Codeception\Extension\EventsScripting:
             BeforeAll:
-                - command: ../bin/yii migrate/down 999999 --interactive=0 >/dev/null && ../bin/yii migrate/up --interactive=0 > /dev/null
+                - command: 'echo "hei"' #../bin/yii migrate/down 999999 --interactive=0 >/dev/null && ../bin/yii migrate/up --interactive=0 > /dev/null
             suites: 'acceptance'
