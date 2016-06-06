@@ -134,5 +134,9 @@ a.desc:after {
 }
 
 .panel-primary {
-    border:none;
+    /*border:none;*/
+}
+
+.tradein-index .panel-heading{
+    display:none;
 }
