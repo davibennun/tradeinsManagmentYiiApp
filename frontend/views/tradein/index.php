@@ -1,6 +1,7 @@
 <?php
 
 use common\models\Tradein;
+use kartik\dynagrid\DynaGrid;
 use kartik\export\ExportMenu;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -54,9 +55,16 @@ $exportColumns[] = [
     </h1>
     <hr/>
     <?php
-        echo KartikGridView::widget([
-            'dataProvider'=> $dataProvider,
-            'filterModel' => $searchModel,
+        echo DynaGrid::widget([
+            'gridOptions' => [
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'responsive' => true,
+                'hover' => true,
+                'export' => false,
+            ],
+            'options' => ['id'=>'dynagrid-tradein-index-1'],
+
             'columns' => [
                 [
                     'class' => 'kartik\grid\ExpandRowColumn',
@@ -130,9 +138,8 @@ $exportColumns[] = [
                     }
                 ],
             ],
-            'responsive'=>true,
-            'hover'=>true,
-            'export' => false,
+
+
         ]);
     ?>
 

@@ -176,7 +176,7 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
                 'newitem_cost' => Faker::numerify('###'),
                 'newitem_jomashop_currentprice' => Faker::numerify('###'),
                 'outofpocket_price' => Faker::numerify('###'),
-                'creation_time' => Faker::dateTime()
+                'creation_time' => Faker::dateTime(),
             ]
         ];
     }

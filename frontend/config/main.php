@@ -46,6 +46,9 @@ return [
     ],
     'params' => $params,
     'modules' => [
+        'dynagrid' => [
+            'class' => \kartik\dynagrid\Module::class,
+        ],
         'gridview' => [
             'class' => \kartik\grid\Module::class
         ],
