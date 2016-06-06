@@ -132,3 +132,7 @@ a.desc:after {
         width: 1800px;
     }
 }
+
+.panel-primary {
+    border:none;
+}
