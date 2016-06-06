@@ -74,9 +74,14 @@ $genDate = function($attr, $opt=[]) use ($grid, $model, $index, $key, $beforeInp
             ]
         ],
     ],$opt))->renderDataCellContent($model, $key, $index);
-}
+};
 
-
+$statusValueConfig = [
+    '10' => '<span class="label label-primary">Active</span>',
+    '20' => '<span class="label label-default">Inactive</span>',
+    '30' => '<span class="label label-danger">Closed</span>',
+    '40' => '<span class="label label-success">Successful</span>',
+];
 
 ?>
 <h3>
@@ -86,11 +91,15 @@ $genDate = function($attr, $opt=[]) use ($grid, $model, $index, $key, $beforeInp
         'asPopover' => true,
         'data' => [Tradein::STATUS_ACTIVE => 'Active', 20 => 'Inactive', 30 => 'Closed', 40 => 'Sucessful'],
         'options' => ['class' => 'form-control', 'prompt' => 'Select status...'],
-        'displayValueConfig' => [
-            '10' => '<span class="label label-primary">Active</span>',
-            '20' => '<span class="label label-default">Inactive</span>',
-            '30' => '<span class="label label-danger">Closed</span>',
-            '40' => '<span class="label label-success">Successful</span>',
+        'displayValueConfig' => $statusValueConfig,
+//        var sel = '#td-' + $('input.kv-editable-input', form) . attr('id') . replace('-disp', '');
+//        $(sel) . html(val);
+        'pluginEvents' => [
+            'editableSubmit' => "function(event, val, form) {
+                    var id = '#td-'+$('select',form).attr('id');
+                    var valueConfig = ".json_encode($statusValueConfig).";
+                    $(id).html(valueConfig[val]);
+                }"
         ],
     ]));
     ?>
