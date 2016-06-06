@@ -1,5 +1,7 @@
 <?php
 
+use common\models\Tradein;
+use kartik\export\ExportMenu;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use kartik\grid\GridView as KartikGridView;
@@ -13,13 +15,44 @@ $this->params['breadcrumbs'][] = $this->title;
 
 \kartik\detail\DetailViewAsset::register(Yii::$app->getView());
 
+$attr = (new Tradein())->attributeLabels();
+unset($attr['status']);
+$exportColumns = array_keys($attr);
+$exportColumns[] = [
+    'attribute' => 'status',
+    'value' => function ($model, $key, $index, $widget) {
+        $labels = [
+            '10' => 'Active',
+            '20' => 'Inactive',
+            '30' => 'Closed',
+            '40' => 'Successful',
+        ];
+        return $labels[$model->status];
+    }
+];
 
 ?>
 <div class="tradein-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <h1>
+        <?= Html::encode($this->title) ?>
 
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?= ExportMenu::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => array_merge($exportColumns),
+        'showColumnSelector' => false,
+        'exportConfig' => ['HTML' => false, 'TXT' => false, 'PDF' => false, 'Excel5' => false, 'Excel2007' => false],
+        'fontAwesome' => true,
+        'target' => ExportMenu::TARGET_SELF,
+        'dropdownOptions' => [
+            'label' => 'Export',
+            'class' => 'btn btn-default'
+        ]
+    ])
+    ?>
+    </h1>
+    <hr/>
     <?php
         echo KartikGridView::widget([
             'dataProvider'=> $dataProvider,
