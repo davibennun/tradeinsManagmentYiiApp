@@ -109,3 +109,26 @@ a.desc:after {
 .nav > li > form > button:hover {
     text-decoration: none;
 }
+
+@media (min-width: 1400px){
+    .container {
+        width: 1300px;
+    }
+}
+@media (min-width: 1600px){
+    .container {
+        width: 1490px;
+    }
+}
+
+@media (min-width: 1800px){
+    .container {
+        width: 1700px;
+    }
+}
+
+@media (min-width: 1900px){
+    .container {
+        width: 1800px;
+    }
+}
