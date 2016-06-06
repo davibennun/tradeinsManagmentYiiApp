@@ -104,7 +104,7 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
             'other_brand'=>'Other brand',
             'model' => 'Model',
             'model_number' => 'Model number',
-            'customeritem_if_new' => 'Customer item is new',
+            'customeritem_if_new' => 'Item worth if it was new',
             'customeritem_retail_value' => 'Customer item retail value',
             'customeritem_vendor_offer' => 'Customer vendor offer',
             'customeritem_jomashop_offer' => 'Customer item jomashop offer',

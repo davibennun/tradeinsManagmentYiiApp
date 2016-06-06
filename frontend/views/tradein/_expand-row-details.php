@@ -302,21 +302,10 @@ $statusValueConfig = [
             <table class="kv-child-table">
                 <tbody>
                 <tr>
-                    <th style="width: 20%; text-align: right; vertical-align: middle;">Item is new</th>
+                    <th style="width: 20%; text-align: right; vertical-align: middle;">Item worth if it was new</th>
                     <td style="width:30%">
                         <div class="kv-attribute">
-
-                             <?=
-                             Editable::widget($gen('customeritem_if_new',[
-                                 'inputType' => Editable::INPUT_DROPDOWN_LIST,
-                                 'data' => [0 => 'NO', 1 => 'YES'],
-                                 'options' => ['class' => 'form-control', 'prompt' => 'Select status...'],
-                                 'displayValueConfig' => [
-                                     '0' => '<span class="label label-danger">NO</span>',
-                                     '1' => '<span class="label label-success">YES</span>',
-                                 ]
-                             ]));
-                             ?>
+                            <?= Editable::widget($gen('customeritem_if_new')); ?>
                         </div>
                     </td>
                     <th style="width: 20%; text-align: right; vertical-align: middle;">Item retail value</th>
