@@ -187,4 +187,19 @@ $tableColumnsConfig = array_merge($visibleColumnsConfig, $hiddenColumnsConfig);
             $('.lightgallery').lightGallery();
         });
     ");
+
+    $this->registerJs('
+        $(".lightgallery .kv-file-remove").click(function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            if(! confirm("Are you sure you want to remove this image?"))
+                return;
+            var that = this;
+            $.post($(this).data("url"),{ key : $(this).data("key") }).done(function(){
+                $(that).closest(".image-container-link").fadeOut();
+            }).fail(function(){
+                alert("Error when removing image");
+            });
+        })
+    ');
 ?>
