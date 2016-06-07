@@ -38,6 +38,17 @@ class TradeinFormInfoPaginatedMapper implements MapperInterface{
 
             $tradeinArray['purchase_date'] = \DateTime::createFromFormat('Y-m-d H:i:s', $tradeinArray['purchase_date'])->format('Y-m-d');
 
+            // Quick and dirty image format conversion
+            $tradeinArray['image5'] = $tradeinArray['image4'];
+            $tradeinArray['image4'] = $tradeinArray['image3'];
+            $tradeinArray['image3'] = $tradeinArray['image2'];
+            $tradeinArray['image2'] = $tradeinArray['image1'];
+            $tradeinArray['image1'] = $tradeinArray['image0'];
+
+
+
+
+
             //criar imported_at e colocar como default now() e deixar o creation_time como importado, e nao permitir editalo na ui
 
             // Create Active Record instance

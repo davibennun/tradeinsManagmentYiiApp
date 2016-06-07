@@ -232,6 +232,7 @@ $genImage = function($attr) use ($model, $key, $index){
                     <div class="file-drop-disabled">
                         <div class="file-preview-thumbnails">
                             <div class="file-initial-thumbs lightgallery">
+
                                 <?= $genImage('image1') ?>
                                 <?= $genImage('image2') ?>
                                 <?= $genImage('image3') ?>
