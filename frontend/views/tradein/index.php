@@ -156,6 +156,7 @@ $tableColumnsConfig = array_merge($visibleColumnsConfig, $hiddenColumnsConfig);
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'export'=>false,
+                'showPageSummary' => false,
                 'floatHeader' => true,
                 'panel' => [
                     'after' => false
@@ -167,7 +168,6 @@ $tableColumnsConfig = array_merge($visibleColumnsConfig, $hiddenColumnsConfig);
             ],
             'options' => ['id'=>'dynagrid-tradein-index-1'],
             'showPersonalize' => true,
-            'showPageSummary' => false,
 //        'allowPageSetting' => false, // Setting allowPageSetting to false causes ordering feature to stop working
             'allowSortSetting' => false,
             'allowFilterSetting' => false,
