@@ -171,8 +171,8 @@ $tableColumnsConfig = array_merge($visibleColumnsConfig, $hiddenColumnsConfig);
 //        'allowPageSetting' => false, // Setting allowPageSetting to false causes ordering feature to stop working
             'allowSortSetting' => false,
             'allowFilterSetting' => false,
+            'allowThemeSetting' => false,
 
-//            'allowThemeSetting' => false,
         'columns' => $tableColumnsConfig,
 
         ]);

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "44f62ad17c1af5dd7bf36042420e80ed",
-    "content-hash": "6e6a24b48885f77dddf8a53beb0ecf32",
+    "hash": "1881472e743552a244864513cf620ca2",
+    "content-hash": "b54382956273ec5bfb15af3ea89c69d4",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -915,23 +915,23 @@
         },
         {
             "name": "kartik-v/yii2-dynagrid",
-            "version": "v1.4.0",
+            "version": "v1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-dynagrid.git",
-                "reference": "21934b3b75493b5ae570cc41969a2f86cb5f3c16"
+                "reference": "8ed61fa996c949b233e3c3f241f24e91da76d95e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-dynagrid/zipball/21934b3b75493b5ae570cc41969a2f86cb5f3c16",
-                "reference": "21934b3b75493b5ae570cc41969a2f86cb5f3c16",
+                "url": "https://api.github.com/repos/kartik-v/yii2-dynagrid/zipball/8ed61fa996c949b233e3c3f241f24e91da76d95e",
+                "reference": "8ed61fa996c949b233e3c3f241f24e91da76d95e",
                 "shasum": ""
             },
             "require": {
-                "kartik-v/yii2-grid": "*",
-                "kartik-v/yii2-sortable": "*",
-                "kartik-v/yii2-widget-activeform": "*",
-                "kartik-v/yii2-widget-select2": "*"
+                "kartik-v/yii2-grid": "~3.0",
+                "kartik-v/yii2-sortable": "~1.2",
+                "kartik-v/yii2-widget-activeform": "~1.4",
+                "kartik-v/yii2-widget-select2": "~2.0"
             },
             "type": "yii2-extension",
             "autoload": {
@@ -941,7 +941,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD 3-Clause"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -966,7 +966,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-01-12 12:04:53"
+            "time": "2015-08-04 15:22:13"
         },
         {
             "name": "kartik-v/yii2-editable",
@@ -1271,16 +1271,16 @@
         },
         {
             "name": "kartik-v/yii2-sortable",
-            "version": "dev-master",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-sortable.git",
-                "reference": "5d418b8a0511266d940e895662a9ee0085f2b88b"
+                "reference": "650dfd6876115fbb996eb6eb8f1d5d13ddb69285"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-sortable/zipball/5d418b8a0511266d940e895662a9ee0085f2b88b",
-                "reference": "5d418b8a0511266d940e895662a9ee0085f2b88b",
+                "url": "https://api.github.com/repos/kartik-v/yii2-sortable/zipball/650dfd6876115fbb996eb6eb8f1d5d13ddb69285",
+                "reference": "650dfd6876115fbb996eb6eb8f1d5d13ddb69285",
                 "shasum": ""
             },
             "require": {
@@ -1314,7 +1314,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-07-06 16:10:01"
+            "time": "2015-06-17 17:34:48"
         },
         {
             "name": "kartik-v/yii2-widget-activeform",
@@ -3822,38 +3822,87 @@
             "time": "2016-01-27 10:29:51"
         },
         {
-            "name": "phpdocumentor/reflection-docblock",
-            "version": "2.0.4",
+            "name": "phpdocumentor/reflection-common",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "d68dbdc53dc358a816f00b300704702b2eaff7b8"
+                "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
+                "reference": "144c307535e82c8fdcaacbcfc1d6d8eeb896687c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/d68dbdc53dc358a816f00b300704702b2eaff7b8",
-                "reference": "d68dbdc53dc358a816f00b300704702b2eaff7b8",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/144c307535e82c8fdcaacbcfc1d6d8eeb896687c",
+                "reference": "144c307535e82c8fdcaacbcfc1d6d8eeb896687c",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.5"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "dflydev/markdown": "~1.0",
-                "erusev/parsedown": "~1.0"
+                "phpunit/phpunit": "^4.6"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "phpDocumentor": [
+                "psr-4": {
+                    "phpDocumentor\\Reflection\\": [
+                        "src"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaap van Otterdijk",
+                    "email": "opensource@ijaap.nl"
+                }
+            ],
+            "description": "Common reflection classes used by phpdocumentor to reflect the code structure",
+            "homepage": "http://www.phpdoc.org",
+            "keywords": [
+                "FQSEN",
+                "phpDocumentor",
+                "phpdoc",
+                "reflection",
+                "static analysis"
+            ],
+            "time": "2015-12-27 11:43:31"
+        },
+        {
+            "name": "phpdocumentor/reflection-docblock",
+            "version": "3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
+                "reference": "45ada3e3fd09789fbfbd6d65b3f0901f0030dc61"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/45ada3e3fd09789fbfbd6d65b3f0901f0030dc61",
+                "reference": "45ada3e3fd09789fbfbd6d65b3f0901f0030dc61",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "phpdocumentor/reflection-common": "^1.0@dev",
+                "phpdocumentor/type-resolver": "^0.1.5",
+                "webmozart/assert": "^1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "phpDocumentor\\Reflection\\": [
                         "src/"
                     ]
                 }
@@ -3865,10 +3914,58 @@
             "authors": [
                 {
                     "name": "Mike van Riel",
-                    "email": "mike.vanriel@naenius.com"
+                    "email": "me@mikevanriel.com"
                 }
             ],
-            "time": "2015-02-03 12:10:50"
+            "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
+            "time": "2016-06-06 06:44:13"
+        },
+        {
+            "name": "phpdocumentor/type-resolver",
+            "version": "0.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpDocumentor/TypeResolver.git",
+                "reference": "9891754231e55d42f0d16988ffb799af39f31a12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/9891754231e55d42f0d16988ffb799af39f31a12",
+                "reference": "9891754231e55d42f0d16988ffb799af39f31a12",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "phpdocumentor/reflection-common": "^1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^5.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "phpDocumentor\\Reflection\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike van Riel",
+                    "email": "me@mikevanriel.com"
+                }
+            ],
+            "time": "2016-03-28 10:02:29"
         },
         {
             "name": "phpspec/php-diff",
@@ -5173,6 +5270,56 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2016-06-06 11:33:26"
+        },
+        {
+            "name": "webmozart/assert",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozart/assert.git",
+                "reference": "3a8e045064f294992a13966b6c892fb9d64853a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/3a8e045064f294992a13966b6c892fb9d64853a3",
+                "reference": "3a8e045064f294992a13966b6c892fb9d64853a3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3|^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.6",
+                "sebastian/version": "^1.0.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmozart\\Assert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                }
+            ],
+            "description": "Assertions to validate method input/output with nice error messages.",
+            "keywords": [
+                "assert",
+                "check",
+                "validate"
+            ],
+            "time": "2016-03-04 13:27:44"
         },
         {
             "name": "yiisoft/yii2-codeception",
