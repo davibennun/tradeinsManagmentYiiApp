@@ -42,7 +42,6 @@ foreach($hiddenColumns as $hiddenColumn){
     $hiddenColumnsConfig[] = [
         'attribute' => $hiddenColumn,
         'visible' => false,
-        'hidden' => true,
         'contentOptions' => function ($model, $key, $index, $column) {
             return ['id' => 'td-tradein-' . $index . '-' . $column->attribute];
         }
@@ -50,20 +49,20 @@ foreach($hiddenColumns as $hiddenColumn){
 }
 
 $visibleColumnsConfig = [
-    [
-        'class' => 'kartik\grid\ExpandRowColumn',
-        'order' => DynaGrid::ORDER_FIX_LEFT,
-        'width' => '50px',
-        'value' => function ($model, $key, $index, $column) {
-            return \kartik\grid\GridView::ROW_COLLAPSED;
-        },
-        'detail' => function ($model, $key, $index, $column) {
-            return Yii::$app->controller->renderPartial('_expand-row-details', ['model' => $model, 'key' => $key, 'index' => $index]);
-        },
-        'headerOptions' => ['class' => 'kartik-sheet-style'],
-        'expandOneOnly' => true,
-        'enableRowClick' => true
-    ],
+//    [
+//        'class' => 'kartik\grid\ExpandRowColumn',
+//        'order' => DynaGrid::ORDER_FIX_LEFT,
+//        'width' => '50px',
+//        'value' => function ($model, $key, $index, $column) {
+//            return \kartik\grid\GridView::ROW_COLLAPSED;
+//        },
+//        'detail' => function ($model, $key, $index, $column) {
+//            return Yii::$app->controller->renderPartial('_expand-row-details', ['model' => $model, 'key' => $key, 'index' => $index]);
+//        },
+//        'headerOptions' => ['class' => 'kartik-sheet-style'],
+//        'expandOneOnly' => true,
+//        'enableRowClick' => true
+//    ],
     [
         'attribute' => 'status',
         'contentOptions' => function ($model, $key, $index, $column) {
