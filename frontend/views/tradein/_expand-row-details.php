@@ -83,6 +83,30 @@ $statusValueConfig = [
     '40' => '<span class="label label-success">Successful</span>',
 ];
 
+$genImage = function($attr) use ($model, $key, $index){
+    $label = $model->getAttributeLabel($attr);
+    return '<a href="'. $model->$attr .'">
+                <div class="file-preview-frame file-preview-initial">
+                    <div class="kv-file-content">
+                        <img src="'. $model->$attr .'" class="kv-preview-data file-preview-image" title="'.$label.'" alt="'.$label.'"  style="width:auto;height:160px;">
+                    </div>
+                    <div class="file-thumbnail-footer">
+                        <div class="file-footer-caption" title="'.$label.'">' . $label . '</div>
+                        <div class="file-actions">
+                            <div class="file-footer-buttons">
+                                <button type="button" class="kv-file-remove btn btn-xs btn-default"
+                                        title="Remove file"
+                                        data-url="/index.php?r=tradein%2Fdelete-image&amp;id="'.$model->id.'
+                                        data-key="'.$attr.'"><i
+                                        class="glyphicon glyphicon-trash text-danger"></i></button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </a>';
+}
+
 ?>
 <h3>
     <?=
@@ -200,6 +224,41 @@ $statusValueConfig = [
         <th style="width: 20%; text-align: right; vertical-align: middle;">Images</th>
         <td>
             <div class="kv-attribute">
+
+                <div class="file-preview ">
+                    <div class="file-drop-disabled">
+                        <div class="file-preview-thumbnails">
+                            <div class="file-initial-thumbs lightgallery">
+                                <?= $genImage('image1') ?>
+                                <?= $genImage('image2') ?>
+                                <?= $genImage('image3') ?>
+                                <?= $genImage('image4') ?>
+                                <?= $genImage('image5') ?>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+<!--
+                <div class="lightgallery">
+                    <a href="<?= $model->image1 ?>">
+                        <img src="<?= $model->image1 ?>"/>
+                    </a>
+                    <a href="<?= $model->image2 ?>">
+                        <img src="<?= $model->image2 ?>"/>
+                    </a>
+                    <a href="<?= $model->image3 ?>">
+                        <img src="<?= $model->image3 ?>"/>
+                    </a>
+                    <a href="<?= $model->image4 ?>">
+                        <img src="<?= $model->image4 ?>"/>
+                    </a>
+                    <a href="<?= $model->image5 ?>">
+                        <img src="<?= $model->image5 ?>"/>
+                    </a>
+                </div>
+
                 <?= FileInput::widget([
                     'name' => 'Tradein[' . $index . '][image]',
                     'options' => [
@@ -218,7 +277,7 @@ $statusValueConfig = [
                         'showCaption' => false,
                         'showRemove' => false,
                         'showUpload' => false,
-                        'layoutTemplates'=> [
+                        'layoutTemplates' => [
                             'btnBrowse' => '<div tabindex="500" class="{css}"{status} style="display:none">{label}</div>'
                         ],
                         'initialPreview' => [
@@ -230,18 +289,20 @@ $statusValueConfig = [
                         ],
                         'initialPreviewAsData' => true,
                         'initialPreviewConfig' => [
-                            ['key'=> 'image1', 'caption' => 'Image 1', 'url' => Url::to(['tradein/delete-image', 'id'=>$key])],
-                            ['key'=> 'image2', 'caption' => 'Image 2', 'url' => Url::to(['tradein/delete-image', 'id'=>$key])],
-                            ['key'=> 'image3', 'caption' => 'Image 3', 'url' => Url::to(['tradein/delete-image', 'id'=>$key])],
-                            ['key'=> 'image4', 'caption' => 'Image 4', 'url' => Url::to(['tradein/delete-image', 'id'=>$key])],
-                            ['key'=> 'image5', 'caption' => 'Image 5', 'url' => Url::to(['tradein/delete-image', 'id'=>$key])],
+                            ['key' => 'image1', 'caption' => 'Image 1', 'url' => Url::to(['tradein/delete-image', 'id' => $key])],
+                            ['key' => 'image2', 'caption' => 'Image 2', 'url' => Url::to(['tradein/delete-image', 'id' => $key])],
+                            ['key' => 'image3', 'caption' => 'Image 3', 'url' => Url::to(['tradein/delete-image', 'id' => $key])],
+                            ['key' => 'image4', 'caption' => 'Image 4', 'url' => Url::to(['tradein/delete-image', 'id' => $key])],
+                            ['key' => 'image5', 'caption' => 'Image 5', 'url' => Url::to(['tradein/delete-image', 'id' => $key])],
                         ],
                         'overwriteInitial' => false,
                         'pluginEvents' => [
                             'filepredelete' => "function(event, key) {return (!confirm('Are you sure you want to delete ?'));}",
                         ]
                     ]
-                ]);?>
+                ]); ?>
+                !-->
+
             </div>
         </td>
     </tr>

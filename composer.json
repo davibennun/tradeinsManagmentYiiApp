@@ -27,7 +27,8 @@
         "kartik-v/yii2-datecontrol": "*",
         "kartik-v/yii2-detail-view": "^1.7",
         "kartik-v/yii2-export": "^1.2",
-        "kartik-v/yii2-dynagrid": "1.4"
+        "kartik-v/yii2-dynagrid": "1.4",
+        "bower-asset/lightgallery" : "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

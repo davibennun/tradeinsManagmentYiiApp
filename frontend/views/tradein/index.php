@@ -3,6 +3,7 @@
 use common\models\Tradein;
 use kartik\dynagrid\DynaGrid;
 use kartik\export\ExportMenu;
+use yii\base\View;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use kartik\grid\GridView as KartikGridView;
@@ -15,6 +16,7 @@ $this->title = 'Tradeins';
 $this->params['breadcrumbs'][] = $this->title;
 
 \kartik\detail\DetailViewAsset::register(Yii::$app->getView());
+\frontend\assets\LightGalleryAsset::register(Yii::$app->getView());
 
 $columns = array_keys( (new Tradein())->attributeLabels() );
 
@@ -49,20 +51,20 @@ foreach($hiddenColumns as $hiddenColumn){
 }
 
 $visibleColumnsConfig = [
-//    [
-//        'class' => 'kartik\grid\ExpandRowColumn',
-//        'order' => DynaGrid::ORDER_FIX_LEFT,
-//        'width' => '50px',
-//        'value' => function ($model, $key, $index, $column) {
-//            return \kartik\grid\GridView::ROW_COLLAPSED;
-//        },
-//        'detail' => function ($model, $key, $index, $column) {
-//            return Yii::$app->controller->renderPartial('_expand-row-details', ['model' => $model, 'key' => $key, 'index' => $index]);
-//        },
-//        'headerOptions' => ['class' => 'kartik-sheet-style'],
-//        'expandOneOnly' => true,
-//        'enableRowClick' => true
-//    ],
+    [
+        'class' => 'kartik\grid\ExpandRowColumn',
+        'order' => DynaGrid::ORDER_FIX_LEFT,
+        'width' => '50px',
+        'value' => function ($model, $key, $index, $column) {
+            return \kartik\grid\GridView::ROW_COLLAPSED;
+        },
+        'detail' => function ($model, $key, $index, $column) {
+            return Yii::$app->controller->renderPartial('_expand-row-details', ['model' => $model, 'key' => $key, 'index' => $index]);
+        },
+        'headerOptions' => ['class' => 'kartik-sheet-style'],
+        'expandOneOnly' => true,
+        'enableRowClick' => true
+    ],
     [
         'attribute' => 'status',
         'contentOptions' => function ($model, $key, $index, $column) {
@@ -170,10 +172,19 @@ $tableColumnsConfig = array_merge($visibleColumnsConfig, $hiddenColumnsConfig);
             'allowSortSetting' => false,
             'allowFilterSetting' => false,
 
-            'allowThemeSetting' => false,
+//            'allowThemeSetting' => false,
         'columns' => $tableColumnsConfig,
 
         ]);
     ?>
 
 </div>
+
+
+<?php
+    $this->registerJs("
+        $(function(){
+            $('.lightgallery').lightGallery();
+        });
+    ");
+?>
