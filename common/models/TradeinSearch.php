@@ -20,10 +20,9 @@ class TradeinSearch extends Tradein
     {
         return [
             [['id'], 'integer'],
-            [['status'], 'safe'],
-            [['first_contact', 'last_contact'], 'default', 'value' => null],
-            [['first_contact', 'last_contact'], 'date', 'format' => 'php:Y-m-d'],
-            [['first_name', 'last_name', 'first_contact', 'last_contact', 'model_number'], 'safe'],
+            [['status', 'first_name', 'last_name', 'model_number','brand', 'brand', 'email', 'shipping_label', 'phone', 'brand', 'other_brand', 'model', 'model_number', 'customeritem_if_new', 'customeritem_retail_value', 'customeritem_vendor_offer', 'customeritem_jomashop_offer', 'purchased_from', 'box_papers', 'condition', 'image1', 'image2', 'image3', 'image4', 'image5', 'info_newitem_customer_wants', 'newitem_cost', 'newitem_jomashop_currentprice', 'outofpocket_price'], 'safe'],
+            [['first_contact', 'last_contact', 'purchase_date'], 'default', 'value' => null],
+            [['first_contact', 'last_contact', 'purchase_date'], 'date', 'format' => 'php:Y-m-d'],
         ];
     }
 
@@ -69,12 +68,18 @@ class TradeinSearch extends Tradein
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'first_name', $this->first_name])
-            ->andFilterWhere(['like', 'last_name', $this->last_name])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'first_contact', $this->first_contact])
-            ->andFilterWhere(['like', 'last_contact', $this->last_contact])
-            ->andFilterWhere(['like', 'model_number', $this->model_number]);
+        // Extract all fields from rules
+        $fields = [];
+        foreach($this->rules() as $rule){
+            array_walk($rule[0], function($field) use (&$fields){
+                $fields[] = $field;
+            });
+        }
+
+        // Mount query
+        foreach($fields as $field){
+            $query->andFilterWhere(['like', $field, $this->$field]);
+        }
 
         return $dataProvider;
     }
