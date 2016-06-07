@@ -140,7 +140,7 @@ $tableColumnsConfig = array_merge($visibleColumnsConfig, $hiddenColumnsConfig);
         'dataProvider' => $dataProvider,
         'columns' => array_merge($exportColumns),
         'showColumnSelector' => false,
-        'exportConfig' => ['HTML' => false, 'TXT' => false, 'PDF' => false, 'Excel5' => false, 'Excel2007' => false],
+        'exportConfig' => ['HTML' => false, 'TXT' => false, 'PDF' => false, 'Excel5' => false],
         'fontAwesome' => true,
         'target' => ExportMenu::TARGET_SELF,
         'dropdownOptions' => [
@@ -157,10 +157,12 @@ $tableColumnsConfig = array_merge($visibleColumnsConfig, $hiddenColumnsConfig);
                 'filterModel' => $searchModel,
                 'export'=>false,
                 'showPageSummary' => false,
-                'floatHeader' => true,
+//                'floatHeader' => true,
                 'panel' => [
                     'after' => false
                 ],
+                'resizableColumns' => true,
+                'persistResize' => false,
                 'toolbar' => [
                     ['content' => '{dynagrid}'],
                     '{export}',
