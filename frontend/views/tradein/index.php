@@ -157,7 +157,7 @@ $tableColumnsConfig = array_merge($visibleColumnsConfig, $hiddenColumnsConfig);
                 'filterModel' => $searchModel,
                 'export'=>false,
                 'showPageSummary' => false,
-//                'floatHeader' => true,
+                'floatHeader' => false,
                 'panel' => [
                     'after' => false
                 ],
