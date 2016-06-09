@@ -141,6 +141,7 @@ $tableColumnsConfig = array_merge($visibleColumnsConfig, $hiddenColumnsConfig);
         'columns' => array_merge($exportColumns),
         'showColumnSelector' => false,
         'exportConfig' => ['HTML' => false, 'TXT' => false, 'PDF' => false, 'Excel5' => false],
+        'clearBuffers'=>true,
         'fontAwesome' => true,
         'target' => ExportMenu::TARGET_SELF,
         'dropdownOptions' => [
