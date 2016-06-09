@@ -11,13 +11,13 @@ class m160609_200005_add_vendor_quotes_table extends Migration
             'id' => $this->primaryKey(),
             'brand' => $this->string()->notNull(),
             'model' => $this->string()->notNull(),
-            'price' => 'decimal(19,4)',
+            'price' => 'decimal(19,2)',
         ]);
     }
 
     public function down()
     {
-        $this->dropTable('vendo_quotes');
+        $this->dropTable('vendor_quotes');
     }
 
     /*
