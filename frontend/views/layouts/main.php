@@ -36,6 +36,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Trade-ins', 'url' => ['/tradein']],
+        ['label' => 'Vendor Quotes', 'url' => ['/vendor-quotes']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

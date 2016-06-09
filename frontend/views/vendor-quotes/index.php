@@ -1,5 +1,6 @@
 <?php
 
+use common\widgets\Alert;
 use yii\helpers\Html;
 use kartik\grid\GridView as KartikGridView;
 
@@ -15,12 +16,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <?= Alert::widget() ?>
+
     <p>
         <?= Html::a('Create a Vendor Quote', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
+
     <?= KartikGridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'export' => false,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

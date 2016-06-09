@@ -6,6 +6,7 @@ use frontend\controllers\behaviours\EditableBehaviour;
 use Yii;
 use common\models\VendorQuotes;
 use common\models\SearchVendorQuotes;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -71,7 +72,8 @@ class VendorQuotesController extends Controller
         $model = new VendorQuotes();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->getSession()->setFlash('success', 'Vendor quote created successfully.');
+            return $this->redirect(Url::toRoute('/vendor-quotes'));
         } else {
             return $this->render('create', [
                 'model' => $model,
