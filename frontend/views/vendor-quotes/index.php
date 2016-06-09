@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView as KartikGridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\SearchVendorQuotes */
@@ -16,20 +16,22 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Vendor Quotes', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create a Vendor Quote', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= GridView::widget([
+    <?= KartikGridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'brand',
-            'model',
-            'price',
+            ['class' => kartik\grid\EditableColumn::class, 'attribute' => 'brand'],
+            ['class' => kartik\grid\EditableColumn::class, 'attribute' => 'model'],
+            ['class' => kartik\grid\EditableColumn::class, 'attribute' => 'price'],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'visibleButtons' => [
+                'view' => false,
+                'update' => false,
+            ]],
         ],
     ]); ?>
 </div>

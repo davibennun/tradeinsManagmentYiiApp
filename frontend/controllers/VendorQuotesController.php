@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\controllers\behaviours\EditableBehaviour;
 use Yii;
 use common\models\VendorQuotes;
 use common\models\SearchVendorQuotes;
@@ -26,6 +27,10 @@ class VendorQuotesController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'editable' => [
+                'class' => EditableBehaviour::class,
+                'modelName' => VendorQuotes::class
+            ]
         ];
     }
 
