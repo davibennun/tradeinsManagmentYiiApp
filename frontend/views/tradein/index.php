@@ -140,7 +140,8 @@ $tableColumnsConfig = array_merge($visibleColumnsConfig, $hiddenColumnsConfig);
         'dataProvider' => $dataProvider,
         'columns' => array_merge($exportColumns),
         'showColumnSelector' => false,
-        'exportConfig' => ['HTML' => false, 'TXT' => false, 'PDF' => false, 'Excel5' => false, 'Excel2007' => false],
+        'exportConfig' => ['HTML' => false, 'TXT' => false, 'PDF' => false, 'Excel5' => false],
+        'clearBuffers'=>true,
         'fontAwesome' => true,
         'target' => ExportMenu::TARGET_SELF,
         'dropdownOptions' => [
