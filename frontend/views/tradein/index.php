@@ -71,6 +71,7 @@ $visibleColumnsConfig = [
             return ['id' => 'td-tradein-' . $index . '-' . $column->attribute];
         },
         'format' => 'raw',
+        'width' => '130px',
         'value' => function ($model, $key, $index, $widget) {
             $labels = [
                 '10' => '<span class="label label-primary">Active</span>',
