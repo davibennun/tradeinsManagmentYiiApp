@@ -110,7 +110,7 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
             'customeritem_jomashop_offer' => 'Customer item jomashop offer',
             'purchase_date' => 'Purchase date',
             'purchased_from' => 'Purchased from',
-            'box_papers' => 'Box papers',
+            'box_papers' => 'Box or papers',
             'condition' => 'Condition',
             'image1' => 'Image #1',
             'image2' => 'Image #2',

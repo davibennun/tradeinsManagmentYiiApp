@@ -31,17 +31,20 @@ class TradeinFormInfoPaginatedMapper implements MapperInterface{
             $tradeinArray = array_map(function ($value) { return $value === "" ? null : $value; }, $tradeinArray);
 
             // Prepare attributes
-            $tradeinArray['id'] = $tradeinArray['tradeins_id'];
+            $tradeinArray['id'] = ArrayHelper::getValue($tradeinArray, 'tradeins_id');
             unset($tradeinArray['tradeins_id']);
 
-            $tradeinArray['creation_time'] = $tradeinArray['created_time'];
+            $tradeinArray['creation_time'] = ArrayHelper::getValue($tradeinArray, 'created_time');
             unset($tradeinArray['created_time']);
 
-            $tradeinArray['brand'] = $tradeinArray['watch_brand'];
+            $tradeinArray['brand'] = ArrayHelper::getValue($tradeinArray, 'watch_brand');
             unset($tradeinArray['watch_brand']);
 
-            $tradeinArray['box_papers'] = $tradeinArray['box_or_papers'];
+            $tradeinArray['box_papers'] = ArrayHelper::getValue($tradeinArray, 'box_or_papers');
             unset($tradeinArray['box_or_papers']);
+
+            $tradeinArray['info_newitem_customer_wants'] = ArrayHelper::getValue($tradeinArray, 'information');
+            unset($tradeinArray['information']);
 
             $tradeinArray['purchase_date'] = \DateTime::createFromFormat('Y-m-d H:i:s', $tradeinArray['purchase_date'])->format('Y-m-d');
 
