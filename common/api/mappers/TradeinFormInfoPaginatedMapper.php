@@ -6,6 +6,7 @@ namespace common\api\mappers;
 use common\api\responses\TradeinFormInfoPaginatedResponse;
 use common\api\components\MapperInterface;
 use common\models\Tradein;
+use yii\helpers\ArrayHelper;
 
 /**
  * Maps soap raw response to active record models
@@ -36,14 +37,20 @@ class TradeinFormInfoPaginatedMapper implements MapperInterface{
             $tradeinArray['creation_time'] = $tradeinArray['created_time'];
             unset($tradeinArray['created_time']);
 
+            $tradeinArray['brand'] = $tradeinArray['watch_brand'];
+            unset($tradeinArray['watch_brand']);
+
+            $tradeinArray['box_papers'] = $tradeinArray['box_or_papers'];
+            unset($tradeinArray['box_or_papers']);
+
             $tradeinArray['purchase_date'] = \DateTime::createFromFormat('Y-m-d H:i:s', $tradeinArray['purchase_date'])->format('Y-m-d');
 
             // Quick and dirty image format conversion
-            $tradeinArray['image5'] = $tradeinArray['image4'];
-            $tradeinArray['image4'] = $tradeinArray['image3'];
-            $tradeinArray['image3'] = $tradeinArray['image2'];
-            $tradeinArray['image2'] = $tradeinArray['image1'];
-            $tradeinArray['image1'] = $tradeinArray['image0'];
+            $tradeinArray['image5'] = ArrayHelper::getValue($tradeinArray, 'image4');
+            $tradeinArray['image4'] = ArrayHelper::getValue($tradeinArray, 'image3');
+            $tradeinArray['image3'] = ArrayHelper::getValue($tradeinArray, 'image2');
+            $tradeinArray['image2'] = ArrayHelper::getValue($tradeinArray, 'image1');
+            $tradeinArray['image1'] = ArrayHelper::getValue($tradeinArray, 'image0');
 
 
 
