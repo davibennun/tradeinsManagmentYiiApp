@@ -118,7 +118,7 @@ $genImage = function($attr) use ($model, $key, $index){
     Editable::widget($gen('status', [
         'inputType' => Editable::INPUT_DROPDOWN_LIST,
         'asPopover' => true,
-        'data' => [Tradein::STATUS_ACTIVE => 'Active', 20 => 'Inactive', 30 => 'Closed', 40 => 'Sucessful'],
+        'data' => [Tradein::STATUS_ACTIVE => 'Active', 20 => 'Inactive', 30 => 'Closed', 40 => 'Successful'],
         'options' => ['class' => 'form-control', 'prompt' => 'Select status...'],
         'displayValueConfig' => $statusValueConfig,
         'pluginEvents' => [
