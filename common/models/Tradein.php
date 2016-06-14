@@ -24,9 +24,20 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
     public $dateFormatter = ['display'=>'m-d-Y','save'=>'Y-m-d'];
 
     const STATUS_ACTIVE = 10;
+    const STATUS_ACTIVE_LABEL = 'Active';
     const STATUS_INACTIVE = 20;
+    const STATUS_INACTIVE_LABEL = 'Inactive';
     const STATUS_CLOSED = 30;
+    const STATUS_CLOSED_LABEL = 'Closed';
     const STATUS_SUCCESSFUL = 40;
+    const STATUS_SUCCESSFUL_LABEL = 'Successful';
+
+    public static $statusLabels = [
+        self::STATUS_ACTIVE => self::STATUS_ACTIVE_LABEL,
+        self::STATUS_INACTIVE => self::STATUS_INACTIVE_LABEL,
+        self::STATUS_CLOSED => self::STATUS_CLOSED_LABEL,
+        self::STATUS_SUCCESSFUL => self::STATUS_SUCCESSFUL_LABEL
+    ];
 
     /**
      * @inheritdoc

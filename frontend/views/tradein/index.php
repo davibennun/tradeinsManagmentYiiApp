@@ -24,12 +24,7 @@ $exportColumns = array_diff($columns, ['status']);
 $exportColumns[] = [
     'attribute' => 'status',
     'value' => function ($model, $key, $index, $widget) {
-        $labels = [
-            '10' => 'Active',
-            '20' => 'Inactive',
-            '30' => 'Closed',
-            '40' => 'Successful',
-        ];
+        $labels = Tradein::$statusLabels;
         return $labels[$model->status];
     }
 ];
@@ -74,18 +69,15 @@ $visibleColumnsConfig = [
         'width' => '130px',
         'value' => function ($model, $key, $index, $widget) {
             $labels = [
-                '10' => '<span class="label label-primary">Active</span>',
-                '20' => '<span class="label label-default">Inactive</span>',
-                '30' => '<span class="label label-danger">Closed</span>',
-                '40' => '<span class="label label-success">Successful</span>',
+                Tradein::STATUS_ACTIVE => '<span class="label label-primary">'.Tradein::STATUS_ACTIVE_LABEL.'</span>',
+                Tradein::STATUS_INACTIVE => '<span class="label label-default">'.Tradein::STATUS_INACTIVE_LABEL.'</span>',
+                Tradein::STATUS_CLOSED => '<span class="label label-danger">'.Tradein::STATUS_CLOSED_LABEL.'</span>',
+                Tradein::STATUS_SUCCESSFUL => '<span class="label label-success">'.Tradein::STATUS_SUCCESSFUL_LABEL.'</span>',
             ];
             return $labels[$model->status];
         },
         'filterType' => KartikGridView::FILTER_SELECT2,
-        'filter' => ['10' => 'Active',
-            '20' => 'Inactive',
-            '30' => 'Closed',
-            '40' => 'Successful',],
+        'filter' => Tradein::$statusLabels,
         'filterWidgetOptions' => [
             'hideSearch' => true,
             'pluginOptions' => ['allowClear' => true],
