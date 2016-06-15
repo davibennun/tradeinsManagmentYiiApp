@@ -293,7 +293,13 @@ $genImage = function($attr) use ($model, $key, $index){
                     <th style="width: 20%; text-align: right; vertical-align: middle;">Condition</th>
                     <td>
                         <div class="kv-attribute">
-                            <?= Editable::widget($gen('condition')); ?>
+                            <?= Editable::widget($gen('condition', [
+                                'inputType' => Editable::INPUT_TEXTAREA,
+                                'submitOnEnter' => false,
+                                'editableValueOptions' => ['style' => 'text-align:left'],
+                                'displayValue' => nl2br($model->condition),
+                                'options' => ['class' => 'form-control', 'rows' => 5, 'style' => 'width:400px', 'placeholder' => 'Enter condition...']
+                            ])); ?>
                         </div>
                     </td>
                 </tr>
