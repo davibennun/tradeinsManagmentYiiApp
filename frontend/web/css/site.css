@@ -140,3 +140,16 @@ a.desc:after {
 .tradein-index .panel-heading{
     display:none;
 }
+
+.files .preview a img{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.fileupload-progress{
+    width: 100%;
+}
+
+.fileupload-buttonbar > .col-lg-7{
+    margin-bottom: 15px;
+}

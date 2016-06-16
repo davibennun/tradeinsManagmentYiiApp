@@ -28,7 +28,8 @@
         "kartik-v/yii2-detail-view": "^1.7",
         "kartik-v/yii2-export": "^1.2",
         "kartik-v/yii2-dynagrid": "1.4.4",
-        "bower-asset/lightgallery" : "*"
+        "bower-asset/lightgallery" : "*",
+        "2amigos/yii2-file-upload-widget": "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

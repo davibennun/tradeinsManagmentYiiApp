@@ -154,6 +154,14 @@ class Tradein extends \yii\db\ActiveRecord implements FactoryInterface, ResultIn
         return $text;
     }
 
+    public function getNextAvailableImageSlot()
+    {
+        $imageSlots = ['image1', 'image2', 'image3', 'image4', 'image5'];
+        return current(array_filter($imageSlots, function($slot){
+            return empty($this->$slot);
+        }));
+    }
+
     public static function definitions() {
         return [
              [

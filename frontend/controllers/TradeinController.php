@@ -2,15 +2,20 @@
 
 namespace frontend\controllers;
 
+use HttpException;
 use Yii;
 use common\models\Tradein;
 use common\models\TradeinSearch;
 use frontend\controllers\behaviours\EditableBehaviour;
 use yii\filters\AccessControl;
+use yii\helpers\Json;
+use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+
 /**
  * TradeinController implements the CRUD actions for Tradein model.
  */
@@ -123,14 +128,58 @@ class TradeinController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionDeleteImage($id)
+    public function actionImageUpload()
     {
-        if (Yii::$app->request->isPost) {
-            if(! ($imageField = Yii::$app->request->post('key'))){
+
+
+            $imageFile = UploadedFile::getInstanceByName('Tradein[image1]');
+            $directory = \Yii::getAlias('@frontend/web/img');
+            if (!is_dir($directory)) {
+                mkdir($directory);
+            }
+            if ($imageFile) {
+                $fileName = uniqid() . '.' . $imageFile->extension;
+                $filePath = \Yii::getAlias('@frontend/web/img') . '/'. $fileName;
+                $relativePath = '/img/'.$fileName;
+
+                if ($imageFile->saveAs($filePath)) {
+
+                    $tradein = $this->findModel(Yii::$app->request->get('id'));
+
+                    if(! $imageColumn = $tradein->getNextAvailableImageSlot())
+                        throw new HttpException(400, 'Maximum number of images exceeded.');
+
+                    $tradein->$imageColumn = URL::to($relativePath,true);
+                    if($tradein->save())
+                        return Json::encode([
+                            'files' => [[
+                                'name' => 'Image #' . substr($imageColumn, -1),
+                                'key' => $imageColumn,
+                                'size' => $imageFile->size,
+                                "url" => $relativePath,
+                                "thumbnailUrl" => $relativePath,
+                                "deleteUrl" => Url::to(['tradein/delete-image', 'id' => $tradein->id, 'key' => $imageColumn]),
+                                "deleteType" => "DELETE"
+                            ]]
+                        ]);
+                }
+            }
+            return '';
+    }
+
+    public function actionDeleteImage()
+    {
+        if (Yii::$app->request->isDelete) {
+            if(! ($imageField = Yii::$app->request->get('key'))){
                 throw new BadRequestHttpException('Your requeset should contain a "key" attribute, ie. the image field you are trying to remove');
             }
 
-            $model = $this->findModel($id);
+            $model = $this->findModel(Yii::$app->request->get('id'));
+
+            $pathChunks = explode('/', $model->$imageField);
+
+            unlink(\Yii::getAlias('@frontend/web/img') . '/' . end($pathChunks));
+
             $model->$imageField = null;
 
             if($model->save()){

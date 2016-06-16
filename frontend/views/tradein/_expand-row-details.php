@@ -7,8 +7,11 @@ use kartik\widgets\FileInput;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\helpers\Url;
+use dosamigos\fileupload\FileUploadUI;
 
 FileInputAsset::register($this);
+
+$fileUploadId = uniqid();
 
 $beforeInput = function($attr) use ($model, $index, $key){
     $strKey = !is_string($key) && !is_numeric($key) ? (is_array($key) ? Json::encode($key) : (string)$key) : $key;
@@ -86,30 +89,19 @@ $statusValueConfig = [
     '40' => '<span class="label label-success">Successful</span>',
 ];
 
-$genImage = function($attr) use ($model, $key, $index){
+$genImage = function($attr, $title) use ($model, $key, $index){
 
-    $label = $model->getAttributeLabel($attr);
-    return empty($model->$attr) ? '' : '<a href="'. $model->$attr .'" class="image-container-link">
-                <div class="file-preview-frame file-preview-initial">
-                    <div class="kv-file-content">
-                        <img src="'. $model->$attr .'" class="kv-preview-data file-preview-image" title="'.$label.'" alt="'.$label.'"  style="width:auto;height:160px;">
-                    </div>
-                    <div class="file-thumbnail-footer">
-                        <div class="file-footer-caption" title="'.$label.'">' . $label . '</div>
-                        <div class="file-actions">
-                            <div class="file-footer-buttons">
-                                <button type="button" class="kv-file-remove btn btn-xs btn-default"
-                                        title="Remove file"
-                                        data-url="/index.php?r=tradein%2Fdelete-image&amp;id='.$model->id.'"
-                                        data-key="'.$attr.'"><i
-                                        class="glyphicon glyphicon-trash text-danger"></i></button>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            </a>';
-}
+    return empty($model->$attr) ? '' : '{
+        "key":"'.$attr.'",
+        "name":"'.$title.'",
+        "url": "'.$model->$attr.'",
+        "thumbnailUrl": "'.$model->$attr.'",
+        "deleteUrl": "'. Url::to(['tradein/delete-image','id'=>$model->id,'key'=>$attr]) .'",
+        "deleteType":"DELETE"
+    },';
+};
+
+
 
 ?>
 
@@ -226,27 +218,46 @@ $genImage = function($attr) use ($model, $key, $index){
     <tr>
         <th style="width: 20%; text-align: right; vertical-align: middle;">Images</th>
         <td>
-            <div class="kv-attribute">
-
-                <div class="file-preview ">
-                    <div class="file-drop-disabled">
-                        <div class="file-preview-thumbnails">
-                            <div class="file-initial-thumbs lightgallery">
-
-                                <?= $genImage('image1') ?>
-                                <?= $genImage('image2') ?>
-                                <?= $genImage('image3') ?>
-                                <?= $genImage('image4') ?>
-                                <?= $genImage('image5') ?>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
+                <?=
 
 
 
-            </div>
+                FileUploadUI::widget([
+                    'model' => $model,
+                    'attribute' => 'image1',
+                    'options' => [
+                        'id' => $fileUploadId,
+                    ],
+                    'downloadTemplateId' => 'template-download-2',
+                    'url' => [Url::to('tradein/image-upload'), 'id' => $model->id],
+                    'gallery' => false,
+                    'fieldOptions' => [
+                        'accept' => 'image/*'
+                    ],
+                    'clientOptions' => [
+                        'maxFileSize' => 2000000,
+                        'maxNumberOfFiles' => 5
+                    ],
+                    // ...
+                    'clientEvents' => [
+                        'fileuploaddone' => 'function(e, data) {
+                                    $("tbody.files").lightGallery({selector:"a"});
+                                }',
+                    ],
+                ]);
+                $this->registerJs('
+                    var files'.$fileUploadId.' = [
+                        '.$genImage('image1', 'Image #1').'
+                        '.$genImage('image2', 'Image #2').'
+                        '.$genImage('image3', 'Image #3').'
+                        '.$genImage('image4', 'Image #4').'
+                        '.$genImage('image5', 'Image #5').'
+                    ];
+                    $form = jQuery("#'.$fileUploadId.'-fileupload");
+                    $form.fileupload("option", "done").call($form, $.Event("done"), {result: {files: files' . $fileUploadId . '}});
+                ');
+                ?>
+
         </td>
     </tr>
     <tr class="kv-child-table-row">
