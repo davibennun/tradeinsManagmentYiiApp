@@ -133,14 +133,14 @@ class TradeinController extends Controller
 
 
             $imageFile = UploadedFile::getInstanceByName('Tradein[image1]');
-            $directory = \Yii::getAlias('@frontend/web/img');
+            $directory = \Yii::getAlias('@frontend/web/uploads');
             if (!is_dir($directory)) {
                 mkdir($directory);
             }
             if ($imageFile) {
                 $fileName = uniqid() . '.' . $imageFile->extension;
-                $filePath = \Yii::getAlias('@frontend/web/img') . '/'. $fileName;
-                $relativePath = '/img/'.$fileName;
+                $filePath = \Yii::getAlias('@frontend/web/uploads') . '/'. $fileName;
+                $relativePath = '/uploads/'.$fileName;
 
                 if ($imageFile->saveAs($filePath)) {
 
@@ -178,7 +178,7 @@ class TradeinController extends Controller
 
             $pathChunks = explode('/', $model->$imageField);
 
-            unlink(\Yii::getAlias('@frontend/web/img') . '/' . end($pathChunks));
+            unlink(\Yii::getAlias('@frontend/web/uploads') . '/' . end($pathChunks));
 
             $model->$imageField = null;
 
